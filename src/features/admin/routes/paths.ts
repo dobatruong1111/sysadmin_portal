@@ -1,6 +1,6 @@
 export enum AdminPaths {
     Base = '/',
-    UserType = '/user-type'
+    HospitalList = '/hospital-list'
 }
 export const ROUTE_ADMIN = '/admin';
-export const ROUTE_ADMIN_USER_TYPE = `${ROUTE_ADMIN}${AdminPaths.UserType}`;
+export const ROUTE_ADMIN_HOSPITAL_LIST = `${ROUTE_ADMIN}${AdminPaths.HospitalList}`;

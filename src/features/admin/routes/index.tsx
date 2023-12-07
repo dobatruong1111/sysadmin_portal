@@ -2,6 +2,7 @@ import { RouteObject, useRoutes } from 'react-router-dom';
 import { AdminPaths } from './paths';
 import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
+import { AdminLayout } from '..';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -9,8 +10,8 @@ const adminRoutes: RouteObject[] = [
         element: <AdminMain />
     },
     {
-        path: AdminPaths.UserType,
-        element: <></>
+        path: AdminPaths.HospitalList,
+        element: <div>Hospital List</div>
     }
 ];
 
@@ -18,7 +19,7 @@ export const AdminRoutes = () => {
     const adminPages = useRoutes(adminRoutes);
     return (
         <NavBarLayout>
-            {adminPages}
+            <AdminLayout>{adminPages}</AdminLayout>
         </NavBarLayout>
     );
 }

@@ -1,23 +1,31 @@
 import { styled, Box } from '@mui/material';
+import { SidebarLayout } from '../../../components/Elements/Navigation';
+import { AdminSidebar } from './AdminSidebar';
 
 type LayoutProps = {
     children: React.ReactNode;
 };
 
 const StyledLayout = styled(Box)`
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(50vw, 1fr);
+    grid-template-rows: minmax(50vh, 1fr);
 `;
 
 const StyledContentContainer = styled('div')`
     height: 100%;
     width: 100%;
-    background-color: red;
 `;
 
-export function AdminLayout() {
+export function AdminLayout({children}: LayoutProps) {
     return (
-        <StyledLayout/>
+        <StyledLayout>
+            <SidebarLayout title='Quản trị hệ thống'>
+                <AdminSidebar/>
+            </SidebarLayout>
+            <StyledContentContainer>{children}</StyledContentContainer>
+        </StyledLayout>
     )
 }
