@@ -13,13 +13,11 @@ const StyledLayout = styled(Box)`
 const StyledContentContainer = styled('div')`
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-color: red;
 `;
 
-function AdminLayout() {
+export function AdminLayout() {
     return (
         <StyledLayout/>
     )
 }
-
-export default AdminLayout;
