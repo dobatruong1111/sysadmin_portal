@@ -13,6 +13,7 @@ import { PartName } from '../components/partName/PartName';
 import { TypeOfConsumables } from '../components/typeOfConsumables/TypeOfConsumables';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
+import { Page } from '../../../components/Page';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -21,43 +22,43 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.HospitalList,
-        element: <HospitalList />
+        element: <Page title='Danh sách Bệnh viện'><HospitalList /></Page>
     },
     {
         path: AdminPaths.PacsDomain,
-        element: <PacsDomain />
+        element: <Page title='Tên miền PACS'><PacsDomain /></Page>
     },
     {
         path: AdminPaths.PacsConnectionAccount,
-        element: <PacsConnectionAccount />
+        element: <Page title='Tài khoản kết nối PACS'><PacsConnectionAccount /></Page>
     },
     {
         path: AdminPaths.PropertiesForConfig,
-        element: <PropertiesForConfig />
+        element: <Page title='Thuộc tính cho cấu hình'><PropertiesForConfig /></Page>
     },
     {
         path: AdminPaths.UserAuthorization,
-        element: <UserAuthorization />
+        element: <Page title='Phân quyền người dùng'><UserAuthorization /></Page>
     },
     {
         path: AdminPaths.TypeOfScan,
-        element: <TypeOfScan />
+        element: <Page title='Tên loại ca chụp'><TypeOfScan /></Page>
     },
     {
         path: AdminPaths.PartName,
-        element: <PartName />
+        element: <Page title='Tên bộ phận chụp'><PartName /></Page>
     },
     {
         path: AdminPaths.TypeOfConsumables,
-        element: <TypeOfConsumables />
+        element: <Page title='Loại vật tư tiêu hao'><TypeOfConsumables /></Page>
     },
     {
         path: AdminPaths.TypeOfStatisticalReport,
-        element: <TypeOfStatisticalReport />
+        element: <Page title='Loại báo cáo thống kê'><TypeOfStatisticalReport /></Page>
     },
     {
         path: AdminPaths.ExtendedFunctionality,
-        element: <ExtendedFunctionality />
+        element: <Page title='Chức năng mở rộng'><ExtendedFunctionality /></Page>
     }
 ];
 

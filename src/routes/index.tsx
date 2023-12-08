@@ -11,7 +11,7 @@ export const AppRoutes = () => {
         },
         {
             path: `${ROUTE_AUTH}/*`,
-            element: <AuthRoutes/>,
+            element: <AuthRoutes />,
         },
         {
             path: `${ROUTE_ADMIN}/*`,
