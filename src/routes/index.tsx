@@ -1,10 +1,10 @@
-import {  useRoutes } from 'react-router-dom';
+import {  useRoutes, RouteObject } from 'react-router-dom';
 import { AuthRoutes, ROUTE_AUTH } from '../features/auth';
 import { AdminRoutes, ROUTE_ADMIN } from '../features/admin';
 import { RedirectToLogin } from './RedirectToLogin';
 
 export const AppRoutes = () => {
-    const appRoutes = [
+    const appRoutes: RouteObject[] = [
         {
             path: '/*',
             element: <RedirectToLogin />

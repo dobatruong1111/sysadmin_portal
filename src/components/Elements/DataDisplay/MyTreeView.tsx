@@ -12,9 +12,9 @@ export interface IRenderTree {
     children?: readonly IRenderTree[];
 }
 
-// type MyTreeViewProps = TreeViewProps & {
-//     trees: IRenderTree[];
-// };
+type MyTreeViewProps = TreeViewProps<any> & {
+    trees: IRenderTree[];
+};
 
 const render = (trees: IRenderTree[]) => trees.length ? trees.map((tree) => (
     <MyTreeItem key={tree.MyTreeItemProps.nodeId} {...tree.MyTreeItemProps}>
@@ -22,9 +22,11 @@ const render = (trees: IRenderTree[]) => trees.length ? trees.map((tree) => (
     </MyTreeItem>
 )) : '';
 
-export function MyTreeView(props: any) {
+export function MyTreeView(props: MyTreeViewProps) {
     return (
-        <StyledTreeView {...props}>
+        <StyledTreeView 
+            {...props}
+        >
             {render(props.trees)}
         </StyledTreeView>
     );
