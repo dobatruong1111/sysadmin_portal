@@ -17,6 +17,7 @@
     "@mui/material": "^5.14.19",
     "@mui/system": "^5.14.20",
     "@mui/x-tree-view": "^6.17.0",
+    "@tanstack/react-table": "^8.10.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
