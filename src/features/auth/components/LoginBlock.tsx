@@ -79,7 +79,7 @@ export const LoginBlock = ({ onSuccess }: LoginBlockProps) => {
         )}
         renderSubmit={({submit}) => (
           <StyledLoginButton 
-            variant='contained'
+            variant='text'
             size='small'
             onClick={submit}
           >

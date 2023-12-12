@@ -28,6 +28,13 @@ export const StyledLoginButton = styled(MyButton)`
   height: 25px;
   font-size: 14px;
   font-weight: 400;
+  color: #1D1E3A99;
+  border: 0.5px solid #1D1E3A99;
+  &:hover {
+    color: white;
+    background-color: #0e8a72;
+    border: none;
+  }
 `;
 
 export const StyledLoginForm = styled(MyFormGroupUnstyled)`

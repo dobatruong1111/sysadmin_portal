@@ -1,8 +1,11 @@
 import { styled } from '@mui/material';
 import * as React from 'react';
+import { NavBar } from './NavBar';
+import logo from '../../assets/images/itech_logo_with_title.png';
 
 const StyledNavBarLayout = styled('div')`
     min-height: 100vh;
+    max-height: 100vh;
     min-width: 100vw;
     max-width: 100vw;
     display: grid;
@@ -10,8 +13,8 @@ const StyledNavBarLayout = styled('div')`
 `;
 
 const MainContentContainer = styled('div')`
-    min-height: 200px;
-    background-color: black;
+    max-height: 93.5vh;
+    background-color: #f0f1f4;
 `;
 
 type NavBarLayoutProps = {
@@ -22,6 +25,7 @@ type NavBarLayoutProps = {
 export const NavBarLayout = ({ children }: NavBarLayoutProps) => {
     return (
         <StyledNavBarLayout>
+            <NavBar logo={logo}/>
             <MainContentContainer>{children}</MainContentContainer>
         </StyledNavBarLayout>
     )
