@@ -5,20 +5,20 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MyIconButtonWithTooltip } from "../Buttons/MyIconButtonWithTooltip";
 import { useAdminFunctions } from "../../providers/admin/AdminProvider";
+import { useSelector } from "react-redux";
 
 type AdminTableActionButtonsProps = {
     tableId: string;
-    disabled: boolean;
     refetch?: () => void; 
 }
 
 export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
     const { 
         tableId,
-        disabled,
         refetch
     } = props;
     const adminFunctions = useAdminFunctions();
+    const rowSelected = useSelector((state: any) => state.tableReducer.data[tableId].selection.selectedRow);
     
     return (
         <TableActionButtonsShell
@@ -40,14 +40,14 @@ export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
                     </MyIconButtonWithTooltip>
                     <MyIconButtonWithTooltip
                         title="Sửa"
-                        disabled={disabled}
+                        disabled={rowSelected === null}
                         onClick={() => adminFunctions.openEditModal()}
                     >
                         <EditIcon />
                     </MyIconButtonWithTooltip>
                     <MyIconButtonWithTooltip
                         title="Xóa"
-                        disabled={disabled}
+                        disabled={rowSelected === null}
                         onClick={() => adminFunctions.submitDelete()}
                     >
                         <DeleteIcon />

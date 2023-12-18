@@ -17,7 +17,7 @@ export const DEFAULT_PAGINATION: PaginationQuery = {
 }
 
 export const DEFAULT_SORT: SortQuery = {
-    // id: 'asc'
+    id: 'asc'
 }
 
 export const DEFAULT_QUERY: GetManyResourceQuery<GenericFilter> = {
