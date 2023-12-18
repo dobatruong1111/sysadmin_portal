@@ -4,7 +4,7 @@ export enum AdminPaths {
     PacsDomain = '/pacs-domain',
     PacsConnectionAccount = '/pacs-connection-account',
     PropertiesForConfig = '/properties-for-config',
-    UserAuthorization = '/user-authorization',
+    UserAuthorization = '/role',
     TypeOfScan = '/type-of-scan',
     PartName = '/part-name',
     TypeOfConsumables = '/type-of-consumables',
