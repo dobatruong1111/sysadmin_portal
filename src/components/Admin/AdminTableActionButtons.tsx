@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 type AdminTableActionButtonsProps = {
     tableId: string;
-    refetch?: () => void; 
+    refetch?: () => void;
 }
 
 export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
@@ -18,7 +18,7 @@ export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
         refetch
     } = props;
     const adminFunctions = useAdminFunctions();
-    const rowSelected = useSelector((state: any) => state.tableReducer.data[tableId].selection.selectedRow);
+    const selectedRow = useSelector((state: any) => state.tableReducer.data[tableId].selection.selectedRow);
     
     return (
         <TableActionButtonsShell
@@ -40,14 +40,14 @@ export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
                     </MyIconButtonWithTooltip>
                     <MyIconButtonWithTooltip
                         title="Sửa"
-                        disabled={rowSelected === null}
+                        disabled={selectedRow === null}
                         onClick={() => adminFunctions.openEditModal()}
                     >
                         <EditIcon />
                     </MyIconButtonWithTooltip>
                     <MyIconButtonWithTooltip
                         title="Xóa"
-                        disabled={rowSelected === null}
+                        disabled={selectedRow === null}
                         onClick={() => adminFunctions.submitDelete()}
                     >
                         <DeleteIcon />

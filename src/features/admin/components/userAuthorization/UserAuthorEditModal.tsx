@@ -14,8 +14,8 @@ import { skipToken } from "@reduxjs/toolkit/query";
 
 export const ConnectedUserAuthorEditModal = () => {
     const { isOpen, open, close} = useDisclosure(false);
-    const rowSelected = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
-    const { data: userAuthorData } = useGetOneUserAuthorQuery(rowSelected != null && isOpen ? { id: rowSelected.id } : skipToken);
+    const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
+    const { data: userAuthorData } = useGetOneUserAuthorQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
     
     const dispatch = useDispatch();
     const [deleteUserAuthor] = useDeleteUserAuthorMutation();
@@ -82,6 +82,7 @@ type UserAuthorEditModalProps = {
 export const UserAuthorEditModal = forwardRef<HTMLElement, UserAuthorEditModalProps>((props, ref) => {
     const { closeModal, record } = props;
     const adminFunctions = useAdminFunctions();
+    
     return (
         <>
             <AppModalContent

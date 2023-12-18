@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { ModalNotification, ModalNotificationOptions } from '../../../features/auth/types';
+import { ModalNotification, ModalNotificationOptions } from '../../../types/notification';
 import { Paper, styled, css } from '@mui/material';
 import { ModalContent } from './ModalContent';
 import { Box } from '@mui/system';
