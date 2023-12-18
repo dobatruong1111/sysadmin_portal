@@ -7,13 +7,13 @@ import { HospitalList } from '../components/hospitalList/HospitalList';
 import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
-import { UserAuthorization } from '../components/userAuthorization/UserAuthorization';
 import { TypeOfScan } from '../components/typeOfScan/TypeOfScan';
 import { PartName } from '../components/partName/PartName';
 import { TypeOfConsumables } from '../components/typeOfConsumables/TypeOfConsumables';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
 import { Page } from '../../../components/Page';
+import { AdminUserAuthor } from './AdminUserAuthor';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -38,7 +38,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.UserAuthorization,
-        element: <Page title='Phân quyền người dùng'><UserAuthorization /></Page>
+        element: <Page title='Phân quyền người dùng'><AdminUserAuthor /></Page>
     },
     {
         path: AdminPaths.TypeOfScan,

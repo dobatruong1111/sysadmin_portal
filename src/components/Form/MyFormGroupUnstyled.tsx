@@ -2,20 +2,25 @@ import {
     ReactNode,
     KeyboardEvent,
     useMemo,
-    useCallback
+    useCallback,
+    useEffect
 } from 'react';
 import {
     useForm,
     FieldValues,
     UseFormReturn,
     UseFormHandleSubmit,
-    UseFormProps
+    UseFormProps,
 } from 'react-hook-form';
 
 export interface IFormControlInputProps<T extends FieldValues> extends UseFormReturn<T> {
     onKeyDown: (event: KeyboardEvent<HTMLElement>) => void;
     submit: ReturnType<UseFormHandleSubmit<T>>;
 }
+
+export type AccessibleFormInstance<T extends FieldValues> = {
+    submit?: ReturnType<UseFormHandleSubmit<T>>
+} & UseFormReturn<T>;
 
 export interface MyFormGroupUnstyledProps<T extends FieldValues> {
     className?: string;
@@ -24,6 +29,7 @@ export interface MyFormGroupUnstyledProps<T extends FieldValues> {
     onSubmit: (payload: T) => void;
     submitOnEnter?: boolean;
     formOptions: UseFormProps<T>;
+    registerFormFunctions?: (args: AccessibleFormInstance<T>) => void;
 }
 
 export function MyFormGroupUnstyled<T extends FieldValues>(props: MyFormGroupUnstyledProps<T>) {
@@ -33,7 +39,8 @@ export function MyFormGroupUnstyled<T extends FieldValues>(props: MyFormGroupUns
         renderSubmit,
         onSubmit,
         submitOnEnter,
-        formOptions
+        formOptions,
+        registerFormFunctions
     } = props;
     const methods = useForm<T>(formOptions);
     const { handleSubmit } = methods;
@@ -54,6 +61,16 @@ export function MyFormGroupUnstyled<T extends FieldValues>(props: MyFormGroupUns
         submit: execSubmit,
         ...methods
     }), [onKeyDown, execSubmit, methods]);
+
+    useEffect(() => {
+        const accessibleFormInstance = {
+            ...methods,
+            submit: execSubmit
+        }
+        if (registerFormFunctions) {
+            registerFormFunctions(accessibleFormInstance);
+        }
+    }, [execSubmit, methods, registerFormFunctions]);
 
     return (
         <form className={className}>

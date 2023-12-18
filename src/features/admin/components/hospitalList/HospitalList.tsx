@@ -1,7 +1,5 @@
 export const HospitalList = () => {
   return (
-    <div>
-      Hospital List
-    </div>
+    <div>HospitalList</div>
   )
 }
