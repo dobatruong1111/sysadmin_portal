@@ -55,7 +55,7 @@ export const UserAuthorization = () => {
       }
     }
   ], []);
-  const rowSelected = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
+  
   
   return (
     <MyTable
@@ -66,7 +66,6 @@ export const UserAuthorization = () => {
       renderActionsButton={() => (
         <AdminTableActionButtons
           tableId={TABLE_USER_AUTHOR}
-          disabled={rowSelected === null}
           refetch={refetch}
         />
       )}
