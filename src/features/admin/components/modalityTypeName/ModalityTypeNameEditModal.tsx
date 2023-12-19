@@ -1,4 +1,4 @@
-import { forwardRef, useCallback } from "react";
+import { forwardRef, useCallback, useState } from "react";
 import { AppModalContent } from "../../../../components/Elements/Modal/AppModalContent";
 import { useAdminFunctions, useRegisterAdminFunctions } from "../../../../providers/admin/AdminProvider";
 import { ModalityTypeNameDTO } from "../../../../types/dto/modalityTypeName"
@@ -15,7 +15,7 @@ import { Modal } from "@mui/material";
 export const ConnectedModalityTypeNameEditModal = () => {
     const { isOpen, open, close } = useDisclosure(false);
     const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_MODALITY_TYPE_NAME].selection.selectedRow);
-    const { data: modalityTypeNameData } = useGetOneModalityTypeNameQuery(selectedRow != null ? { id: selectedRow.id } : skipToken);
+    const { data: modalityTypeNameData } = useGetOneModalityTypeNameQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
     const dispatch = useDispatch();
     const [deleteModalityTypeName] = useDeleteModalityTypeNameMutation();
@@ -25,13 +25,13 @@ export const ConnectedModalityTypeNameEditModal = () => {
     register('openEditModal', open);
 
     const handleDeleteModalityTypeName = useCallback(() => {
-        if (modalityTypeNameData) {
+        if (selectedRow) {
             notifyModal({
-                message: `Bạn có chắc chắn muốn xóa loại ca chụp ${modalityTypeNameData.id} hay không ?`,
+                message: `Bạn có chắc chắn muốn xóa loại ca chụp ${selectedRow.id} hay không ?`,
                 options: {
                     variant: 'warning',
                     onConfirm: async () => {
-                        const result = await deleteModalityTypeName({ id: modalityTypeNameData.id });
+                        const result = await deleteModalityTypeName({ id: selectedRow.id });
                         if ('error' in result) {
                             notifySnackbar({
                                 message: 'Lỗi',
@@ -59,7 +59,7 @@ export const ConnectedModalityTypeNameEditModal = () => {
         notifyModal,
         deleteModalityTypeName,
         setSelectedRow,
-        modalityTypeNameData
+        selectedRow
     ]);
     register('submitDelete', () => handleDeleteModalityTypeName());
 

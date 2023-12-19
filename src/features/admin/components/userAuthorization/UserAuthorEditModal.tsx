@@ -25,13 +25,13 @@ export const ConnectedUserAuthorEditModal = () => {
     register('openEditModal', open);
 
     const handleDeleteUserAuthor = useCallback(() => {
-        if (userAuthorData) {
+        if (selectedRow) {
             notifyModal({
-                message: `Bạn có chắc chắn muốn xóa phân quyền ${userAuthorData.id} hay không ?`,
+                message: `Bạn có chắc chắn muốn xóa phân quyền ${selectedRow.id} hay không ?`,
                 options: {
                     variant: 'warning',
                     onConfirm: async () => {
-                        const result = await deleteUserAuthor({ id: `${userAuthorData.id}` })
+                        const result = await deleteUserAuthor({ id: `${selectedRow.id}` })
                         if ('error' in result) {
                             notifySnackbar({
                                 message: 'Lỗi',
@@ -59,7 +59,7 @@ export const ConnectedUserAuthorEditModal = () => {
         notifyModal, 
         deleteUserAuthor, 
         setSelectedRow, 
-        userAuthorData
+        selectedRow
     ]);
     register('submitDelete', () => handleDeleteUserAuthor());
 
