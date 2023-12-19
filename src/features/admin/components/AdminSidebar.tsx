@@ -9,7 +9,7 @@ import {
     ROUTE_ADMIN_PACS_CONNECTION_ACCOUNT,
     ROUTE_ADMIN_PROPERTIES_FOR_CONFIG,
     ROUTE_ADMIN_USER_AUTHORIZATION,
-    ROUTE_ADMIN_TYPE_OF_SCAN,
+    ROUTE_ADMIN_MODALITY_TYPE_NAME,
     ROUTE_ADMIN_PART_NAME,
     ROUTE_ADMIN_TYPE_OF_CONSUMABLES,
     ROUTE_ADMIN_TYPE_OF_STATISTICAL_REPORT,
@@ -47,7 +47,7 @@ const sidebarNodes = {
     type_of_scan: {
         id: 'TYPE_OF_SCAN',
         label: 'Tên loại ca chụp',
-        route: ROUTE_ADMIN_TYPE_OF_SCAN
+        route: ROUTE_ADMIN_MODALITY_TYPE_NAME
     },
     part_name: {
         id: 'PART_NAME',

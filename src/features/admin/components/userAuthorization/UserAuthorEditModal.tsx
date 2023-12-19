@@ -14,8 +14,8 @@ import { skipToken } from "@reduxjs/toolkit/query";
 
 export const ConnectedUserAuthorEditModal = () => {
     const { isOpen, open, close} = useDisclosure(false);
-    const rowSelected = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
-    const { data: userAuthorData } = useGetOneUserAuthorQuery(rowSelected != null && isOpen ? { id: rowSelected.id } : skipToken);
+    const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
+    const { data: userAuthorData } = useGetOneUserAuthorQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
     
     const dispatch = useDispatch();
     const [deleteUserAuthor] = useDeleteUserAuthorMutation();
@@ -25,13 +25,13 @@ export const ConnectedUserAuthorEditModal = () => {
     register('openEditModal', open);
 
     const handleDeleteUserAuthor = useCallback(() => {
-        if (userAuthorData) {
+        if (selectedRow) {
             notifyModal({
-                message: `Bạn có chắc chắn muốn xóa phân quyền ${userAuthorData.id} hay không ?`,
+                message: `Bạn có chắc chắn muốn xóa phân quyền ${selectedRow.id} hay không ?`,
                 options: {
                     variant: 'warning',
                     onConfirm: async () => {
-                        const result = await deleteUserAuthor({ id: `${userAuthorData.id}` })
+                        const result = await deleteUserAuthor({ id: `${selectedRow.id}` })
                         if ('error' in result) {
                             notifySnackbar({
                                 message: 'Lỗi',
@@ -59,7 +59,7 @@ export const ConnectedUserAuthorEditModal = () => {
         notifyModal, 
         deleteUserAuthor, 
         setSelectedRow, 
-        userAuthorData
+        selectedRow
     ]);
     register('submitDelete', () => handleDeleteUserAuthor());
 
@@ -82,6 +82,7 @@ type UserAuthorEditModalProps = {
 export const UserAuthorEditModal = forwardRef<HTMLElement, UserAuthorEditModalProps>((props, ref) => {
     const { closeModal, record } = props;
     const adminFunctions = useAdminFunctions();
+    
     return (
         <>
             <AppModalContent

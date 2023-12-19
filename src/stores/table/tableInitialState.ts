@@ -8,11 +8,18 @@ type TableStore = {
 }
 
 export const TABLE_USER_AUTHOR = RESOURCES.USER_AUTHOR;
+export const TABLE_MODALITY_TYPE_NAME = RESOURCES.MODALITY_TYPE_NAME;
 
 export const initialState: TableStore = {
     expiredTime: 0,
     data: {
         [TABLE_USER_AUTHOR]: {
+            query: DEFAULT_QUERY,
+            selection: {
+                selectedRow: null
+            }
+        },
+        [TABLE_MODALITY_TYPE_NAME]: {
             query: DEFAULT_QUERY,
             selection: {
                 selectedRow: null

@@ -1,33 +1,31 @@
-import { useMemo } from "react";
-import { TableField, MyTable } from "../../../../components/Table/MyTable";
+import { useMemo } from "react"
+import { MyTable, TableField } from "../../../../components/Table/MyTable"
+import { ModalityTypeNameDTO } from "../../../../types/dto/modalityTypeName"
+import { TABLE_MODALITY_TYPE_NAME } from "../../../../stores/table/tableInitialState";
 import { AdminTableActionButtons } from "../../../../components/Admin/AdminTableActionButtons";
-import { TABLE_USER_AUTHOR } from "../../../../stores/table/tableInitialState";
 import { useDispatch, useSelector } from "react-redux";
+import { useGetModalityTypeNameListQuery } from "../../api/apiModalityTypeName";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
-import { useGetUserAuthorListQuery } from "../../api/apiUserAuthor";
-import { UserAuthorDTO } from "../../../../types/dto/userAuthor";
-import { skipToken } from "@reduxjs/toolkit/query";
 
-export const UserAuthorization = () => {
+export const ModalityTypeName = () => {
   const dispatch = useDispatch();
-  const query = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].query);
-  const { data, isFetching, refetch } = useGetUserAuthorListQuery(query || skipToken);
+  const query = useSelector((state: any) => state.tableReducer.data[TABLE_MODALITY_TYPE_NAME].query)
+  const { data, isFetching, refetch } = useGetModalityTypeNameListQuery(query);
 
-  const tableColumns = useMemo<TableField<UserAuthorDTO>[]>(() => [
+  const tableColumns = useMemo<TableField<ModalityTypeNameDTO>[]>(() => [
     {
       type: 'custom',
-      getColumnDef: (columnHelper) => 
-        columnHelper.display({
-          id: 'stt',
-          header: 'STT',
-          cell: (props) => <div style={{textAlign: 'center'}}>{props.row.index + 1}</div>,
-          size: 50
-        })
+      getColumnDef: (columnHelper) => columnHelper.display({
+        id: 'stt',
+        header: 'STT',
+        cell: (props) => <div style={{textAlign: 'center'}}>{props.row.index + 1}</div>,
+        size: 50
+      })
     },
-    { 
+    {
       type: 'record',
       name: 'id',
-      header: 'ID phân quyền',
+      header: 'ID loại ca',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div>{cell.getValue()}</div>,
       columnDefOptions: {
@@ -37,7 +35,7 @@ export const UserAuthorization = () => {
     {
       type: 'record',
       name: 'name',
-      header: 'Tên phân quyền',
+      header: 'Tên loại ca',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue()}</div>,
       columnDefOptions: {
@@ -55,29 +53,28 @@ export const UserAuthorization = () => {
       }
     }
   ], []);
-  
-  
+
   return (
     <MyTable
-      tableId={TABLE_USER_AUTHOR}
-      tableName="Phân quyền người dùng"
+      tableId={TABLE_MODALITY_TYPE_NAME}
+      tableName="Tên loại ca chụp"
       data={data?.list}
       tableColumnsDescription={tableColumns}
       renderActionsButton={() => (
         <AdminTableActionButtons
-          tableId={TABLE_USER_AUTHOR}
+          tableId={TABLE_MODALITY_TYPE_NAME}
           refetch={refetch}
         />
       )}
       myDatagridProps={{
-        tableId: TABLE_USER_AUTHOR,
+        tableId: TABLE_MODALITY_TYPE_NAME,
         isLoading: isFetching,
         onRowClick: (e, row, table) => {
           dispatch(setSelectedRow({
-            tableId: TABLE_USER_AUTHOR,
+            tableId: TABLE_MODALITY_TYPE_NAME,
             selectedRow: row.original
           }))
-        },
+        }
       }}
       paginationControls={{
         totalRecords: data?.meta.totalRecords,

@@ -1,9 +1,7 @@
 import { Row, Table, flexRender } from '@tanstack/react-table';
-import { styled, darken, LinearProgress } from '@mui/material';
+import { styled, darken, LinearProgress, Box } from '@mui/material';
 import { MouseEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { TABLE_USER_AUTHOR } from '../../stores/table/tableInitialState';
-import { Box } from '@mui/system';
 
 const StyledDatagridContainer = styled('div')`
     overflow: auto;
@@ -29,6 +27,7 @@ const StyledDatagridContainer = styled('div')`
 
 const StyledTBody = styled('tbody')`
     & > tr {
+        background-color: white;
         cursor: pointer;
         &:hover {
             background-color: ${(props) => darken(props.theme.palette.primary.contrastText, 0.1)};
@@ -39,11 +38,14 @@ const StyledTBody = styled('tbody')`
             font-size: 13px;
             font-weight: 400;
         }
+        &.selected {
+            background-color: #c8e3de;
+        }
     }
 `;
 
 export type MyDatagridProps<T> = {
-    tableId?: string;
+    tableId: string;
     table: Table<T>;
     onRowClick?: (e: MouseEvent<HTMLTableRowElement>, row: Row<T>, table: Table<T>) => void;
     onRowDoubleClick?: (
@@ -62,11 +64,11 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
         onRowDoubleClick,
         isLoading
     } = props;
-    const [rowIdSelected, SetRowIdSelected] = useState<string>('');
-    const rowSelected = useSelector((state: any) => state.tableReducer);
+    const [selectedRowId, SetSelectedRowId] = useState<string>('');
+    const selectedRow = useSelector((state: any) => state.tableReducer.data[tableId].selection.selectedRow);
     
     const rowLeftClickHandler = useCallback((e: MouseEvent<HTMLTableRowElement>, row: Row<T>) => {
-        SetRowIdSelected(row.id);
+        SetSelectedRowId(row.id);
         switch (e.detail) {
             case 1: {
                 if (!row.getIsSelected() && !e.shiftKey) row.toggleSelected();
@@ -107,9 +109,8 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
                     {table.getRowModel().rows.map((row) => (
                         <tr 
                             key={row.id}
-                            className={row.getIsSelected() ? 'selected' : ''}
+                            className={row.id == selectedRowId && selectedRow != null ? 'selected' : ''}
                             onClick={(e) => rowLeftClickHandler(e, row)}
-                            style={{backgroundColor: row.id == rowIdSelected && rowSelected.data[TABLE_USER_AUTHOR].selection.selectedRow != null ? '#c8e3de' : 'white'}}
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <td key={cell.id}>

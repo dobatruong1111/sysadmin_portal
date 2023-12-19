@@ -7,13 +7,13 @@ import { HospitalList } from '../components/hospitalList/HospitalList';
 import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
-import { TypeOfScan } from '../components/typeOfScan/TypeOfScan';
 import { PartName } from '../components/partName/PartName';
 import { TypeOfConsumables } from '../components/typeOfConsumables/TypeOfConsumables';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
 import { Page } from '../../../components/Page';
-import { AdminUserAuthor } from './AdminUserAuthor';
+import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
+import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -41,8 +41,8 @@ const adminRoutes: RouteObject[] = [
         element: <Page title='Phân quyền người dùng'><AdminUserAuthor /></Page>
     },
     {
-        path: AdminPaths.TypeOfScan,
-        element: <Page title='Tên loại ca chụp'><TypeOfScan /></Page>
+        path: AdminPaths.ModalityTypeName,
+        element: <Page title='Tên loại ca chụp'><AdminModalityTypeName /></Page>
     },
     {
         path: AdminPaths.PartName,

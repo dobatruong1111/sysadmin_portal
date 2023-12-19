@@ -6,7 +6,6 @@ import { MyTablePageChanger } from "./MyTablePageChanger";
 const StyledTablePagination = styled(Stack)``;
 
 export type MyTablePaginationProps = {
-    showPaginationInfo: boolean;
     showPageChanger: boolean;
     paginationProps: TablePaginationInfo;
     renderPagination?: (paginationProps: TablePaginationInfo) => ReactNode;
@@ -14,7 +13,6 @@ export type MyTablePaginationProps = {
 
 export const MyTablePagination = (props: MyTablePaginationProps) => {
     const {
-        showPaginationInfo,
         showPageChanger,
         paginationProps,
         renderPagination
