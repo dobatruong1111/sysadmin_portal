@@ -1,4 +1,4 @@
-import { Reducer, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./tableInitialState";
 import { PayloadAction } from '@reduxjs/toolkit';
 import { GenericFilter, GetManyResourceQuery } from "../../types/api";
@@ -80,7 +80,4 @@ export const tableSlice = createSlice({
 
 export const { setSelectedRow, setTablePage, setTablePerPage } = tableSlice.actions;
 
-// export const tableReducer: Reducer<typeof initialState> = (state, action) => {
-//     return tableSlice.reducer(state, action);
-// }
 export const tableReducer = tableSlice.reducer;
