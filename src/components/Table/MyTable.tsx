@@ -37,7 +37,7 @@ const StyledTableContainer = styled('div')`
 `;
 
 const StyledLabel = styled(Typography)`
-  width: 225px;
+  width: fit-content;
   font-size: 16px;
   font-weight: 400;
   text-transform: uppercase;
