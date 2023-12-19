@@ -71,7 +71,6 @@ type MyTableProps<T> = {
   renderActionsButton?: () => ReactNode;
   myDatagridProps?: Omit<MyDatagridProps<T>, 'table'>;
   showPagination?: boolean;
-  showPaginationInfo?: boolean;
   renderPagination?: (paginationProps: TablePaginationInfo) => ReactNode;
   paginationControls?: TablePaginationControls;
   manualPagination?: boolean;
@@ -93,7 +92,6 @@ export function MyTable<T>(props: MyTableProps<T>) {
     tableColumnsDescription,
     renderActionsButton,
     myDatagridProps,
-    showPaginationInfo = true,
     showPagination = true,
     renderPagination,
     paginationControls = {},
@@ -160,7 +158,6 @@ export function MyTable<T>(props: MyTableProps<T>) {
           footerLeftComponent={renderActionsButton && renderActionsButton()}
           footerCenterComponent={
             <MyTablePaginationWrapper
-              showPaginationInfo={showPaginationInfo}
               showPageChanger={showPagination}
               renderPagination={renderPagination}
               paginationProps={paginationProps}
@@ -168,7 +165,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
           }
           footerRightComponent={
             <>
-              <Typography fontSize='14px'>
+              <Typography fontSize='14px' fontWeight='400'>
                 Số hàng:
               </Typography>
               <MyTableOnRowPerPage

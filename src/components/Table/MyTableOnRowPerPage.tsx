@@ -36,7 +36,7 @@ export const MyTableOnRowPerPage = (props: MyTableOnRowPerPageProps) => {
   const { sx, rowsPerPage, onRowsPerPageChange, rowsPerPageOptions } = props;
 
   return (
-    <StyledTableOnRowPerPage>
+    <StyledTableOnRowPerPage sx={sx}>
         <StyledFormControl>
           <StyledMySelect
             value={rowsPerPage}

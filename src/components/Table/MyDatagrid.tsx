@@ -1,8 +1,7 @@
 import { Row, Table, flexRender } from '@tanstack/react-table';
-import { styled, darken, LinearProgress } from '@mui/material';
+import { styled, darken, LinearProgress, Box } from '@mui/material';
 import { MouseEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Box } from '@mui/system';
 
 const StyledDatagridContainer = styled('div')`
     overflow: auto;
@@ -28,6 +27,7 @@ const StyledDatagridContainer = styled('div')`
 
 const StyledTBody = styled('tbody')`
     & > tr {
+        background-color: white;
         cursor: pointer;
         &:hover {
             background-color: ${(props) => darken(props.theme.palette.primary.contrastText, 0.1)};
@@ -37,6 +37,9 @@ const StyledTBody = styled('tbody')`
             padding: 4px;
             font-size: 13px;
             font-weight: 400;
+        }
+        &.selected {
+            background-color: #c8e3de;
         }
     }
 `;
@@ -106,9 +109,8 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
                     {table.getRowModel().rows.map((row) => (
                         <tr 
                             key={row.id}
-                            className={row.getIsSelected() ? 'selected' : ''}
+                            className={row.id == selectedRowId && selectedRow != null ? 'selected' : ''}
                             onClick={(e) => rowLeftClickHandler(e, row)}
-                            style={{backgroundColor: row.id == selectedRowId && selectedRow != null ? '#c8e3de' : 'white'}}
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <td key={cell.id}>
