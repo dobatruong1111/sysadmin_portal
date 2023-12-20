@@ -7,7 +7,7 @@ import { useDisclosure } from "../../../../hooks/useDisclosure";
 import { useDispatch, useSelector } from "react-redux";
 import { TABLE_MODALITY_TYPE_NAME } from "../../../../stores/table/tableInitialState";
 import { useDeleteModalityTypeNameMutation, useGetOneModalityTypeNameQuery } from "../../api/apiModalityTypeName";
-import { skipToken } from "@reduxjs/toolkit/query";
+// import { skipToken } from "@reduxjs/toolkit/query";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
 import { Modal } from "@mui/material";
@@ -15,7 +15,7 @@ import { Modal } from "@mui/material";
 export const ConnectedModalityTypeNameEditModal = () => {
     const { isOpen, open, close } = useDisclosure(false);
     const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_MODALITY_TYPE_NAME].selection.selectedRow);
-    const { data: modalityTypeNameData } = useGetOneModalityTypeNameQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
+    // const { data: modalityTypeNameData } = useGetOneModalityTypeNameQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
     const dispatch = useDispatch();
     const [deleteModalityTypeName] = useDeleteModalityTypeNameMutation();
@@ -63,10 +63,10 @@ export const ConnectedModalityTypeNameEditModal = () => {
     ]);
     register('submitDelete', () => handleDeleteModalityTypeName());
 
-    return modalityTypeNameData ? (
+    return selectedRow ? (
         <Modal open={isOpen}>
             <>
-                <ModalityTypeNameEditModal closeModal={close} record={modalityTypeNameData}/>
+                <ModalityTypeNameEditModal closeModal={close} record={selectedRow}/>
             </>
         </Modal>
     ) : (

@@ -7,7 +7,7 @@ import { useDisclosure } from "../../../../hooks/useDisclosure";
 import { useDispatch, useSelector } from "react-redux";
 import { TABLE_CONSUMABLE_TYPE } from "../../../../stores/table/tableInitialState";
 import { useDeleteConsumableTypeMutation, useGetOneConsumableTypeQuery } from "../../api/apiConsumableType";
-import { skipToken } from "@reduxjs/toolkit/query";
+// import { skipToken } from "@reduxjs/toolkit/query";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
 import { Modal } from "@mui/material";
@@ -15,7 +15,7 @@ import { Modal } from "@mui/material";
 export const ConnectedConsumableTypeEditModal = () => {
     const { isOpen, open, close } = useDisclosure(false);
     const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_CONSUMABLE_TYPE].selection.selectedRow);
-    const { data: consumableTypeData } = useGetOneConsumableTypeQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
+    // const { data: consumableTypeData } = useGetOneConsumableTypeQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
     const dispatch = useDispatch();
     const [deleteConsumableType] = useDeleteConsumableTypeMutation();
@@ -63,10 +63,10 @@ export const ConnectedConsumableTypeEditModal = () => {
     ]);
     register('submitDelete', () => handleDeleteConsumableType());
 
-    return consumableTypeData ? (
+    return selectedRow ? (
         <Modal open={isOpen}>
             <>
-                <ConsumableTypeEditModal closeModal={close} record={consumableTypeData} />
+                <ConsumableTypeEditModal closeModal={close} record={selectedRow} />
             </>
         </Modal>
     ) : (
