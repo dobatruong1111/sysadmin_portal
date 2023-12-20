@@ -10,12 +10,12 @@ import { setSelectedRow } from "../../../../stores/table/tableSlice";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { UserAuthorDTO } from "../../../../types/dto/userAuthor";
 import { useDeleteUserAuthorMutation, useGetOneUserAuthorQuery } from "../../api/apiUserAuthor";
-import { skipToken } from "@reduxjs/toolkit/query";
+// import { skipToken } from "@reduxjs/toolkit/query";
 
 export const ConnectedUserAuthorEditModal = () => {
     const { isOpen, open, close} = useDisclosure(false);
     const selectedRow = useSelector((state: any) => state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow);
-    const { data: userAuthorData } = useGetOneUserAuthorQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
+    // const { data: userAuthorData } = useGetOneUserAuthorQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
     
     const dispatch = useDispatch();
     const [deleteUserAuthor] = useDeleteUserAuthorMutation();
@@ -63,10 +63,10 @@ export const ConnectedUserAuthorEditModal = () => {
     ]);
     register('submitDelete', () => handleDeleteUserAuthor());
 
-    return userAuthorData ? (
+    return selectedRow ? (
         <Modal open={isOpen}>
             <>
-                <UserAuthorEditModal closeModal={close} record={userAuthorData} />
+                <UserAuthorEditModal closeModal={close} record={selectedRow} />
             </>
         </Modal>
     ) : (

@@ -10,6 +10,7 @@ type TableStore = {
 export const TABLE_USER_AUTHOR = RESOURCES.USER_AUTHOR;
 export const TABLE_MODALITY_TYPE_NAME = RESOURCES.MODALITY_TYPE_NAME;
 export const TABLE_CONSUMABLE_TYPE = RESOURCES.CONSUMABLE_TYPE;
+export const TABLE_BODY_PART = RESOURCES.BODY_PART;
 
 export const initialState: TableStore = {
     expiredTime: 0,
@@ -27,6 +28,12 @@ export const initialState: TableStore = {
             }
         },
         [TABLE_CONSUMABLE_TYPE]: {
+            query: DEFAULT_QUERY,
+            selection: {
+                selectedRow: null
+            }
+        },
+        [TABLE_BODY_PART]: {
             query: DEFAULT_QUERY,
             selection: {
                 selectedRow: null

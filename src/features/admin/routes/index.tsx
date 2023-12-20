@@ -7,13 +7,13 @@ import { HospitalList } from '../components/hospitalList/HospitalList';
 import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
-import { PartName } from '../components/partName/PartName';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
 import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
 import { AdminConsumableType } from './consumableType/AdminConsumableType';
+import { AdminBodyPart } from './bodyPart/AdminBodyPart';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -45,8 +45,8 @@ const adminRoutes: RouteObject[] = [
         element: <Page title='Tên loại ca chụp'><AdminModalityTypeName /></Page>
     },
     {
-        path: AdminPaths.PartName,
-        element: <Page title='Tên bộ phận chụp'><PartName /></Page>
+        path: AdminPaths.BodyPart,
+        element: <Page title='Tên bộ phận chụp'><AdminBodyPart /></Page>
     },
     {
         path: AdminPaths.ConsumableType,

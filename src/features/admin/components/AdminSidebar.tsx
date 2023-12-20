@@ -10,7 +10,7 @@ import {
     ROUTE_ADMIN_PROPERTIES_FOR_CONFIG,
     ROUTE_ADMIN_USER_AUTHORIZATION,
     ROUTE_ADMIN_MODALITY_TYPE_NAME,
-    ROUTE_ADMIN_PART_NAME,
+    ROUTE_ADMIN_BODY_PART,
     ROUTE_ADMIN_CONSUMABLE_TYPE,
     ROUTE_ADMIN_TYPE_OF_STATISTICAL_REPORT,
     ROUTE_ADMIN_EXTENDED_FUNCTIONALITY
@@ -49,10 +49,10 @@ const sidebarNodes = {
         label: 'Tên loại ca chụp',
         route: ROUTE_ADMIN_MODALITY_TYPE_NAME
     },
-    part_name: {
-        id: 'PART_NAME',
+    body_part: {
+        id: 'BODY_PART',
         label: 'Tên bộ phận chụp',
-        route: ROUTE_ADMIN_PART_NAME
+        route: ROUTE_ADMIN_BODY_PART
     },
     consumable_type: {
         id: 'CONSUMABLE_TYPE',
@@ -146,10 +146,10 @@ export function AdminSidebar() {
         },
         {
             MyTreeItemProps: {
-                nodeId: sidebarNodes.part_name.id,
+                nodeId: sidebarNodes.body_part.id,
                 label: (
-                    <Link to={sidebarNodes.part_name.route} style={{textDecoration: 'none'}}>
-                        <StyledChildNodeWrapper>{sidebarNodes.part_name.label}</StyledChildNodeWrapper>
+                    <Link to={sidebarNodes.body_part.route} style={{textDecoration: 'none'}}>
+                        <StyledChildNodeWrapper>{sidebarNodes.body_part.label}</StyledChildNodeWrapper>
                     </Link>
                 ),
                 icon: <FolderIcon sx={{color: '#0e8a72'}}/>
