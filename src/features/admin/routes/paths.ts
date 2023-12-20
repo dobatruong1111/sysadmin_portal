@@ -7,7 +7,7 @@ export enum AdminPaths {
     UserAuthorization = '/role',
     ModalityTypeName = '/modalityTypeName',
     PartName = '/part-name',
-    TypeOfConsumables = '/type-of-consumables',
+    ConsumableType = '/consumableType',
     TypeOfStatisticalReport = '/type-of-statistical-report',
     ExtendedFunctionality = '/extended-functionality'
 }
@@ -20,6 +20,6 @@ export const ROUTE_ADMIN_PROPERTIES_FOR_CONFIG = `${ROUTE_ADMIN}${AdminPaths.Pro
 export const ROUTE_ADMIN_USER_AUTHORIZATION = `${ROUTE_ADMIN}${AdminPaths.UserAuthorization}`;
 export const ROUTE_ADMIN_MODALITY_TYPE_NAME = `${ROUTE_ADMIN}${AdminPaths.ModalityTypeName}`;
 export const ROUTE_ADMIN_PART_NAME = `${ROUTE_ADMIN}${AdminPaths.PartName}`;
-export const ROUTE_ADMIN_TYPE_OF_CONSUMABLES = `${ROUTE_ADMIN}${AdminPaths.TypeOfConsumables}`;
+export const ROUTE_ADMIN_CONSUMABLE_TYPE = `${ROUTE_ADMIN}${AdminPaths.ConsumableType}`;
 export const ROUTE_ADMIN_TYPE_OF_STATISTICAL_REPORT = `${ROUTE_ADMIN}${AdminPaths.TypeOfStatisticalReport}`;
 export const ROUTE_ADMIN_EXTENDED_FUNCTIONALITY = `${ROUTE_ADMIN}${AdminPaths.ExtendedFunctionality}`;

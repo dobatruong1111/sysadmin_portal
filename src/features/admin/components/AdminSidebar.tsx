@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { MyTreeView } from '../../../components';
 import { IRenderTree } from '../../../components';
 import Typography from '@mui/material/Typography';
@@ -11,7 +11,7 @@ import {
     ROUTE_ADMIN_USER_AUTHORIZATION,
     ROUTE_ADMIN_MODALITY_TYPE_NAME,
     ROUTE_ADMIN_PART_NAME,
-    ROUTE_ADMIN_TYPE_OF_CONSUMABLES,
+    ROUTE_ADMIN_CONSUMABLE_TYPE,
     ROUTE_ADMIN_TYPE_OF_STATISTICAL_REPORT,
     ROUTE_ADMIN_EXTENDED_FUNCTIONALITY
 } from '..';
@@ -44,8 +44,8 @@ const sidebarNodes = {
         label: 'Phân quyền người dùng',
         route: ROUTE_ADMIN_USER_AUTHORIZATION
     },
-    type_of_scan: {
-        id: 'TYPE_OF_SCAN',
+    modality_type_name: {
+        id: 'MODALITY_TYPE_NAME',
         label: 'Tên loại ca chụp',
         route: ROUTE_ADMIN_MODALITY_TYPE_NAME
     },
@@ -54,10 +54,10 @@ const sidebarNodes = {
         label: 'Tên bộ phận chụp',
         route: ROUTE_ADMIN_PART_NAME
     },
-    type_of_consumables: {
-        id: 'TYPE_OF_CONSUMABLES',
+    consumable_type: {
+        id: 'CONSUMABLE_TYPE',
         label: 'Loại vật tư tiêu hao',
-        route: ROUTE_ADMIN_TYPE_OF_CONSUMABLES
+        route: ROUTE_ADMIN_CONSUMABLE_TYPE
     },
     type_of_statistical_report: {
         id: 'TYPE_OF_STATISTICAL_REPORT',
@@ -86,7 +86,7 @@ export function AdminSidebar() {
                         <StyledChildNodeWrapper>{sidebarNodes.hospital_list.label}</StyledChildNodeWrapper>
                     </Link>
                 ),
-                icon: <FolderIcon sx={{color: '#0e8a72'}}/>,
+                icon: <FolderIcon sx={{color: '#0e8a72'}}/>
             }
         },
         {
@@ -135,10 +135,10 @@ export function AdminSidebar() {
         },
         {
             MyTreeItemProps: {
-                nodeId: sidebarNodes.type_of_scan.id,
+                nodeId: sidebarNodes.modality_type_name.id,
                 label: (
-                    <Link to={sidebarNodes.type_of_scan.route} style={{textDecoration: 'none'}}>
-                        <StyledChildNodeWrapper>{sidebarNodes.type_of_scan.label}</StyledChildNodeWrapper>
+                    <Link to={sidebarNodes.modality_type_name.route} style={{textDecoration: 'none'}}>
+                        <StyledChildNodeWrapper>{sidebarNodes.modality_type_name.label}</StyledChildNodeWrapper>
                     </Link>
                 ),
                 icon: <FolderIcon sx={{color: '#0e8a72'}}/>
@@ -157,10 +157,10 @@ export function AdminSidebar() {
         },
         {
             MyTreeItemProps: {
-                nodeId: sidebarNodes.type_of_consumables.id,
+                nodeId: sidebarNodes.consumable_type.id,
                 label: (
-                    <Link to={sidebarNodes.type_of_consumables.route} style={{textDecoration: 'none'}}>
-                        <StyledChildNodeWrapper>{sidebarNodes.type_of_consumables.label}</StyledChildNodeWrapper>
+                    <Link to={sidebarNodes.consumable_type.route} style={{textDecoration: 'none'}}>
+                        <StyledChildNodeWrapper>{sidebarNodes.consumable_type.label}</StyledChildNodeWrapper>
                     </Link>
                 ),
                 icon: <FolderIcon sx={{color: '#0e8a72'}}/>

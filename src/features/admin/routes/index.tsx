@@ -8,12 +8,12 @@ import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
 import { PartName } from '../components/partName/PartName';
-import { TypeOfConsumables } from '../components/typeOfConsumables/TypeOfConsumables';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
 import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
+import { AdminConsumableType } from './consumableType/AdminConsumableType';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -49,8 +49,8 @@ const adminRoutes: RouteObject[] = [
         element: <Page title='Tên bộ phận chụp'><PartName /></Page>
     },
     {
-        path: AdminPaths.TypeOfConsumables,
-        element: <Page title='Loại vật tư tiêu hao'><TypeOfConsumables /></Page>
+        path: AdminPaths.ConsumableType,
+        element: <Page title='Loại vật tư tiêu hao'><AdminConsumableType /></Page>
     },
     {
         path: AdminPaths.TypeOfStatisticalReport,
