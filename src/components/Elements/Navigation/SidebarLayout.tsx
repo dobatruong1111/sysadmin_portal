@@ -7,7 +7,8 @@ const StyledSidebarContainer = styled(Box)`
     min-width: 250px;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid darkgrey
+    border-right: 1px solid #0E8A72;
+    overflow: hidden;
 `;
 
 const StyledSidebarHeader = styled(Box)`

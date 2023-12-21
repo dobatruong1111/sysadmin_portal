@@ -13,7 +13,7 @@ const StyledNavBarLayout = styled('div')`
 `;
 
 const MainContentContainer = styled('div')`
-    max-height: 93.5vh;
+    max-height: calc(100vh - 40px);
     background-color: #f0f1f4;
 `;
 
