@@ -1,5 +1,6 @@
 import { TreeItemProps, TreeItem } from '@mui/x-tree-view';
 import { styled } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 const StyledTreeItem = styled(TreeItem)`
     & > .MuiTreeItem-content {
@@ -17,8 +18,10 @@ const StyledTreeItem = styled(TreeItem)`
 `;
 
 export function MyTreeItem(props: TreeItemProps) {
+    const location = useLocation();
+
     return (
-        <StyledTreeItem {...props}>
+        <StyledTreeItem {...props} sx={{backgroundColor: props.nodeId === location.pathname.split('/').pop() ? '#c8e3de' : ''}} >
             {props.children}
         </StyledTreeItem>
     )

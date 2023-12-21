@@ -17,6 +17,8 @@ const StyledCurrentPage = styled('div')`
     display: flex;
     justify-content: center;
     height: 100%;
+    width: 20px;
+    background-color: #c8e3de;
 `;
 
 type MyTablePageChangerProps = {

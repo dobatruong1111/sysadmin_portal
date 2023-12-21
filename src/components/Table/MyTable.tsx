@@ -1,4 +1,4 @@
-import { SxProps, Typography, styled } from '@mui/material';
+import { Box, Stack, SxProps, Typography, styled } from '@mui/material';
 import { 
   createColumnHelper, 
   useReactTable, 
@@ -27,19 +27,18 @@ import { TablePaginationControls, TablePaginationInfo, useTablePagination } from
 import { MyTableOnRowPerPage } from './MyTableOnRowPerPage';
 
 const StyledTableContainer = styled('div')`
-  height: 92%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  margin: 10px;
-  border: 1px solid darkgray;
-  border-radius: 3px;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 8px;
 `;
 
-const StyledLabel = styled(Typography)`
+const StyledLabel = styled('div')`
   width: fit-content;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: bold;
   text-transform: uppercase;
   color: black;
   border-bottom: 1px solid #0E8A72;
@@ -151,7 +150,16 @@ export function MyTable<T>(props: MyTableProps<T>) {
   })
 
   return (
-    <>
+    <Stack 
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        width: '100%',
+        maxWidth: '100%',
+        padding: '8px'
+      }}
+    >
       <StyledLabel>{tableName}</StyledLabel>
       <StyledTableContainer>
         <TableFooterComponent
@@ -165,7 +173,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
           }
           footerRightComponent={
             <>
-              <Typography fontSize='14px' fontWeight='400'>
+              <Typography fontSize='13px' fontWeight='400'>
                 Số hàng:
               </Typography>
               <MyTableOnRowPerPage
@@ -176,13 +184,15 @@ export function MyTable<T>(props: MyTableProps<T>) {
             </>
           }
         />
-        <MyDatagrid 
-          tableId={tableId}
-          table={table}
-          {...myDatagridProps}
-        />
+        <div style={{overflow: 'hidden', flex: 1}}>
+          <MyDatagrid 
+            tableId={tableId}
+            table={table}
+            {...myDatagridProps}
+          />
+        </div>
       </StyledTableContainer>
-    </>
+    </Stack>
   )
 }
 

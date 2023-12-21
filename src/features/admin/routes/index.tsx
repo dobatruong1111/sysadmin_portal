@@ -8,12 +8,12 @@ import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
-import { ExtendedFunctionality } from '../components/extendedFunctionality/ExtendedFunctionality';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
 import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
 import { AdminConsumableType } from './consumableType/AdminConsumableType';
 import { AdminBodyPart } from './bodyPart/AdminBodyPart';
+import { AdminExtensionType } from './extensionType/AdminExtensionType';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -21,19 +21,19 @@ const adminRoutes: RouteObject[] = [
         element: <AdminMain />
     },
     {
-        path: AdminPaths.HospitalList,
+        path: AdminPaths.Hospital,
         element: <Page title='Danh sách Bệnh viện'><HospitalList /></Page>
     },
     {
-        path: AdminPaths.PacsDomain,
+        path: AdminPaths.Domain,
         element: <Page title='Tên miền PACS'><PacsDomain /></Page>
     },
     {
-        path: AdminPaths.PacsConnectionAccount,
+        path: AdminPaths.ConnectionAccount,
         element: <Page title='Tài khoản kết nối PACS'><PacsConnectionAccount /></Page>
     },
     {
-        path: AdminPaths.PropertiesForConfig,
+        path: AdminPaths.ConfigAttribute,
         element: <Page title='Thuộc tính cho cấu hình'><PropertiesForConfig /></Page>
     },
     {
@@ -53,12 +53,12 @@ const adminRoutes: RouteObject[] = [
         element: <Page title='Loại vật tư tiêu hao'><AdminConsumableType /></Page>
     },
     {
-        path: AdminPaths.TypeOfStatisticalReport,
+        path: AdminPaths.StatisticsType,
         element: <Page title='Loại báo cáo thống kê'><TypeOfStatisticalReport /></Page>
     },
     {
-        path: AdminPaths.ExtendedFunctionality,
-        element: <Page title='Chức năng mở rộng'><ExtendedFunctionality /></Page>
+        path: AdminPaths.ExtensionType,
+        element: <Page title='Chức năng mở rộng'><AdminExtensionType /></Page>
     }
 ];
 
@@ -66,7 +66,9 @@ export const AdminRoutes = () => {
     const adminPages = useRoutes(adminRoutes);
     return (
         <NavBarLayout>
-            <AdminLayout>{adminPages}</AdminLayout>
+            <AdminLayout>
+                {adminPages}
+            </AdminLayout>
         </NavBarLayout>
     );
 }

@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux';
 const StyledDatagridContainer = styled('div')`
     overflow: auto;
     height: 100%;
-    background-color: white;
+    width: 100%;
+    background-color: #f0f1f4;
+    border: 1px solid #bdbdbd;
     & > table {
         min-width: 100%;
         border-collapse: collapse;
@@ -30,7 +32,7 @@ const StyledTBody = styled('tbody')`
         background-color: white;
         cursor: pointer;
         &:hover {
-            background-color: ${(props) => darken(props.theme.palette.primary.contrastText, 0.1)};
+            background-color: #f0f1f4;
         }
         & td {
             border: 1px solid darkgrey;
