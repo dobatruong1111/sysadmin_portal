@@ -28,8 +28,16 @@ const ModalContentBase = forwardRef<HTMLElement, ModalContentProps>((props, ref)
                     {(renderTitle || title) && (
                         <Grid item xs={1} sx={{width: '100%', height: '100%'}}>
                             {title && (
-                                <div style={{textAlign: 'center', backgroundColor: '#c8e3de'}}>
-                                    <Typography variant='h6' textTransform={'uppercase'}>{title}</Typography>
+                                <div 
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        backgroundColor: '#c8e3de',
+                                        height: '30px'
+                                    }}
+                                >
+                                    <Typography sx={{fontSize: '14px', textTransform: 'uppercase', fontWeight: 'bold'}}>{title}</Typography>
                                 </div>
                             )}
                             {renderTitle && renderTitle()}

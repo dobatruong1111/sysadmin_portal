@@ -1,28 +1,34 @@
 import { useState } from "react";
 import { useRegisterAdminFunctions } from "../../../../providers/admin/AdminProvider";
-import { useCreateConsumableTypeMutation } from "../../api/apiConsumableType";
+import { useCreateHospitalMutation } from "../../api/apiHospital";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
-import { ConsumableTypeDTO } from "../../../../types/dto/consumableType";
+import { HospitalDTO } from "../../../../types/dto/hospital";
 import { UseFormProps } from "react-hook-form";
 import { MyFormGroupUnstyled } from "../../../../components";
-import { ConsumableTypeFormFields } from "./ConsumableTypeFormFields";
+import { HospitalFormFields } from "./HospitalFormFields";
 
-export const ConsumableTypeCreateForm = (props: {onSuccessCallback?: () => void}) => {
+export const HospitalCreateForm = (props: {onSuccessCallback?: () => void}) => {
     const { onSuccessCallback } = props;
     const register = useRegisterAdminFunctions();
     const [errorMessage, setErrorMessage] = useState<string>();
-    const [createConsumableType] = useCreateConsumableTypeMutation();
+    const [createHospital] = useCreateHospitalMutation();
     const notifySnackbar = useNotifySnackbar();
 
-    const onSubmit = async (formData: ConsumableTypeDTO) => {
-        const submitForm: ConsumableTypeDTO = {
+    const onSubmit = async (formData: HospitalDTO) => {
+        const submitForm: HospitalDTO = {
             id: formData.id ?? '',
             name: formData.name ?? '',
-            description: formData.description ?? ''
+            description: formData.description ?? '',
+            phone: formData.phone ?? '',
+            email: formData.email ?? '',
+            address: formData.address ?? '',
+            enabled: formData.enabled ?? false,
+            logo: formData.logo ?? '',
+            logoFull: formData.logoFull ?? ''
         }
         if (submitForm.id.length === 0 || submitForm.name.length === 0) setErrorMessage('Cần điền vào trường bắt buộc');
         else {
-            const result = await createConsumableType(submitForm);
+            const result = await createHospital(submitForm);
             if ('error' in result) {
                 notifySnackbar({
                     message: 'Lỗi',
@@ -42,12 +48,18 @@ export const ConsumableTypeCreateForm = (props: {onSuccessCallback?: () => void}
         }
     }
 
-    const formOptions: UseFormProps<ConsumableTypeDTO> = {
+    const formOptions: UseFormProps<HospitalDTO> = {
         mode: 'onChange',
         defaultValues: {
             id: '',
             name: '',
-            description: ''
+            description: '',
+            phone: '',
+            email: '',
+            address: '',
+            enabled: false,
+            logo: '',
+            logoFull: ''
         }
     }
 
@@ -58,7 +70,7 @@ export const ConsumableTypeCreateForm = (props: {onSuccessCallback?: () => void}
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <ConsumableTypeFormFields
+                <HospitalFormFields
                     control={control}
                     errorMessage={errorMessage}
                     disableIdField={false}

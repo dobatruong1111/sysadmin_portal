@@ -3,5 +3,6 @@ export enum RESOURCES {
     MODALITY_TYPE_NAME = 'modalityTypeName',
     CONSUMABLE_TYPE = 'consumableType',
     BODY_PART = 'bodyPart',
-    EXTENSION_TYPE = 'extensionType'
+    EXTENSION_TYPE = 'extensionType',
+    HOSPITAL = 'hospital'
 }

@@ -4,8 +4,11 @@ import { ExtensionTypeDTO } from "../../../../types/dto/extensionType"
 import { useUpdateExtensionTypeMutation } from "../../api/apiExtensionType";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { UseFormProps } from "react-hook-form";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
-import { Stack, Typography } from "@mui/material";
+import { MyFormGroupUnstyled } from "../../../../components";
+import { ExtensionTypeFormFields } from "./ExtensionTypeFormFields";
+import { useDispatch } from "react-redux";
+import { setSelectedRow } from "../../../../stores/table/tableSlice";
+import { TABLE_EXTENSION_TYPE } from "../../../../stores/table/tableInitialState";
 
 export type ExtensionTypeEditFormProps = {
     onSuccessCallback?: () => void,
@@ -18,6 +21,7 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [editExtensionType] = useUpdateExtensionTypeMutation();
     const notifySnackbar = useNotifySnackbar();
+    const dispatch = useDispatch();
 
     const formOptions: UseFormProps<ExtensionTypeDTO> = {
         mode: 'onChange',
@@ -51,6 +55,10 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
                         variant: 'success'
                     }
                 })
+                dispatch(setSelectedRow({
+                    tableId: TABLE_EXTENSION_TYPE,
+                    selectedRow: null
+                }))
                 onSuccessCallback && onSuccessCallback();
             }
         }
@@ -63,44 +71,11 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <Stack spacing={1} alignItems='center'>
-                    {errorMessage && <Typography fontSize='14px' color='red'>{errorMessage}</Typography>}
-                    <MyFormTextField
-                        name="id"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID chức năng mở rộng',
-                            placeholder: 'ID chức năng mở rộng',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            disabled: true
-                        }}
-                    />
-                    <MyFormTextField
-                        name="name"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên chức năng mở rộng',
-                            placeholder: 'Tên chức năng mở rộng',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                    <MyFormTextField
-                        name="description"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                </Stack>
+                <ExtensionTypeFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={false}
+                />
             )}
         />
     )

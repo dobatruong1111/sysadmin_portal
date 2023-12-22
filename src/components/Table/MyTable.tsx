@@ -32,7 +32,7 @@ const StyledTableContainer = styled('div')`
   flex: 1;
   height: 100%;
   overflow: hidden;
-  padding-top: 8px;
+  padding: 8px;
 `;
 
 const StyledLabel = styled('div')`
@@ -42,6 +42,8 @@ const StyledLabel = styled('div')`
   text-transform: uppercase;
   color: black;
   border-bottom: 1px solid #0E8A72;
+  margin-left: 8px;
+  margin-top: 8px;
 `;
 
 const DEFAULT_TABLE_ID = 'noname-table';
@@ -156,8 +158,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
         flexDirection: 'column',
         height: '100%',
         width: '100%',
-        maxWidth: '100%',
-        padding: '8px'
+        maxWidth: '100%'
       }}
     >
       <StyledLabel>{tableName}</StyledLabel>
@@ -184,7 +185,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
             </>
           }
         />
-        <div style={{overflow: 'hidden', flex: 1}}>
+        <div style={{overflow: 'hidden', flex: 1, border: '1px solid #bdbdbd'}}>
           <MyDatagrid 
             tableId={tableId}
             table={table}

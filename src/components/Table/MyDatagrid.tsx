@@ -1,5 +1,5 @@
 import { Row, Table, flexRender } from '@tanstack/react-table';
-import { styled, darken, LinearProgress, Box } from '@mui/material';
+import { styled, LinearProgress, Box } from '@mui/material';
 import { MouseEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +8,6 @@ const StyledDatagridContainer = styled('div')`
     height: 100%;
     width: 100%;
     background-color: #f0f1f4;
-    border: 1px solid #bdbdbd;
     & > table {
         min-width: 100%;
         border-collapse: collapse;

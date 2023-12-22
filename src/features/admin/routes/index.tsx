@@ -3,7 +3,6 @@ import { AdminPaths } from './paths';
 import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
 import { AdminLayout } from '..';
-import { HospitalList } from '../components/hospitalList/HospitalList';
 import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
@@ -14,6 +13,7 @@ import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName'
 import { AdminConsumableType } from './consumableType/AdminConsumableType';
 import { AdminBodyPart } from './bodyPart/AdminBodyPart';
 import { AdminExtensionType } from './extensionType/AdminExtensionType';
+import { AdminHospital } from './hospital/AdminHospital';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -22,7 +22,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.Hospital,
-        element: <Page title='Danh sách Bệnh viện'><HospitalList /></Page>
+        element: <Page title='Danh sách Bệnh viện'><AdminHospital /></Page>
     },
     {
         path: AdminPaths.Domain,

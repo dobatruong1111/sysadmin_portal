@@ -7,6 +7,10 @@ import { UseFormProps } from "react-hook-form";
 import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
 import { Stack } from "@mui/system";
 import { Typography } from "@mui/material";
+import { ConsumableTypeFormFields } from "./ConsumableTypeFormFields";
+import { useDispatch } from "react-redux";
+import { setSelectedRow } from "../../../../stores/table/tableSlice";
+import { TABLE_CONSUMABLE_TYPE } from "../../../../stores/table/tableInitialState";
 
 export type ConsumableTypeEditFormProps = {
     onSuccessCallback?: () => void,
@@ -19,6 +23,7 @@ export const ConsumableTypeEditForm = (props: ConsumableTypeEditFormProps) => {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [editConsumableType] = useUpdateConsumableTypeMutation();
     const notifySnackbar = useNotifySnackbar();
+    const dispatch = useDispatch();
 
     const formOptions: UseFormProps<ConsumableTypeDTO> = {
         mode: 'onChange',
@@ -52,6 +57,10 @@ export const ConsumableTypeEditForm = (props: ConsumableTypeEditFormProps) => {
                         variant: 'success'
                     }
                 })
+                dispatch(setSelectedRow({
+                    tableId: TABLE_CONSUMABLE_TYPE,
+                    selectedRow: null
+                }))
                 onSuccessCallback && onSuccessCallback();
             }
         }
@@ -64,44 +73,11 @@ export const ConsumableTypeEditForm = (props: ConsumableTypeEditFormProps) => {
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <Stack spacing={1} alignItems='center'>
-                    {errorMessage && <Typography fontSize='14px' color='red'>{errorMessage}</Typography>}
-                    <MyFormTextField
-                        name="id"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID loại vật tư tiêu hao',
-                            placeholder: 'ID loại vật tư tiêu hao',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            disabled: true
-                        }}
-                    />
-                    <MyFormTextField
-                        name="name"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên loại vật tư tiêu hao',
-                            placeholder: 'Tên loại vật tư tiêu hao',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                    <MyFormTextField
-                        name="description"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                </Stack>
+                <ConsumableTypeFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={false}
+                />
             )}
         />
     )

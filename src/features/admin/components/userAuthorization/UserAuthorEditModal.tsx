@@ -91,6 +91,10 @@ export const UserAuthorEditModal = forwardRef<HTMLElement, UserAuthorEditModalPr
                 handleConfirm={() => adminFunctions.submitEditForm()}
                 handleClose={closeModal}
                 bodyComponent={<UserAuthorEditForm record={record} onSuccessCallback={closeModal} />}
+                boxBodyProps={{
+                    padding: '8px 16px 16px 16px',
+                    height: '30vh'
+                }}
                 title="Sửa Phân Quyền"
             />
         </>

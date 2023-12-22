@@ -26,6 +26,10 @@ export const ConsumableTypeCreateModal = (props: {closeModal: () => void}) => {
         <AppModalContent
             handleClose={closeModal}
             bodyComponent={<ConsumableTypeCreateForm onSuccessCallback={closeModal} />}
+            boxBodyProps={{
+                padding: '8px 16px 16px 16px',
+                height: '30vh'
+            }}
             title="Thêm loại vật tư tiêu hao"
             confirmLabel="Thêm Mới"
             handleConfirm={() => adminFunctions.submitCreateForm()}

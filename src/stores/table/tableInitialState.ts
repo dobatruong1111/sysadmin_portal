@@ -12,6 +12,7 @@ export const TABLE_MODALITY_TYPE_NAME = RESOURCES.MODALITY_TYPE_NAME;
 export const TABLE_CONSUMABLE_TYPE = RESOURCES.CONSUMABLE_TYPE;
 export const TABLE_BODY_PART = RESOURCES.BODY_PART;
 export const TABLE_EXTENSION_TYPE = RESOURCES.EXTENSION_TYPE;
+export const TABLE_HOSPITAL = RESOURCES.HOSPITAL;
 
 export const initialState: TableStore = {
     expiredTime: 0,
@@ -41,6 +42,12 @@ export const initialState: TableStore = {
             }
         },
         [TABLE_EXTENSION_TYPE]: {
+            query: DEFAULT_QUERY,
+            selection: {
+                selectedRow: null
+            }
+        },
+        [TABLE_HOSPITAL]: {
             query: DEFAULT_QUERY,
             selection: {
                 selectedRow: null

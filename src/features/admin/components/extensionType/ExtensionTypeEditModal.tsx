@@ -91,6 +91,10 @@ export const ExtensionTypeEditModal = forwardRef<HTMLElement, ExtensionTypeEditM
                 handleConfirm={() => adminFunctions.submitEditForm()}
                 handleClose={closeModal}
                 bodyComponent={<ExtensionTypeEditForm onSuccessCallback={closeModal} record={record} />}
+                boxBodyProps={{
+                    padding: '8px 16px 16px 16px',
+                    height: '30vh'
+                }}
                 title="Sửa chức năng mở rộng"
             />
         </>
