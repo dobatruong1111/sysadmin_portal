@@ -6,6 +6,10 @@ import { UseFormProps } from "react-hook-form";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
 import { Stack, Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { setSelectedRow } from "../../../../stores/table/tableSlice";
+import { TABLE_MODALITY_TYPE_NAME } from "../../../../stores/table/tableInitialState";
+import { ModalityTypeNameFormFields } from "./ModalityTypeNameFormFields";
 
 export type ModalityTypeNameEditFormProps = {
     onSuccessCallback?: () => void,
@@ -18,6 +22,7 @@ export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) =
     const [errorMessage, setErrorMessage] = useState<string>();
     const [editModalityTypeName] = useUpdateModalityTypeNameMutation();
     const notifySnackbar = useNotifySnackbar();
+    const dispatch = useDispatch();
 
     const formOptions: UseFormProps<ModalityTypeNameDTO> = {
         mode: 'onChange',
@@ -51,6 +56,10 @@ export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) =
                         variant: 'success'
                     }
                 })
+                dispatch(setSelectedRow({
+                    tableId: TABLE_MODALITY_TYPE_NAME,
+                    selectedRow: null
+                }))
                 onSuccessCallback && onSuccessCallback();
             }
         }
@@ -63,44 +72,11 @@ export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) =
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <Stack spacing={1} alignItems={'center'}>
-                    {errorMessage && <Typography fontSize='14px' color='red'>{errorMessage}</Typography>}
-                    <MyFormTextField
-                        name="id"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID loại ca',
-                            placeholder: 'ID loại ca',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            disabled: true
-                        }}
-                    />
-                    <MyFormTextField
-                        name="name"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên loại ca',
-                            placeholder: 'Tên loại ca',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                    <MyFormTextField
-                        name="description"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                </Stack>
+                <ModalityTypeNameFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={true}
+                />
             )}
         />
     )

@@ -4,8 +4,11 @@ import { BodyPartDTO } from "../../../../types/dto/bodyPart";
 import { useUpdateBodyPartMutation } from "../../api/apiBodyPart";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { UseFormProps } from "react-hook-form";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
-import { Stack, Typography } from "@mui/material";
+import { MyFormGroupUnstyled } from "../../../../components";
+import { BodyPartFormFields } from "./BodyPartFormFields";
+import { useDispatch } from "react-redux";
+import { setSelectedRow } from "../../../../stores/table/tableSlice";
+import { TABLE_BODY_PART } from "../../../../stores/table/tableInitialState";
 
 export type BodyPartEditFormProps = {
     onSuccessCallback?: () => void;
@@ -18,7 +21,8 @@ export function BodyPartEditForm(props: BodyPartEditFormProps) {
     const [errorMessage, setErrorMessage] = useState<string>();
     const [editBodyPart] = useUpdateBodyPartMutation();
     const notifySnackbar = useNotifySnackbar();
-  
+    const dispatch = useDispatch();
+
     const formOptions: UseFormProps<BodyPartDTO> = {
         mode: 'onChange',
         defaultValues: {
@@ -51,6 +55,10 @@ export function BodyPartEditForm(props: BodyPartEditFormProps) {
                         variant: 'success',
                     },
                 });
+                dispatch(setSelectedRow({
+                    tableId: TABLE_BODY_PART,
+                    selectedRow: null
+                }))
                 onSuccessCallback && onSuccessCallback();
             }
         }
@@ -59,57 +67,17 @@ export function BodyPartEditForm(props: BodyPartEditFormProps) {
     return (
         <MyFormGroupUnstyled
             registerFormFunctions={(formInstance) =>
-                register(
-                    'submitEditForm',
-                    () => formInstance.submit && formInstance.submit()
-                )
+                register('submitEditForm',() => formInstance.submit && formInstance.submit())
             }
             onSubmit={onSubmit}
             submitOnEnter
             formOptions={formOptions}
             renderInputs={({ control }) => (
-                <Stack spacing={1} alignItems="center">
-                    {errorMessage && (
-                        <Typography fontSize="14px" color="red">
-                            {errorMessage}
-                        </Typography>
-                    )}
-                    <MyFormTextField
-                        name="id"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID bộ phận',
-                            placeholder: 'ID bộ phận',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            disabled: true,
-                        }}
-                    />
-                    <MyFormTextField
-                        name="name"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên bộ phận',
-                            placeholder: 'Tên bộ phận',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off',
-                        }}
-                    />
-                    <MyFormTextField
-                        name="description"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off',
-                        }}
-                    />
-                </Stack>
+                <BodyPartFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={true}
+                />
             )}
         />
     );

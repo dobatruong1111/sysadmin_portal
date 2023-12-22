@@ -26,6 +26,10 @@ export const ModalityTypeNameCreateModal = (props: { closeModal: () => void }) =
         <AppModalContent
             handleClose={closeModal}
             bodyComponent={<ModalityTypeNameCreateForm onSuccessCallback={closeModal} />}
+            boxBodyProps={{
+                padding: '8px 16px 16px 16px',
+                height: '30vh'
+            }}
             title="Thêm loại ca chụp"
             confirmLabel="Thêm Mới"
             handleConfirm={() => adminFunctions.submitCreateForm()}

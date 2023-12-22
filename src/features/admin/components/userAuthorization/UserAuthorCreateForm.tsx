@@ -1,11 +1,11 @@
-import { Stack, Typography } from "@mui/material";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
+import { MyFormGroupUnstyled } from "../../../../components";
 import { UseFormProps } from 'react-hook-form';
 import { useRegisterAdminFunctions } from "../../../../providers/admin/AdminProvider";
 import { useState } from "react";
 import { UserAuthorDTO } from "../../../../types/dto/userAuthor";
 import { useCreateUserAuthorMutation } from "../../api/apiUserAuthor";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
+import { UserAuthorFormFields } from "./UserAuthorFormFields";
 
 export const UserAuthorCreateForm = (props: {onSuccessCallback?: () => void}) => {
     const { onSuccessCallback } = props;
@@ -58,44 +58,11 @@ export const UserAuthorCreateForm = (props: {onSuccessCallback?: () => void}) =>
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <Stack spacing={1} alignItems={'center'}>
-                    {errorMessage && <Typography fontSize='14px' color='red'>{errorMessage}</Typography>}
-                    <MyFormTextField
-                        name='id'
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID phân quyền',
-                            placeholder: 'ID phân quyền',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                    <MyFormTextField
-                        name='name'
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên phân quyền',
-                            placeholder: 'Tên phân quyền',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                    <MyFormTextField
-                        name='description'
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off'
-                        }}
-                    />
-                </Stack>
+                <UserAuthorFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={false}
+                />
             )}
         />
     )

@@ -91,6 +91,10 @@ export const ConsumableTypeEditModal = forwardRef<HTMLElement, ConsumableTypeEdi
                 handleConfirm={() => adminFunctions.submitEditForm()}
                 handleClose={closeModal}
                 bodyComponent={<ConsumableTypeEditForm record={record} onSuccessCallback={closeModal} />}
+                boxBodyProps={{
+                    padding: '8px 16px 16px 16px',
+                    height: '30vh'
+                }}
                 title="Sửa loại vật tư tiêu hao"
             />
         </>

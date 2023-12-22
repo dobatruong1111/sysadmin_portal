@@ -4,8 +4,8 @@ import { useCreateBodyPartMutation } from "../../api/apiBodyPart";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { BodyPartDTO } from "../../../../types/dto/bodyPart";
 import { UseFormProps } from "react-hook-form";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
-import { Stack, Typography } from "@mui/material";
+import { MyFormGroupUnstyled } from "../../../../components";
+import { BodyPartFormFields } from "./BodyPartFormFields";
 
 export function BodyPartCreateForm(props: { onSuccessCallback?: () => void }) {
     const { onSuccessCallback } = props;
@@ -54,57 +54,17 @@ export function BodyPartCreateForm(props: { onSuccessCallback?: () => void }) {
     return (
         <MyFormGroupUnstyled
             registerFormFunctions={(formInstance) =>
-                register(
-                    'submitCreateForm',
-                    () => formInstance.submit && formInstance.submit()
-                )
+                register('submitCreateForm', () => formInstance.submit && formInstance.submit())
             }
             onSubmit={onSubmit}
             submitOnEnter
             formOptions={formOptions}
             renderInputs={({ control }) => (
-                <Stack spacing={1} alignItems="center">
-                    {errorMessage && (
-                        <Typography fontSize="14px" color="red">
-                            {errorMessage}
-                        </Typography>
-                    )}
-                    <MyFormTextField
-                        name="id"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'ID bộ phận',
-                            placeholder: 'ID bộ phận',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off',
-                        }}
-                    />
-                    <MyFormTextField
-                        name="name"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Tên bộ phận',
-                            placeholder: 'Tên bộ phận',
-                            fullWidth: true,
-                            required: true,
-                            size: 'small',
-                            autoComplete: 'off',
-                        }}
-                    />
-                    <MyFormTextField
-                        name="description"
-                        control={control}
-                        MyTextFieldProps={{
-                            label: 'Mô tả',
-                            placeholder: 'Mô tả',
-                            fullWidth: true,
-                            size: 'small',
-                            autoComplete: 'off',
-                        }}
-                    />
-                </Stack>
+                <BodyPartFormFields
+                    control={control}
+                    errorMessage={errorMessage}
+                    disableIdField={false}
+                />
             )}
         />
     );

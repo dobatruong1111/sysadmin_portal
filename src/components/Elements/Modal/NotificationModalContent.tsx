@@ -18,6 +18,8 @@ const StyledModalBodyText = styled('div')`
     font-weight: 400;
     font-size: 1rem;
     text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
 `;
 
 const StyledConfirmButton = styled(MyButton)`
