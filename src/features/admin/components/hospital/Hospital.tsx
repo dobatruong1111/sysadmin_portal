@@ -4,7 +4,7 @@ import { useGetHospitalListQuery } from "../../api/apiHospital";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { useMemo } from "react";
 import { MyTable, TableField } from "../../../../components/Table/MyTable";
-import { HospitalDTO, HospitalDTOBase } from "../../../../types/dto/hospital";
+import { HospitalDTO } from "../../../../types/dto/hospital";
 import { AdminTableActionButtons } from "../../../../components/Admin/AdminTableActionButtons";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
 
