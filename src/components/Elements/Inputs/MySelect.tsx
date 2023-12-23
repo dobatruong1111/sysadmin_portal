@@ -2,10 +2,10 @@ import { Select, SelectProps, styled } from "@mui/material";
 
 const StyledSelect = styled('div')``;
 
-export type MySelectProps = Omit<SelectProps, 'size'> & {
+export type MySelectProps<T> = Omit<SelectProps<T>, 'size'> & {
     size?: SelectProps['size'];
 }
-export const MySelect = (props: MySelectProps) => {
+export const MySelect = <T,>(props: MySelectProps<T>) => {
     const { size } = props;
     return (
         <StyledSelect>

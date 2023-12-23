@@ -69,6 +69,7 @@ export const DomainCreateForm = (props: {onSuccessCallback?: () => void}) => {
                     control={control}
                     errorMessage={errorMessage}
                     disableIdField={data?.list.length === 0}
+                    hospitals={data?.list}
                 />
             )}
         />

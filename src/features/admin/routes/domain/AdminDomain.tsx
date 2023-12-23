@@ -5,11 +5,13 @@ import { ConnectedDomainCreateModal } from "../../components/Domain/DomainCreate
 import { useDispatch } from "react-redux"
 import { setSelectedRow } from "../../../../stores/table/tableSlice"
 import { TABLE_DOMAIN } from "../../../../stores/table/tableInitialState"
+import { ConnectedDomainEditModal } from "../../components/Domain/DomainEditModal"
 
 export const AdminDomain = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // Clean function
         return () => {
             dispatch(setSelectedRow({
                 tableId: TABLE_DOMAIN,
@@ -22,6 +24,7 @@ export const AdminDomain = () => {
         <AdminProvider>
             <Domain />
             <ConnectedDomainCreateModal />
+            <ConnectedDomainEditModal />
         </AdminProvider>
     )
 }

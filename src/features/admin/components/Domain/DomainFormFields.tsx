@@ -1,17 +1,20 @@
 import { Control } from "react-hook-form";
 import { DomainDTOCreate } from "../../../../types/dto/domain";
-import { Stack, Typography } from "@mui/material";
+import { MenuItem, Stack, Typography } from "@mui/material";
 import { MyFormTextField } from "../../../../components";
 import { MyFormCheckboxField } from "../../../../components/Elements/Inputs/MyFormCheckboxField";
+import { MyFormSelectField } from "../../../../components/Elements/Inputs/MyFormSelectField";
+import { HospitalDTO } from "../../../../types/dto/hospital";
 
 export type DomainFormFieldsProps = {
     control: Control<DomainDTOCreate>;
     errorMessage: string | undefined;
     disableIdField: boolean;
+    hospitals?: HospitalDTO[];
 }
 
 export const DomainFormFields = (props: DomainFormFieldsProps) => {
-    const { control, errorMessage, disableIdField } = props;
+    const { control, errorMessage, disableIdField, hospitals = []} = props;
     return (
         <Stack spacing={1} alignItems='center'>
             <div style={{height: '20px'}}>{errorMessage && <Typography fontSize='12px' color='red'>{errorMessage}</Typography>}</div>
@@ -28,6 +31,22 @@ export const DomainFormFields = (props: DomainFormFieldsProps) => {
                     disabled: disableIdField
                 }}
             />
+            <MyFormSelectField
+                name="hospitalID"
+                control={control}
+                MySelectProps={{
+                    label: "Hospital ID",
+                    size: 'small',
+                    fullWidth: true
+                }}
+                required={true}
+            >
+                {hospitals.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                        {item.id}
+                    </MenuItem>
+                ))}
+            </MyFormSelectField>
             <Stack spacing={1} direction='row' alignItems='center'>
                 <MyFormCheckboxField
                     name="publicAddress"
