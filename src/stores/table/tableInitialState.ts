@@ -14,6 +14,7 @@ export const TABLE_BODY_PART = RESOURCES.BODY_PART;
 export const TABLE_EXTENSION_TYPE = RESOURCES.EXTENSION_TYPE;
 export const TABLE_HOSPITAL = RESOURCES.HOSPITAL;
 export const TABLE_DOMAIN = RESOURCES.DOMAIN;
+export const TABLE_CONFIG_ATTRIBUTE = RESOURCES.CONFIG_ATTRIBUTE;
 
 export const initialState: TableStore = {
     expiredTime: 0,
@@ -55,6 +56,12 @@ export const initialState: TableStore = {
             }
         },
         [TABLE_DOMAIN]: {
+            query: DEFAULT_QUERY,
+            selection: {
+                selectedRow: null
+            }
+        },
+        [TABLE_CONFIG_ATTRIBUTE]: {
             query: DEFAULT_QUERY,
             selection: {
                 selectedRow: null

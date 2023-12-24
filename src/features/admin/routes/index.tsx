@@ -4,7 +4,6 @@ import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
 import { AdminLayout } from '..';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
-import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
@@ -14,6 +13,7 @@ import { AdminBodyPart } from './bodyPart/AdminBodyPart';
 import { AdminExtensionType } from './extensionType/AdminExtensionType';
 import { AdminHospital } from './hospital/AdminHospital';
 import { AdminDomain } from './domain/AdminDomain';
+import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -34,7 +34,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.ConfigAttribute,
-        element: <Page title='Thuộc tính cho cấu hình'><PropertiesForConfig /></Page>
+        element: <Page title='Thuộc tính cho cấu hình'><AdminConfigAttribute /></Page>
     },
     {
         path: AdminPaths.UserAuthorization,

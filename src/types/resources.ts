@@ -5,5 +5,6 @@ export enum RESOURCES {
     BODY_PART = 'bodyPart',
     EXTENSION_TYPE = 'extensionType',
     HOSPITAL = 'hospital',
-    DOMAIN = 'domain'
+    DOMAIN = 'domain',
+    CONFIG_ATTRIBUTE = 'configAttribute'
 }
