@@ -31,6 +31,7 @@ export const LoginBlock = ({ onSuccess }: LoginBlockProps) => {
 
   const onSubmit = async (data: LoginCredentialsDTO) => {
     if (data.username === DEFAULT_USERNAME && data.password === DEFAULT_PASSWORD) {
+      localStorage.setItem('username', data.username);
       onSuccess();
     } else {
       setErrorMessage("Đăng nhập không thành công");
