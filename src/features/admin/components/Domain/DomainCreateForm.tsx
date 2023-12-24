@@ -25,7 +25,7 @@ export const DomainCreateForm = (props: {onSuccessCallback?: () => void}) => {
         const submitForm: DomainDTOCreate = {
             id: formData.id ?? '',
             hospitalID: formData.hospitalID ?? '',
-            publicAddress: formData.publicAddress ?? false
+            publicAddress: formData.publicAddress ?? false,
         }
         if (submitForm.id.length === 0 || submitForm.hospitalID.length === 0) setErrorMessage('Cần điền vào trường bắt buộc');
         else {
