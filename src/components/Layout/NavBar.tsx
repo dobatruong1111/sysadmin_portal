@@ -2,6 +2,7 @@ import { styled, Box, Typography, IconButton } from '@mui/material';
 import { DEFAULT_USERNAME } from '../../config';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useNavigate } from 'react-router-dom';
 
 const StyledNavBar = styled('div')`
     height: 40px; // 40px ~ 6.5vh
@@ -32,6 +33,12 @@ type NavBarProps = {
 }
 
 export function NavBar(props: NavBarProps) {
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        navigate('/')
+        localStorage.removeItem('username');
+    }
+    
     return (
         <StyledNavBar>
             <Box 
@@ -56,7 +63,7 @@ export function NavBar(props: NavBarProps) {
                 >
                     {DEFAULT_USERNAME}
                 </Typography>
-                <IconButton>
+                <IconButton onClick={handleLogout}>
                     <LogoutIcon sx={{color: '#0e8a72'}}/>
                 </IconButton>
             </StyledProfile>
