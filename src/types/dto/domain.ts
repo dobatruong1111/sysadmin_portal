@@ -4,8 +4,10 @@ export type DomainDTOBase = {
 }
 
 export type DomainDTO = {
+    publicAddress: boolean;
     logo: string;
     logoFull: string;
+    preferred: boolean;
 } & DomainDTOBase;
 
 export type DomainDTOCreate = {
@@ -14,6 +16,7 @@ export type DomainDTOCreate = {
 
 export type DomainDTOUpdate = {
     publicAddress: boolean;
+    preferred: boolean;
 } & DomainDTOBase;
 
 export type DomainDTODelete = {

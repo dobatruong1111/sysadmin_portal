@@ -30,7 +30,7 @@ export const Domain = () => {
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue()}</div>,
       columnDefOptions: {
-        size: 300
+        size: 100
       }
     },
     {
@@ -40,7 +40,17 @@ export const Domain = () => {
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue()}</div>,
       columnDefOptions: {
-        size: 300
+        size: 100
+      }
+    },
+    {
+      type: 'record',
+      name: 'preferred',
+      header: 'Ưu tiên',
+      renderHeader: (header) => <div>{header}</div>,
+      renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue() ? "Ưu tiên" : "Không"}</div>,
+      columnDefOptions: {
+        size: 100
       }
     }
   ], []);
