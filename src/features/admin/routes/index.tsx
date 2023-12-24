@@ -14,6 +14,7 @@ import { AdminExtensionType } from './extensionType/AdminExtensionType';
 import { AdminHospital } from './hospital/AdminHospital';
 import { AdminDomain } from './domain/AdminDomain';
 import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
+import { ROUTE_LOGIN } from '../../auth';
 
 const adminRoutes: RouteObject[] = [
     {
