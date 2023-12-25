@@ -76,7 +76,7 @@ export const ConsumableTypeEditForm = (props: ConsumableTypeEditFormProps) => {
                 <ConsumableTypeFormFields
                     control={control}
                     errorMessage={errorMessage}
-                    disableIdField={false}
+                    disableIdField={true}
                 />
             )}
         />

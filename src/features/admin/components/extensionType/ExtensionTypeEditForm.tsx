@@ -74,7 +74,7 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
                 <ExtensionTypeFormFields
                     control={control}
                     errorMessage={errorMessage}
-                    disableIdField={false}
+                    disableIdField={true}
                 />
             )}
         />
