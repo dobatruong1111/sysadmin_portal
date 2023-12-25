@@ -1,19 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
-import { TABLE_HOSPITAL } from "../../../../stores/table/tableInitialState";
-import { useGetHospitalListQuery } from "../../api/apiHospital";
+import { TABLE_CONFIG_ATTRIBUTE } from "../../../../stores/table/tableInitialState";
+import { useGetConfigAttributeListQuery } from "../../api/apiConfigAttribute";
 import { skipToken } from "@reduxjs/toolkit/query";
 import { useMemo } from "react";
 import { MyTable, TableField } from "../../../../components/Table/MyTable";
-import { HospitalDTO } from "../../../../types/dto/hospital";
+import { ConfigAttributeDTO } from "../../../../types/dto/configAttribute";
 import { AdminTableActionButtons } from "../../../../components/Admin/AdminTableActionButtons";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
 
-export const Hospital = () => {
+export const ConfigAttribute = () => {
   const dispatch = useDispatch();
-  const query = useSelector((state: any) => state.tableReducer.data[TABLE_HOSPITAL].query);
-  const { data, isFetching, refetch } = useGetHospitalListQuery(query || skipToken);
+  const query = useSelector((state: any) => state.tableReducer.data[TABLE_CONFIG_ATTRIBUTE].query);
+  const { data, isFetching, refetch } = useGetConfigAttributeListQuery(query || skipToken);
 
-  const tableColumns = useMemo<TableField<HospitalDTO>[]>(() => [
+  const tableColumns = useMemo<TableField<ConfigAttributeDTO>[]>(() => [
     {
       type: 'custom',
       getColumnDef: (columnHelper) => columnHelper.display({
@@ -36,11 +36,31 @@ export const Hospital = () => {
     {
       type: 'record',
       name: 'name',
-      header: 'Tên bệnh viện',
+      header: 'Tên thuộc tính cấu hình',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue()}</div>,
       columnDefOptions: {
-        size: 300
+        size: 200
+      }
+    },
+    {
+      type: 'record',
+      name: 'datatype',
+      header: 'Kiểu dữ liệu',
+      renderHeader: (header) => <div>{header}</div>,
+      renderCell: (cell) => <div>{cell.getValue()}</div>,
+      columnDefOptions: {
+        size: 200
+      }
+    },
+    {
+      type: 'record',
+      name: 'datatypeConfig',
+      header: 'Cấu hình kiểu dữ liệu',
+      renderHeader: (header) => <div>{header}</div>,
+      renderCell: (cell) => <div>{cell.getValue()}</div>,
+      columnDefOptions: {
+        size: 200
       }
     },
     {
@@ -52,67 +72,27 @@ export const Hospital = () => {
       columnDefOptions: {
         size: 300
       }
-    },
-    {
-      type: 'record',
-      name: 'phone',
-      header: 'Số điện thoại',
-      renderHeader: (header) => <div>{header}</div>,
-      renderCell: (cell) => <div>{cell.getValue()}</div>,
-      columnDefOptions: {
-        size: 300
-      }
-    },
-    {
-      type: 'record',
-      name: 'email',
-      header: 'Địa chỉ email',
-      renderHeader: (header) => <div>{header}</div>,
-      renderCell: (cell) => <div>{cell.getValue()}</div>,
-      columnDefOptions: {
-        size: 300
-      }
-    },
-    {
-      type: 'record',
-      name: 'address',
-      header: 'Địa chỉ',
-      renderHeader: (header) => <div>{header}</div>,
-      renderCell: (cell) => <div>{cell.getValue()}</div>,
-      columnDefOptions: {
-        size: 300
-      }
-    },
-    {
-      type: 'record',
-      name: 'enabled',
-      header: 'Ưu tiên',
-      renderHeader: (header) => <div>{header}</div>,
-      renderCell: (cell) => <div style={{textAlign: 'center'}}>{cell.getValue() ? 'Ưu tiên' : 'Không'}</div>,
-      columnDefOptions: {
-        size: 300
-      }
     }
   ], []);
 
   return (
     <MyTable
-      tableId={TABLE_HOSPITAL}
-      tableName="Danh sách bệnh viện"
+      tableId={TABLE_CONFIG_ATTRIBUTE}
+      tableName="Thuộc tính cấu hình"
       data={data?.list}
       tableColumnsDescription={tableColumns}
       renderActionsButton={() => (
         <AdminTableActionButtons
-          tableId={TABLE_HOSPITAL}
+          tableId={TABLE_CONFIG_ATTRIBUTE}
           refetch={refetch}
         />
       )}
       myDatagridProps={{
-        tableId: TABLE_HOSPITAL,
+        tableId: TABLE_CONFIG_ATTRIBUTE,
         isLoading: isFetching,
         onRowClick: (e, row, table) => {
           dispatch(setSelectedRow({
-            tableId: TABLE_HOSPITAL,
+            tableId: TABLE_CONFIG_ATTRIBUTE,
             selectedRow: row.original
           }))
         }

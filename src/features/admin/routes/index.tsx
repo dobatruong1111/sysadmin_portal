@@ -3,9 +3,7 @@ import { AdminPaths } from './paths';
 import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
 import { AdminLayout } from '..';
-import { PacsDomain } from '../components/pacsDomain/PacsDomain';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
-import { PropertiesForConfig } from '../components/propertiesForConfig/PropertiesForConfig';
 import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
@@ -14,7 +12,8 @@ import { AdminConsumableType } from './consumableType/AdminConsumableType';
 import { AdminBodyPart } from './bodyPart/AdminBodyPart';
 import { AdminExtensionType } from './extensionType/AdminExtensionType';
 import { AdminHospital } from './hospital/AdminHospital';
-import { ROUTE_LOGIN } from '../../auth';
+import { AdminDomain } from './domain/AdminDomain';
+import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -27,7 +26,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.Domain,
-        element: <Page title='Tên miền PACS'><PacsDomain /></Page>
+        element: <Page title='Tên miền PACS'><AdminDomain /></Page>
     },
     {
         path: AdminPaths.ConnectionAccount,
@@ -35,7 +34,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.ConfigAttribute,
-        element: <Page title='Thuộc tính cho cấu hình'><PropertiesForConfig /></Page>
+        element: <Page title='Thuộc tính cho cấu hình'><AdminConfigAttribute /></Page>
     },
     {
         path: AdminPaths.UserAuthorization,

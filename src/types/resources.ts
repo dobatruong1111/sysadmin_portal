@@ -4,5 +4,7 @@ export enum RESOURCES {
     CONSUMABLE_TYPE = 'consumableType',
     BODY_PART = 'bodyPart',
     EXTENSION_TYPE = 'extensionType',
-    HOSPITAL = 'hospital'
+    HOSPITAL = 'hospital',
+    DOMAIN = 'domain',
+    CONFIG_ATTRIBUTE = 'configAttribute'
 }

@@ -27,7 +27,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
                             required: true,
                             size: 'small',
                             autoComplete: 'off',
-                            disabled: disableIdField
+                            disabled: disableIdField,
                         }}
                     />
                     <MyFormTextField
@@ -96,7 +96,13 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
                             name="enabled"
                             control={control}
                             MyCheckboxProps={{
-                                size: 'small'
+                                size: 'small',
+                                color: 'success',
+                                sx: {
+                                    '&.Mui-checked': {
+                                        color: '#0e8a72'
+                                    }
+                                }
                             }}
                         />
                         <Typography sx={{fontSize: '15px', fontWeight: '400'}}>Ưu tiên</Typography>
