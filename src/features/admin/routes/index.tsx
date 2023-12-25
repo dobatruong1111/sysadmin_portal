@@ -1,4 +1,4 @@
-import { RouteObject, useRoutes } from 'react-router-dom';
+import { Navigate, RouteObject, useRoutes } from 'react-router-dom';
 import { AdminPaths } from './paths';
 import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
@@ -14,7 +14,6 @@ import { AdminExtensionType } from './extensionType/AdminExtensionType';
 import { AdminHospital } from './hospital/AdminHospital';
 import { AdminDomain } from './domain/AdminDomain';
 import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
-import { ROUTE_LOGIN } from '../../auth';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -64,13 +63,16 @@ const adminRoutes: RouteObject[] = [
 ];
 
 export const AdminRoutes = () => {
+    const storedUsername = localStorage.getItem('username');
     const adminPages = useRoutes(adminRoutes);
-    return (
+    return storedUsername ? (
         <NavBarLayout>
             <AdminLayout>
                 {adminPages}
             </AdminLayout>
         </NavBarLayout>
+    ) : (
+        <Navigate to={ROUTE_LOGIN} />
     );
 }
 
