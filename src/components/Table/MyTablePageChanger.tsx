@@ -26,7 +26,7 @@ type MyTablePageChangerProps = {
 } & Partial<Pick<TablePaginationInfo, 'pageCount' | 'onPageChange' | 'page'>>;
 
 export const MyTablePageChanger = (props: MyTablePageChangerProps) => {
-    const { sx, pageCount, onPageChange, page } = props;
+    const { pageCount, onPageChange, page } = props;
 
     const prevButtonDisabled = page && page === 1 ? true : false;
     const nextButtonDisabled = page && page === pageCount ? true : false;

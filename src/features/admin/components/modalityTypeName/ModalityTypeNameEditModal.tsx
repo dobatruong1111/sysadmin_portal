@@ -6,7 +6,7 @@ import { ModalityTypeNameEditForm } from "./ModalityTypeNameEditForm";
 import { useDisclosure } from "../../../../hooks/useDisclosure";
 import { useDispatch, useSelector } from "react-redux";
 import { TABLE_MODALITY_TYPE_NAME } from "../../../../stores/table/tableInitialState";
-import { useDeleteModalityTypeNameMutation, useGetOneModalityTypeNameQuery } from "../../api/apiModalityTypeName";
+import { useDeleteModalityTypeNameMutation } from "../../api/apiModalityTypeName";
 // import { skipToken } from "@reduxjs/toolkit/query";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";

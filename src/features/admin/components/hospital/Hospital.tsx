@@ -110,7 +110,7 @@ export const Hospital = () => {
       myDatagridProps={{
         tableId: TABLE_HOSPITAL,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_HOSPITAL,
             selectedRow: row.original

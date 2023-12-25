@@ -38,7 +38,7 @@ const apiModalityTypeName = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: 'LIST' }],
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: 'LIST' }],
         }),
         updateModalityTypeName: builder.mutation<ModalityTypeNameDTO, ModalityTypeNameDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiModalityTypeName = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
         }),
         deleteModalityTypeName: builder.mutation<ModalityTypeNameDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiModalityTypeName = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
         })
     })
 })

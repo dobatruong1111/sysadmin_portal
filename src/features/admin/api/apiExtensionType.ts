@@ -38,7 +38,7 @@ const apiExtensionType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: 'LIST' }]
         }),
         updateExtensionType: builder.mutation<ExtensionTypeDTO, ExtensionTypeDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiExtensionType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
         }),
         deleteExtensionType: builder.mutation<ExtensionTypeDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiExtensionType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
         })
     })
 })

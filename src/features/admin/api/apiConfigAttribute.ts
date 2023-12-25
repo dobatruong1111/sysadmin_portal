@@ -38,7 +38,7 @@ const apiConfigAttribute = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: 'LIST' }]
         }),
         updateConfigAttribute: builder.mutation<ConfigAttributeDTO, ConfigAttributeDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiConfigAttribute = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
         }),
         deleteConfigAttribute: builder.mutation<ConfigAttributeDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiConfigAttribute = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
         })
     }), 
 })

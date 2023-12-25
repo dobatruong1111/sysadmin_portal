@@ -6,7 +6,7 @@ import { ConsumableTypeEditForm } from "./ConsumableTypeEditForm";
 import { useDisclosure } from "../../../../hooks/useDisclosure";
 import { useDispatch, useSelector } from "react-redux";
 import { TABLE_CONSUMABLE_TYPE } from "../../../../stores/table/tableInitialState";
-import { useDeleteConsumableTypeMutation, useGetOneConsumableTypeQuery } from "../../api/apiConsumableType";
+import { useDeleteConsumableTypeMutation } from "../../api/apiConsumableType";
 // import { skipToken } from "@reduxjs/toolkit/query";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";

@@ -72,7 +72,7 @@ export const UserAuthorization = () => {
       myDatagridProps={{
         tableId: TABLE_USER_AUTHOR,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_USER_AUTHOR,
             selectedRow: row.original

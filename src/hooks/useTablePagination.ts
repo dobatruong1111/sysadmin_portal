@@ -46,7 +46,7 @@ export const useTablePagination = (
     const rowsPerPage = pagination.perPage || PAGINATION_STATE_DEFAULT.perPage;
     const pageCount = Math.ceil((totalRecords || 0) / rowsPerPage) || 1;
 
-    const handlePageChange: PageChangeHandler = useCallback((e, page) => {
+    const handlePageChange: PageChangeHandler = useCallback((_e, page) => {
         dispatch(setTablePage({
             tableId,
             page

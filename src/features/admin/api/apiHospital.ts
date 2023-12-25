@@ -38,7 +38,7 @@ const apiHospital = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: 'LIST' }]
         }),
         updateHospital: builder.mutation<HospitalDTO, HospitalDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiHospital = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: arg.id }]
         }),
         deleteHospital: builder.mutation<HospitalDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiHospital = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.HOSPITAL, id: arg.id }]
         })
     })
 })

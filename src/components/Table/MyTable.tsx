@@ -1,4 +1,4 @@
-import { Box, Stack, SxProps, Typography, styled } from '@mui/material';
+import { Stack, Typography, styled } from '@mui/material';
 import { 
   createColumnHelper, 
   useReactTable, 
@@ -67,7 +67,6 @@ type MyTableProps<T> = {
   tableId?: string,
   tableName: string;
   data?: T[];
-  sx?: SxProps;
   tableColumnsDescription: TableField<T>[];
   renderActionsButton?: () => ReactNode;
   myDatagridProps?: Omit<MyDatagridProps<T>, 'table'>;
@@ -89,7 +88,6 @@ export function MyTable<T>(props: MyTableProps<T>) {
     tableId = DEFAULT_TABLE_ID,
     tableName,
     data = [],
-    sx,
     tableColumnsDescription,
     renderActionsButton,
     myDatagridProps,
@@ -210,7 +208,7 @@ const getInitialRowSelectedState = <T,>(options: {
   initialFirstRowSelected: boolean,
   selectedIds: number[]
 }): RowSelectionState => {
-  const { data, initialFirstRowSelected, selectedIds } = options;
+  const { data, initialFirstRowSelected } = options;
   if (data && data.length) {
     if (initialFirstRowSelected) {
       return { [getRowId(data[0], 0)]: true };
@@ -230,8 +228,7 @@ const useTableState = <T,>(props: {
     tableId = DEFAULT_TABLE_ID,
     table,
     paginationControls,
-    manualPagination,
-    selectedIds
+    manualPagination
   } = props;
   const [state, setState] = useState<TableState>(table.initialState);
   const paginationProps = useTablePagination(tableId, paginationControls);

@@ -38,7 +38,7 @@ const apiConsumableType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: 'LIST' }]
         }),
         updateConsumableType: builder.mutation<ConsumableTypeDTO, ConsumableTypeDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiConsumableType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
         }),
         deleteConsumableType: builder.mutation<ConsumableTypeDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiConsumableType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
         })
     })
 })

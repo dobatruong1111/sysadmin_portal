@@ -38,7 +38,7 @@ const apiStatisticsType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: 'LIST' }]
         }),
         updateStatisticsType: builder.mutation<StatisticsTypeDTO, StatisticsTypeDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiStatisticsType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
         }),
         deleteStatisticsType: builder.mutation<StatisticsTypeDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiStatisticsType = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
         })
     })
 })

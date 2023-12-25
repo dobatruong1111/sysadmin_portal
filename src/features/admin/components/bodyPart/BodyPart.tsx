@@ -76,7 +76,7 @@ export const BodyPart = () => {
       myDatagridProps={{
         tableId: TABLE_BODY_PART,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_BODY_PART,
             selectedRow: row.original,

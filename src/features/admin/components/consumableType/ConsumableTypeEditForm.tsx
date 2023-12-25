@@ -4,9 +4,7 @@ import { ConsumableTypeDTO } from "../../../../types/dto/consumableType"
 import { useUpdateConsumableTypeMutation } from "../../api/apiConsumableType";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { UseFormProps } from "react-hook-form";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
-import { Stack } from "@mui/system";
-import { Typography } from "@mui/material";
+import { MyFormGroupUnstyled } from "../../../../components";
 import { ConsumableTypeFormFields } from "./ConsumableTypeFormFields";
 import { useDispatch } from "react-redux";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";

@@ -70,7 +70,7 @@ export const Domain = () => {
       myDatagridProps={{
         tableId: TABLE_DOMAIN,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_DOMAIN,
             selectedRow: row.original

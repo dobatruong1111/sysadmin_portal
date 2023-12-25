@@ -38,7 +38,7 @@ const apiUserAuthor = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: 'LIST'}],
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: 'LIST'}],
         }),
         updateUserAuthor: builder.mutation<UserAuthorDTO, UserAuthorDTO>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiUserAuthor = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
         }),
         deleteUserAuthor: builder.mutation<UserAuthorDTO, { id: string }>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiUserAuthor = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
         })
     })
 });

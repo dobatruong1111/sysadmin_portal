@@ -38,7 +38,7 @@ const apiDomain = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error) => error ? [] : [{ type: RESOURCES.DOMAIN, id: 'LIST' }]
+            invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.DOMAIN, id: 'LIST' }]
         }),
         updateDomain: builder.mutation<DomainDTOUpdate, DomainDTOUpdate>({
             query: (data) => ({
@@ -48,7 +48,7 @@ const apiDomain = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.DOMAIN, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.DOMAIN, id: arg.id }]
         }),
         deleteDomain: builder.mutation<DomainDTODelete, { id: string}>({
             query: (data) => ({
@@ -58,7 +58,7 @@ const apiDomain = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false
             }),
-            invalidatesTags: (result, error, arg) => error ? [] : [{ type: RESOURCES.DOMAIN, id: arg.id }]
+            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.DOMAIN, id: arg.id }]
         })
     }),
 })

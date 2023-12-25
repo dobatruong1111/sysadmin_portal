@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useDisclosure } from "../../../../hooks/useDisclosure";
 import { TABLE_BODY_PART } from "../../../../stores/table/tableInitialState";
-import { useDeleteBodyPartMutation, useGetBodyPartQuery } from "../../api/apiBodyPart";
+import { useDeleteBodyPartMutation } from "../../api/apiBodyPart";
 // import { skipToken } from "@reduxjs/toolkit/query";
 import { useNotifyModal, useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { useAdminFunctions, useRegisterAdminFunctions } from "../../../../providers/admin/AdminProvider";

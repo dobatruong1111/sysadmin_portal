@@ -42,7 +42,7 @@ const apiBodyPart = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false,
             }),
-            invalidatesTags: (result, error) =>
+            invalidatesTags: (_result, error) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: 'LIST' }],
         }),
         updateBodyPart: builder.mutation<BodyPartDTO, BodyPartDTO>({
@@ -53,7 +53,7 @@ const apiBodyPart = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false,
             }),
-            invalidatesTags: (result, error, arg) =>
+            invalidatesTags: (_result, error, arg) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: arg.id }],
         }),
         deleteBodyPart: builder.mutation<BodyPartDTO, { id: string }>({
@@ -64,7 +64,7 @@ const apiBodyPart = api.injectEndpoints({
                 useAsync: true,
                 useHospitalID: false,
             }),
-            invalidatesTags: (result, error, arg) =>
+            invalidatesTags: (_result, error, arg) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: arg.id }],
         }),
       }),

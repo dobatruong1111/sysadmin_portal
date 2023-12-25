@@ -90,7 +90,7 @@ export const ConfigAttribute = () => {
       myDatagridProps={{
         tableId: TABLE_CONFIG_ATTRIBUTE,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_CONFIG_ATTRIBUTE,
             selectedRow: row.original

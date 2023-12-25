@@ -1,5 +1,5 @@
 import { DialogContent, Grid, Paper, Typography, styled } from '@mui/material';
-import { ForwardedRef, ReactNode, forwardRef } from 'react'
+import { ReactNode, forwardRef } from 'react'
 
 type ModalContentProps = {
     // ref?: ForwardedRef<HTMLElement>;
@@ -14,7 +14,7 @@ type ModalContentProps = {
 }
 
 const ModalContentBase = forwardRef<HTMLElement, ModalContentProps>((props, ref) => {
-    const {renderTitle, renderBody, renderFooter, title, isLoading = false} = props;
+    const {renderTitle, renderBody, renderFooter, title} = props;
     return (
         <DialogContent ref={ref}>
             <Paper className={props.className} elevation={24}>

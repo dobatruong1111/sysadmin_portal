@@ -71,7 +71,7 @@ export const ExtensionType = () => {
       myDatagridProps={{
         tableId: TABLE_EXTENSION_TYPE,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_EXTENSION_TYPE,
             selectedRow: row.original

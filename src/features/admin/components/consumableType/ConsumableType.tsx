@@ -74,7 +74,7 @@ export const ConsumableType = () => {
       myDatagridProps={{
         tableId: TABLE_CONSUMABLE_TYPE,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_CONSUMABLE_TYPE,
             selectedRow: row.original

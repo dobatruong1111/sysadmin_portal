@@ -69,7 +69,7 @@ export const ModalityTypeName = () => {
       myDatagridProps={{
         tableId: TABLE_MODALITY_TYPE_NAME,
         isLoading: isFetching,
-        onRowClick: (e, row, table) => {
+        onRowClick: (_e, row, _table) => {
           dispatch(setSelectedRow({
             tableId: TABLE_MODALITY_TYPE_NAME,
             selectedRow: row.original

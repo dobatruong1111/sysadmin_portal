@@ -4,9 +4,7 @@ import { useCreateModalityTypeNameMutation } from "../../api/apiModalityTypeName
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
 import { ModalityTypeNameDTO } from "../../../../types/dto/modalityTypeName";
 import { UseFormProps } from "react-hook-form";
-import { MyFormGroupUnstyled, MyFormTextField } from "../../../../components";
-import { Stack } from "@mui/system";
-import { Typography } from "@mui/material";
+import { MyFormGroupUnstyled } from "../../../../components";
 import { ModalityTypeNameFormFields } from "./ModalityTypeNameFormFields";
 
 export const ModalityTypeNameCreateForm = (props: { onSuccessCallback?: () => void }) => {

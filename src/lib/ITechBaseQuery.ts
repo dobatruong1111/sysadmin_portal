@@ -38,7 +38,7 @@ export type BaseQueryArgs = {
 export const ITechBaseQuery = (
     args: BaseQueryArgs
 ): BaseQueryFn<ItechBaseRequest, unknown, unknown> => {
-    return async (queryArgs, api, _extraOptions) => {
+    return async (queryArgs, _api, _extraOptions) => {
         const {
             url,
             useAsync = false,
