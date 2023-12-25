@@ -1,7 +1,13 @@
 import { Control, Controller, FieldPath, FieldValues } from "react-hook-form"
 import { MySelect, MySelectProps } from "./MySelect";
 import { ReactNode } from "react";
-import { FormControl, InputLabel, InputLabelProps } from "@mui/material";
+import { FormControl, InputLabel, InputLabelProps, styled } from "@mui/material";
+
+const StyledInputLabel = styled(InputLabel)`
+    &.Mui-focused {
+        color: #0e8a72;
+    }
+`;
 
 const mapSelectSizeToInputSize = <T,>(
     size?: MySelectProps<T>['size']
@@ -34,11 +40,11 @@ export function MyFormSelectField<T extends FieldValues>(
             control={props.control}
             render={( { field: { value, onChange } }) => (
                 <FormControl fullWidth required={props?.required}>
-                    <InputLabel
+                    <StyledInputLabel
                         size={inputLabelSize}
                     >
                         {props.MySelectProps?.label}
-                    </InputLabel>
+                    </StyledInputLabel>
                     <MySelect
                         size={size}
                         value={value}
