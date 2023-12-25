@@ -30,7 +30,7 @@ export const BodyPart = () => {
       {
         type: 'record',
         name: 'id',
-        header: 'ID bộ phận chụp',
+        header: 'ID',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => <div>{cell.getValue()}</div>,
         columnDefOptions: {

@@ -26,7 +26,7 @@ export const ConsumableType = () => {
     {
       type: 'record',
       name: 'id',
-      header: 'ID loại vật tư tiêu hao',
+      header: 'ID',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div>{cell.getValue()}</div>,
       columnDefOptions: {

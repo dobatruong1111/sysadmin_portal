@@ -52,7 +52,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
                             size: 'small',
                             autoComplete: 'off',
                             multiline: true,
-                            rows: 3
+                            rows: 2
                         }}
                     />
                 </Stack>

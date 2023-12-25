@@ -18,8 +18,8 @@ export const ExtensionTypeFormFields = (props: ExtensionTypeFormFieldsProps) => 
                 name="id"
                 control={control}
                 MyTextFieldProps={{
-                    label: 'ID chức năng mở rộng',
-                    placeholder: 'ID chức năng mở rộng',
+                    label: 'ID',
+                    placeholder: 'ID',
                     fullWidth: true,
                     required: true,
                     size: 'small',

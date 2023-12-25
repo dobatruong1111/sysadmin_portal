@@ -18,8 +18,8 @@ export const UserAuthorFormFields = (props: UserAuthorFormFieldsProps) => {
                 name='id'
                 control={control}
                 MyTextFieldProps={{
-                    label: 'ID phân quyền',
-                    placeholder: 'ID phân quyền',
+                    label: 'ID',
+                    placeholder: 'ID',
                     fullWidth: true,
                     required: true,
                     size: 'small',

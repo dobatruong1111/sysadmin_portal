@@ -18,8 +18,8 @@ export const ModalityTypeNameFormFields = (props: ModalityTypeNameFormFieldsProp
                 name="id"
                 control={control}
                 MyTextFieldProps={{
-                    label: 'ID loại ca',
-                    placeholder: 'ID loại ca',
+                    label: 'ID',
+                    placeholder: 'ID',
                     fullWidth: true,
                     required: true,
                     size: 'small',

@@ -1,19 +1,19 @@
 import { Control } from "react-hook-form";
-import { BodyPartDTO } from "../../../../types/dto/bodyPart";
+import { StatisticsTypeDTO } from "../../../../types/dto/statisticsType";
 import { Stack, Typography } from "@mui/material";
 import { MyFormTextField } from "../../../../components";
 
-export type BodyPartFormFieldsProps = {
-    control: Control<BodyPartDTO>;
+export type StatisticsTypeFormFieldsProps = {
+    control: Control<StatisticsTypeDTO>;
     errorMessage: string | undefined;
     disableIdField: boolean;
 }
 
-export const BodyPartFormFields = (props: BodyPartFormFieldsProps) => {
+export const StatisticsTypeFormFields = (props: StatisticsTypeFormFieldsProps) => {
     const { control, errorMessage, disableIdField } = props;
     return (
-        <Stack spacing={1} alignItems="center">
-            <div style={{height: '20px', width: '100%', textAlign: 'center'}}>{errorMessage && <Typography fontSize='12px' color='red'>{errorMessage}</Typography>}</div>
+        <Stack spacing={1} alignItems='center'>
+            <div style={{height: '20px'}}>{errorMessage && <Typography fontSize='12px' color='red'>{errorMessage}</Typography>}</div>
             <MyFormTextField
                 name="id"
                 control={control}
@@ -31,12 +31,23 @@ export const BodyPartFormFields = (props: BodyPartFormFieldsProps) => {
                 name="name"
                 control={control}
                 MyTextFieldProps={{
-                    label: 'Tên bộ phận',
-                    placeholder: 'Tên bộ phận',
+                    label: 'Tên loại báo cáo thống kê',
+                    placeholder: 'Tên loại báo cáo thống kê',
                     fullWidth: true,
                     required: true,
                     size: 'small',
-                    autoComplete: 'off',
+                    autoComplete: 'off'
+                }}
+            />
+            <MyFormTextField
+                name="config"
+                control={control}
+                MyTextFieldProps={{
+                    label: 'Cấu hình',
+                    placeholder: 'Cấu hình',
+                    fullWidth: true,
+                    size: 'small',
+                    autoComplete: 'off'
                 }}
             />
             <MyFormTextField

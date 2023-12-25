@@ -27,7 +27,7 @@ export const UserAuthorization = () => {
     { 
       type: 'record',
       name: 'id',
-      header: 'ID phân quyền',
+      header: 'ID',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div>{cell.getValue()}</div>,
       columnDefOptions: {

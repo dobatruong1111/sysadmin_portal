@@ -1,46 +1,52 @@
 import { useState } from "react";
 import { useRegisterAdminFunctions } from "../../../../providers/admin/AdminProvider";
-import { ModalityTypeNameDTO } from "../../../../types/dto/modalityTypeName"
-import { useUpdateModalityTypeNameMutation } from "../../api/apiModalityTypeName";
-import { UseFormProps } from "react-hook-form";
+import { StatisticsTypeDTO } from "../../../../types/dto/statisticsType"
+import { useUpdateStatisticsTypeMutation } from "../../api/apiStatisticsType";
 import { useNotifySnackbar } from "../../../../providers/NotificationProvider";
-import { MyFormGroupUnstyled } from "../../../../components";
 import { useDispatch } from "react-redux";
+import { UseFormProps } from "react-hook-form";
 import { setSelectedRow } from "../../../../stores/table/tableSlice";
-import { TABLE_MODALITY_TYPE_NAME } from "../../../../stores/table/tableInitialState";
-import { ModalityTypeNameFormFields } from "./ModalityTypeNameFormFields";
+import { TABLE_STATISTICS_TYPE } from "../../../../stores/table/tableInitialState";
+import { MyFormGroupUnstyled } from "../../../../components";
+import { StatisticsTypeFormFields } from "./StatisticsTypeFormFields";
 
-export type ModalityTypeNameEditFormProps = {
+export type StatisticsTypeEditFormProps = {
     onSuccessCallback?: () => void,
-    record: ModalityTypeNameDTO
+    record: StatisticsTypeDTO
 }
 
-export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) => {
+export const StatisticsTypeEditForm = (props: StatisticsTypeEditFormProps) => {
     const { onSuccessCallback, record } = props;
     const register = useRegisterAdminFunctions();
     const [errorMessage, setErrorMessage] = useState<string>();
-    const [editModalityTypeName] = useUpdateModalityTypeNameMutation();
+    const [editStatisticsType] = useUpdateStatisticsTypeMutation();
     const notifySnackbar = useNotifySnackbar();
     const dispatch = useDispatch();
 
-    const formOptions: UseFormProps<ModalityTypeNameDTO> = {
+    const formOptions: UseFormProps<StatisticsTypeDTO> = {
         mode: 'onChange',
         defaultValues: {
             id: record.id,
             name: record.name,
-            description: record.description
+            config: record.config,
+            description: record.description,
+            filterParams: record.filterParams,
+            schemaParams: record.schemaParams
         }
     }
 
-    const onSubmit =async (formData: ModalityTypeNameDTO) => {
-        const submitForm: ModalityTypeNameDTO = {
+    const onSubmit = async (formData: StatisticsTypeDTO) => {
+        const submitForm: StatisticsTypeDTO = {
             id: formData.id ?? '',
             name: formData.name ?? '',
-            description: formData.description ?? ''
+            config: formData.config ?? '',
+            description: formData.description ?? '',
+            filterParams: formData.filterParams ?? [],
+            schemaParams: formData.schemaParams ?? []
         }
-        if (submitForm.name.length === 0) setErrorMessage("Trường bắt buộc không được bỏ trống");
+        if (submitForm.name.length === 0) setErrorMessage('Trường bắt buộc không được bỏ trống');
         else {
-            const result = await editModalityTypeName(submitForm);
+            const result = await editStatisticsType(submitForm);
             if ('error' in result) {
                 notifySnackbar({
                     message: 'Lỗi',
@@ -50,13 +56,13 @@ export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) =
                 })
             } else {
                 notifySnackbar({
-                    message: 'Thành Công',
+                    message: 'Thành công',
                     options: {
                         variant: 'success'
                     }
                 })
                 dispatch(setSelectedRow({
-                    tableId: TABLE_MODALITY_TYPE_NAME,
+                    tableId: TABLE_STATISTICS_TYPE,
                     selectedRow: null
                 }))
                 onSuccessCallback && onSuccessCallback();
@@ -71,7 +77,7 @@ export const ModalityTypeNameEditForm = (props: ModalityTypeNameEditFormProps) =
             submitOnEnter={true}
             formOptions={formOptions}
             renderInputs={({control}) => (
-                <ModalityTypeNameFormFields
+                <StatisticsTypeFormFields
                     control={control}
                     errorMessage={errorMessage}
                     disableIdField={true}

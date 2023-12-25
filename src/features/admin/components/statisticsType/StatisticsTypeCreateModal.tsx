@@ -1,10 +1,10 @@
-import { useAdminFunctions, useRegisterAdminFunctions } from '../../../../providers/admin/AdminProvider';
-import { AppModalContent } from '../../../../components/Elements/Modal/AppModalContent';
-import { HospitalCreateForm } from './HospitalCreateForm';
-import { useDisclosure } from '../../../../hooks/useDisclosure';
 import { Modal } from '@mui/material';
+import { AppModalContent } from '../../../../components/Elements/Modal/AppModalContent';
+import { useDisclosure } from '../../../../hooks/useDisclosure';
+import { useAdminFunctions, useRegisterAdminFunctions } from '../../../../providers/admin/AdminProvider';
+import { StatisticsTypeCreateForm } from './StatisticsTypeCreateForm';
 
-export const ConnectedHospitalCreateModal = () => {
+export const ConnectedStatisticsTypeCreateModal = () => {
     const { isOpen, open, close } = useDisclosure(false);
     const register = useRegisterAdminFunctions();
     register('openCreateModal', open);
@@ -12,24 +12,25 @@ export const ConnectedHospitalCreateModal = () => {
     return (
         <Modal open={isOpen}>
             <>
-                <HospitalCreateModal closeModal={close} />
+                <StatisticsTypeCreateModal closeModal={close} />
             </>
         </Modal>
     )
 }
 
-export const HospitalCreateModal = (props: {closeModal: () => void}) => {
+export const StatisticsTypeCreateModal = (props: {closeModal: () => void}) => {
     const { closeModal } = props;
     const adminFunctions = useAdminFunctions();
     
     return (
         <AppModalContent
             handleClose={closeModal}
-            bodyComponent={<HospitalCreateForm onSuccessCallback={closeModal} />}
+            bodyComponent={<StatisticsTypeCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
-                padding: '8px 16px 16px 16px'
+                padding: '8px 16px 16px 16px',
+                height: '40vh'
             }}
-            title="Thêm bệnh viện"
+            title="Thêm loại báo cáo thống kê"
             confirmLabel="Thêm mới"
             handleConfirm={() => adminFunctions.submitCreateForm()}
         />
