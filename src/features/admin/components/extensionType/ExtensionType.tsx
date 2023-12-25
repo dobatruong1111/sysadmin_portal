@@ -26,7 +26,7 @@ export const ExtensionType = () => {
     {
       type: 'record',
       name: 'id',
-      header: 'ID chức năng mở rộng',
+      header: 'ID',
       renderHeader: (header) => <div>{header}</div>,
       renderCell: (cell) => <div>{cell.getValue()}</div>,
       columnDefOptions: {

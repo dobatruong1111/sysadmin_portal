@@ -4,7 +4,6 @@ import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
 import { AdminLayout } from '..';
 import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
-import { TypeOfStatisticalReport } from '../components/typeOfStatisticalReport/TypeOfStatisticalReport';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
 import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
@@ -15,6 +14,7 @@ import { AdminHospital } from './hospital/AdminHospital';
 import { AdminDomain } from './domain/AdminDomain';
 import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
 import { ROUTE_LOGIN } from '../../auth';
+import { AdminStatisticsType } from './statisticsType/AdminStatisticsType';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -55,7 +55,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.StatisticsType,
-        element: <Page title='Loại báo cáo thống kê'><TypeOfStatisticalReport /></Page>
+        element: <Page title='Loại báo cáo thống kê'><AdminStatisticsType /></Page>
     },
     {
         path: AdminPaths.ExtensionType,

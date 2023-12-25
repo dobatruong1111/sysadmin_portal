@@ -18,8 +18,8 @@ export const ConsumableTypeFormFields = (props: ConsumableTypeFormFieldsProps) =
                 name="id"
                 control={control}
                 MyTextFieldProps={{
-                    label: 'ID loại vật tư tiêu hao',
-                    placeholder: 'ID loại vật tư tiêu hao',
+                    label: 'ID',
+                    placeholder: 'ID',
                     fullWidth: true,
                     required: true,
                     size: 'small',
