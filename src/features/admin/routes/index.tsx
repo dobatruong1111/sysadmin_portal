@@ -3,7 +3,6 @@ import { AdminPaths } from './paths';
 import { AdminMain } from './AdminMain';
 import { NavBarLayout } from '../../../components/Layout';
 import { AdminLayout } from '..';
-import { PacsConnectionAccount } from '../components/pacsConnectionAccount/PacsConnectionAccount';
 import { Page } from '../../../components/Page';
 import { AdminUserAuthor } from './userAuthor/AdminUserAuthor';
 import { AdminModalityTypeName } from './modalityTypeName/AdminModalityTypeName';
@@ -15,6 +14,7 @@ import { AdminDomain } from './domain/AdminDomain';
 import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
 import { ROUTE_LOGIN } from '../../auth';
 import { AdminStatisticsType } from './statisticsType/AdminStatisticsType';
+import { AdminConnectionAccount } from './connectionAccount/AdminConnectionAccount';
 
 const adminRoutes: RouteObject[] = [
     {
@@ -31,7 +31,7 @@ const adminRoutes: RouteObject[] = [
     },
     {
         path: AdminPaths.ConnectionAccount,
-        element: <Page title='Tài khoản kết nối PACS'><PacsConnectionAccount /></Page>
+        element: <Page title='Tài khoản kết nối PACS'><AdminConnectionAccount /></Page>
     },
     {
         path: AdminPaths.ConfigAttribute,
