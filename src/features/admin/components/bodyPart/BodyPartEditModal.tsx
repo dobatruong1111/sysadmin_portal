@@ -97,7 +97,7 @@ export const BodyPartEditModal = forwardRef<HTMLElement, BodyPartProps>((props, 
             }
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '30vh'
+                height: '32vh'
             }}
             title="Sửa bộ phận chụp"
         />

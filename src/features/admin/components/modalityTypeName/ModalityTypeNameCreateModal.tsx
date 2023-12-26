@@ -28,7 +28,7 @@ export const ModalityTypeNameCreateModal = (props: { closeModal: () => void }) =
             bodyComponent={<ModalityTypeNameCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '30vh'
+                height: '32vh'
             }}
             title="Thêm loại ca chụp"
             confirmLabel="Thêm Mới"

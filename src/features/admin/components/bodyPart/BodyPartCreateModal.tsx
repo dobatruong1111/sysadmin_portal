@@ -28,7 +28,7 @@ export function ConnectedBodyPartCreateModal() {
             bodyComponent={<BodyPartCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '30vh'
+                height: '32vh'
             }}
             title="Thêm bộ phận chụp"
             confirmLabel="Thêm mới"

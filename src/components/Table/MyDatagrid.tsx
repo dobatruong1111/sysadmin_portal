@@ -26,6 +26,13 @@ const StyledDatagridContainer = styled('div')`
     }
 `;
 
+const StyledTHead = styled('thead')`
+    height: 35px;
+    top: 0;
+    position: sticky;
+    z-index: 1;
+`;
+
 const StyledTBody = styled('tbody')`
     & > tr {
         background-color: white;
@@ -86,7 +93,7 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
     return (
         <StyledDatagridContainer id={tableId}>
             <table>
-                <thead>
+                <StyledTHead>
                     {table.getHeaderGroups().map((headerGroup) => (
                         <tr key={headerGroup.id}>
                             {headerGroup.headers.map((header) => (
@@ -105,7 +112,7 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
                             </td>
                         </tr>
                     )}
-                </thead>
+                </StyledTHead>
                 <StyledTBody>
                     {table.getRowModel().rows.map((row) => (
                         <tr 

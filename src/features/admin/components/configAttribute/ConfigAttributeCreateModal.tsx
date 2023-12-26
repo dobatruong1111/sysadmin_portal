@@ -28,7 +28,7 @@ export const ConfigAttributeCreateModal = (props: {closeModal: () => void}) => {
             bodyComponent={<ConfigAttributeCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '45vh'
+                height: '48vh'
             }}
             title="Thêm thuộc tính cấu hình"
             confirmLabel="Thêm mới"

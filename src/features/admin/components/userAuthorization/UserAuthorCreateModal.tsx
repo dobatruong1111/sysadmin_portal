@@ -28,7 +28,7 @@ export const UserAuthorCreateModal = (props: {closeModal: () => void}) => {
             bodyComponent={<UserAuthorCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '30vh'
+                height: '32vh'
             }}
             title='Thêm phân quyền'
             confirmLabel='Thêm Mới'
