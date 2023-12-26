@@ -89,6 +89,10 @@ export const HospitalEditModal = forwardRef<HTMLElement, HospitalEditModalProps>
                 handleConfirm={() => adminFunctions.submitEditForm()}
                 handleClose={closeModal}
                 bodyComponent={<HospitalEditForm onSuccessCallback={closeModal} record={record} />}
+                boxBodyProps={{
+                    padding: '8px 16px 16px 16px',
+                    height: '220px'
+                }}
                 title='Sửa thông tin bệnh viện'
             />
         </>

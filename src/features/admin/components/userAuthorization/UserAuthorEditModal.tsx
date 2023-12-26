@@ -93,7 +93,7 @@ export const UserAuthorEditModal = forwardRef<HTMLElement, UserAuthorEditModalPr
                 bodyComponent={<UserAuthorEditForm record={record} onSuccessCallback={closeModal} />}
                 boxBodyProps={{
                     padding: '8px 16px 16px 16px',
-                    height: '32vh'
+                    height: '195px'
                 }}
                 title="Sửa Phân Quyền"
             />

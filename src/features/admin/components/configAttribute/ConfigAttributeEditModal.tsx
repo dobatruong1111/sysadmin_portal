@@ -91,7 +91,7 @@ export const ConfigAttributeEditModal = forwardRef<HTMLElement, ConfigAttributeE
                 bodyComponent={<ConfigAttributeEditForm record={record} onSuccessCallback={closeModal} />}
                 boxBodyProps={{
                     padding: '8px 16px 16px 16px',
-                    height: '48vh'
+                    height: '295px'
                 }}
                 title="Sửa thông tin cấu hình"
             />

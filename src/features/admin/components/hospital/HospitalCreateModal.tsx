@@ -27,7 +27,8 @@ export const HospitalCreateModal = (props: {closeModal: () => void}) => {
             handleClose={closeModal}
             bodyComponent={<HospitalCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
-                padding: '8px 16px 16px 16px'
+                padding: '8px 16px 16px 16px',
+                height: '220px'
             }}
             title="Thêm bệnh viện"
             confirmLabel="Thêm mới"

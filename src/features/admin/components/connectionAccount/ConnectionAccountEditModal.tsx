@@ -91,7 +91,7 @@ export const ConnectionAccountEditModal = forwardRef<HTMLElement, ConnectionAcco
                 bodyComponent={<ConnectionAccountEditForm onSuccessCallback={closeModal} record={record} />}
                 boxBodyProps={{
                     padding: '8px 16px 16px 16px',
-                    height: '45vh'
+                    height: '270px'
                 }}
                 title="Sửa tài khoản"
             />

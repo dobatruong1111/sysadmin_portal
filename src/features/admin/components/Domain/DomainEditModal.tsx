@@ -89,6 +89,10 @@ export const DomainEditModal = forwardRef<HTMLElement, DomainEditModalProps>((pr
                 handleConfirm={() => adminFunctions.submitEditForm()}
                 handleClose={closeModal}
                 bodyComponent={<DomainEditForm onSuccessCallback={closeModal} record={record} />}
+                boxBodyProps={{
+                    padding: '8px 16px 16px 16px',
+                    height: '165px'
+                }}
                 title="Sửa tên miền"
             />
         </>

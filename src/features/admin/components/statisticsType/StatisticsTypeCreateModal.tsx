@@ -28,7 +28,7 @@ export const StatisticsTypeCreateModal = (props: {closeModal: () => void}) => {
             bodyComponent={<StatisticsTypeCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '40vh'
+                height: '245px'
             }}
             title="Thêm loại báo cáo thống kê"
             confirmLabel="Thêm mới"

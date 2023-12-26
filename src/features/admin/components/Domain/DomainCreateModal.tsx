@@ -26,6 +26,10 @@ export const DomainCreateModal = (props: {closeModal: () => void}) => {
         <AppModalContent
             handleClose={closeModal}
             bodyComponent={<DomainCreateForm onSuccessCallback={closeModal} />}
+            boxBodyProps={{
+                padding: '8px 16px 16px 16px',
+                height: '165px'
+            }}
             title="Thêm tên miền"
             confirmLabel="Thêm mới"
             handleConfirm={() => adminFunctions.submitCreateForm()}

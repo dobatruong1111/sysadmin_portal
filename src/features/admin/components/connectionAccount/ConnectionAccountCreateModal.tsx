@@ -28,7 +28,7 @@ export const ConnectionAccountCreateModal = (props: {closeModal: () => void}) =>
             bodyComponent={<ConnectionAccountCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '53vh'
+                height: '320px'
             }}
             title="Thêm tài khoản"
             confirmLabel="Thêm mới"

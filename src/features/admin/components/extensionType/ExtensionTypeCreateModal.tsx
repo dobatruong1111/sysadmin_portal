@@ -28,7 +28,7 @@ export const ExtensionTypeCreateModal = (props: {closeModal: () => void}) => {
             bodyComponent={<ExtensionTypeCreateForm onSuccessCallback={closeModal} />}
             boxBodyProps={{
                 padding: '8px 16px 16px 16px',
-                height: '32vh'
+                height: '190px'
             }}
             title="Thêm chức năng mở rộng"
             confirmLabel="Thêm mới"

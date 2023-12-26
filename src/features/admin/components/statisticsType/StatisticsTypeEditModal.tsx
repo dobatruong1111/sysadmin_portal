@@ -91,7 +91,7 @@ export const StatisticsTypeEditModal = forwardRef<HTMLElement, StatisticsTypeEdi
                 bodyComponent={<StatisticsTypeEditForm onSuccessCallback={closeModal} record={record} />}
                 boxBodyProps={{
                     padding: '8px 16px 16px 16px',
-                    height: '40vh'
+                    height: '245px'
                 }}
                 title='Sửa loại báo cáo thống kê'
             />
