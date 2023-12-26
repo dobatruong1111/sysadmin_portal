@@ -13,7 +13,7 @@ import { ItechBaseRequest } from "../ITechBaseQuery";
 
 export const DEFAULT_PAGINATION: PaginationQuery = {
     page: 1,
-    perPage: 5
+    perPage: 100
 }
 
 export const DEFAULT_SORT: SortQuery = {
