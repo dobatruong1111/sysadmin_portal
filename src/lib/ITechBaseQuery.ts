@@ -29,7 +29,7 @@ type RequestError = {
 
 const prepareHeaders = (): RawAxiosRequestHeaders => ({
     Accept: '*/*',
-    Authorization: 'Basic ' + encode('itech:itech'),
+    Authorization: 'Basic ' + encode('sysadmin:itrp142536'),
 })
 
 export type BaseQueryArgs = {
@@ -47,7 +47,9 @@ export const ITechBaseQuery = (
             ...axiosOptions
         } = queryArgs;
         try {
-            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', url);
+            const hospitalID = localStorage.getItem('hID');
+            const hospitalURL = `hospital/${hospitalID}`;
+            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', useHospitalID ? hospitalURL : '', url);
             const finalHeaders = {...prepareHeaders(), ...headers};
             const result = await axios({
                 url: finalUrl,

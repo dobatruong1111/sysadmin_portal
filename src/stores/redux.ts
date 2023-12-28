@@ -1,18 +1,40 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { tableReducer, TABLE_REDUCER } from "./table/tableSlice";
-import { api } from "../lib/api";
+import { tableReducer } from "./table/tableSlice";
+import { api, loginApi } from "../lib/api";
+import { authReducer } from "./auth/authSlide";
+import { PERSIST, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
+import { persistConfig } from "./persist";
 
 const rootReducers = combineReducers({
-    [TABLE_REDUCER]: tableReducer,
-    [api.reducerPath]: api.reducer
-})
+    ["auth"]: authReducer,
+    tableReducer: tableReducer,
+    [api.reducerPath]: api.reducer,
+    [loginApi.reducerPath]: loginApi.reducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export const store = configureStore({
-    reducer: {
-        tableReducer: tableReducer,
-        [api.reducerPath]: api.reducer
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware)
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) => 
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [
+                    REHYDRATE,
+                    PERSIST,
+                    'admin/executeQuery/fulfilled',
+                  ],
+            }
+        })
+        .concat(api.middleware, loginApi.middleware)
 })
 
+export let persistor = persistStore(store);
+export const initializePersistor = () => {
+    persistor = persistStore(store);
+    return persistor;
+};
+
 export type RootState = ReturnType<typeof rootReducers>;
+// export type AppDispatch = typeof store.dispatch;
+// export let persistor = persistS
