@@ -15,20 +15,11 @@ export const StatisticsTypeFormFields = (
   const { control, errorMessage, disableIdField } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}

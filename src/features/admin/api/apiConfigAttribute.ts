@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { ConfigAttributeDTO } from "../../../types/dto/configAttribute";
+import { ConfigAttributeDTO, ConfigAttributeDTOCreate, ConfigAttributeDTODelete, ConfigAttributeDTOUpdate } from "../../../types/dto/configAttribute";
 import { RESOURCES } from "../../../types/resources";
 
 const apiConfigAttribute = api.injectEndpoints({
@@ -30,7 +30,7 @@ const apiConfigAttribute = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createConfigHospital: builder.mutation<ConfigAttributeDTO, ConfigAttributeDTO>({
+        createConfigHospital: builder.mutation<ConfigAttributeDTOCreate, ConfigAttributeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiConfigAttribute = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: 'LIST' }]
         }),
-        updateConfigAttribute: builder.mutation<ConfigAttributeDTO, ConfigAttributeDTO>({
+        updateConfigAttribute: builder.mutation<ConfigAttributeDTOUpdate, ConfigAttributeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiConfigAttribute = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
         }),
-        deleteConfigAttribute: builder.mutation<ConfigAttributeDTO, { id: string }>({
+        deleteConfigAttribute: builder.mutation<ConfigAttributeDTODelete, ConfigAttributeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}/${data.id}`,
                 method: 'DELETE',

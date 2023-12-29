@@ -2,10 +2,10 @@ import { Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 import { MyFormCheckboxField } from '../../../../components/Elements/Inputs/MyFormCheckboxField';
 import { Control } from 'react-hook-form';
-import { HospitalDTO } from '../../../../types/dto/hospital';
+import { HospitalDTOCreate } from '../../../../types/dto/hospital';
 
 export type HospitalFormFieldsProps = {
-  control: Control<HospitalDTO>;
+  control: Control<HospitalDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
 };
@@ -14,20 +14,11 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
   const { control, errorMessage, disableIdField } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <Stack spacing={1} alignItems="center" width="100%">
         <MyFormTextField
           name="id"

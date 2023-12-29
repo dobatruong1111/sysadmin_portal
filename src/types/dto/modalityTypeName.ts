@@ -3,6 +3,16 @@ export type ModalityTypeNameDTOBase = {
     name: string;
 };
 
-export type ModalityTypeNameDTO = {
+export type ModalityTypeNameDTO = {} & ModalityTypeNameDTOBase;
+
+export type ModalityTypeNameDTOCreate = {
     description: string;
 } & ModalityTypeNameDTOBase;
+
+export type ModalityTypeNameDTOUpdate = {
+    description: string;
+} & ModalityTypeNameDTOBase;
+
+export type ModalityTypeNameDTODelete = {
+    id: string;
+};

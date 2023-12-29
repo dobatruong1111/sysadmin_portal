@@ -100,7 +100,13 @@ export function MyDatagrid<T>(props: MyDatagridProps<T>) {
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} style={{ width: header.getSize() }}>
+                <th
+                  key={header.id}
+                  style={{
+                    minWidth: header.getSize(),
+                    maxWidth: header.getSize(),
+                  }}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(

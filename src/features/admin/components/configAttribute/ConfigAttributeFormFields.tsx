@@ -1,11 +1,11 @@
 import { Control } from 'react-hook-form';
-import { ConfigAttributeDTO } from '../../../../types/dto/configAttribute';
+import { ConfigAttributeDTOCreate } from '../../../../types/dto/configAttribute';
 import { MenuItem, Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 import { MyFormSelectField } from '../../../../components/Elements/Inputs/MyFormSelectField';
 
 export type ConfigAttributeFormFieldsProps = {
-  control: Control<ConfigAttributeDTO>;
+  control: Control<ConfigAttributeDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
   datatypes: Array<string>;
@@ -17,20 +17,11 @@ export const ConfigAttributeFormFields = (
   const { control, errorMessage, disableIdField, datatypes = [] } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}

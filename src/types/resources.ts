@@ -7,6 +7,6 @@ export enum RESOURCES {
     HOSPITAL = 'hospital',
     DOMAIN = 'domain',
     CONFIG_ATTRIBUTE = 'configAttribute',
-    STATISTICS_TYPE = 'statisticsType',
+    STATISTICS_TYPE = 'analyticsType',
     CONNECTION_ACCOUNT = 'client'
 }

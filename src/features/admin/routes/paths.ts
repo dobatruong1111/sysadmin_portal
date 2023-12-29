@@ -8,7 +8,7 @@ export enum AdminPaths {
     ModalityTypeName = '/modalityTypeName',
     BodyPart = '/bodyPart',
     ConsumableType = '/consumableType',
-    StatisticsType = '/statisticsType',
+    StatisticsType = '/analyticsType',
     ExtensionType = '/extensionType'
 }
 

@@ -55,16 +55,6 @@ export const BodyPart = () => {
           size: 200,
         },
       },
-      {
-        type: 'record',
-        name: 'description',
-        header: 'Mô tả',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 200,
-        },
-      },
     ],
     []
   );

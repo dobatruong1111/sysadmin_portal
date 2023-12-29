@@ -1,5 +1,5 @@
 import { api } from "../../../lib/api";
-import { UserAuthorDTO } from "../../../types/dto/userAuthor";
+import { UserAuthorDTO, UserAuthorDTOCreate, UserAuthorDTODelete, UserAuthorDTOUpdate } from "../../../types/dto/userAuthor";
 import { RESOURCES } from "../../../types/resources";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GetManyResourceQueryResult, GetManyResourceQuery, GenericFilter } from "../../../types/api";
@@ -30,7 +30,7 @@ const apiUserAuthor = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createUserAuthor: builder.mutation<UserAuthorDTO, UserAuthorDTO>({
+        createUserAuthor: builder.mutation<UserAuthorDTOCreate, UserAuthorDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiUserAuthor = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: 'LIST'}],
         }),
-        updateUserAuthor: builder.mutation<UserAuthorDTO, UserAuthorDTO>({
+        updateUserAuthor: builder.mutation<UserAuthorDTOUpdate, UserAuthorDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiUserAuthor = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
         }),
-        deleteUserAuthor: builder.mutation<UserAuthorDTO, { id: string }>({
+        deleteUserAuthor: builder.mutation<UserAuthorDTODelete, UserAuthorDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}/${data.id}`,
                 method: 'DELETE',

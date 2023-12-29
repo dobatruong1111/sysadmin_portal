@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { ConnectionAccountDTO, ConnectionAccountDTOCreate, ConnectionAccountDTOUpdate } from "../../../types/dto/connectionAccount";
+import { ConnectionAccountDTO, ConnectionAccountDTOCreate, ConnectionAccountDTODelete, ConnectionAccountDTOUpdate } from "../../../types/dto/connectionAccount";
 import { RESOURCES } from "../../../types/resources";
 
 const apiConnectionAccount = api.injectEndpoints({
@@ -50,7 +50,7 @@ const apiConnectionAccount = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONNECTION_ACCOUNT, id: arg.id }]
         }),
-        deleteConnectionAccount: builder.mutation<ConnectionAccountDTO, { id: string }>({
+        deleteConnectionAccount: builder.mutation<ConnectionAccountDTODelete, ConnectionAccountDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONNECTION_ACCOUNT}/${data.id}`,
                 method: 'DELETE',

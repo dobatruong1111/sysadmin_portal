@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { StatisticsTypeDTO } from "../../../types/dto/statisticsType";
+import { StatisticsTypeDTO, StatisticsTypeDTODelete } from "../../../types/dto/statisticsType";
 import { RESOURCES } from "../../../types/resources";
 
 const apiStatisticsType = api.injectEndpoints({
@@ -50,7 +50,7 @@ const apiStatisticsType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
         }),
-        deleteStatisticsType: builder.mutation<StatisticsTypeDTO, { id: string }>({
+        deleteStatisticsType: builder.mutation<StatisticsTypeDTODelete, StatisticsTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.STATISTICS_TYPE}/${data.id}`,
                 method: 'DELETE',
