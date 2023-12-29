@@ -47,7 +47,8 @@ export const ITechBaseQuery = (
             ...axiosOptions
         } = queryArgs;
         try {
-            const hospitalID = localStorage.getItem('hID');
+            // const hospitalID = localStorage.getItem('hID');
+            const hospitalID = '72131';
             const hospitalURL = `hospital/${hospitalID}`;
             const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', useHospitalID ? hospitalURL : '', url);
             const finalHeaders = {...prepareHeaders(), ...headers};

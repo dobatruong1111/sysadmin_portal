@@ -6,7 +6,6 @@ import { ReactNode } from "react";
 
 export const LoginGuard = ({ children }: { children: ReactNode}) => {
     const token = useSelector(selectToken);
-    console.log(token);
     if (!token) return <Navigate to={ROUTE_LOGIN} />;
 
     return <>{children}</>;
