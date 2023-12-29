@@ -29,7 +29,7 @@ type RequestError = {
 
 const prepareHeaders = (): RawAxiosRequestHeaders => ({
     Accept: '*/*',
-    Authorization: 'Basic ' + encode('itech:itech'),
+    Authorization: 'Basic ' + encode('sysadmin:itrp142536'),
 })
 
 export type BaseQueryArgs = {
