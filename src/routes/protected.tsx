@@ -14,17 +14,18 @@ const App = () => {
     )
 }
 
-const mainRoute: RouteObject = {
-    path: '/',
-    element: <App />
-}
-
 const adminRoutes: RouteObject[] = [
     {
         path: `${ROUTE_ADMIN}/*`,
         element: <AdminRoutes />
     }
 ]
+
+const mainRoute: RouteObject = {
+    path: '/',
+    element: <App />
+}
+
 
 export const protectedRoutes: RouteObject[] = [
     { ...mainRoute, children: adminRoutes },
