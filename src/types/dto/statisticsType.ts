@@ -4,5 +4,9 @@ export type StatisticsTypeDTO = {
     description: string;
     config: string;
     filterParams: Array<string>;
-    schemaParams: Array<string>;
+    outputSchema: string;
+}
+
+export type StatisticsTypeDTODelete = {
+    id: string;
 }

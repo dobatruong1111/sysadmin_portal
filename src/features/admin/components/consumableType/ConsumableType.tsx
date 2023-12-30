@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetConsumableTypeListQuery } from '../../api/apiConsumableType';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { ConsumableTypeDTO } from '../../../../types/dto/consumableType';
 import { TABLE_CONSUMABLE_TYPE } from '../../../../stores/table/tableInitialState';
@@ -55,21 +55,9 @@ export const ConsumableType = () => {
           size: 200,
         },
       },
-      {
-        type: 'record',
-        name: 'description',
-        header: 'Mô tả',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 200,
-        },
-      },
     ],
     []
   );
-
-  useEffect(() => {}, []);
 
   return (
     <MyTable

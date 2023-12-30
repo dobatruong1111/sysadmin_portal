@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { BodyPartDTO } from "../../../types/dto/bodyPart";
+import { BodyPartDTO, BodyPartDTOCreate, BodyPartDTODelete, BodyPartDTOUpdate } from "../../../types/dto/bodyPart";
 import { RESOURCES } from "../../../types/resources";
 
 const apiBodyPart = api.injectEndpoints({
@@ -34,7 +34,7 @@ const apiBodyPart = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric,
         }),
-        createBodyPart: builder.mutation<BodyPartDTO, BodyPartDTO>({
+        createBodyPart: builder.mutation<BodyPartDTOCreate, BodyPartDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}`,
                 method: 'POST',
@@ -45,7 +45,7 @@ const apiBodyPart = api.injectEndpoints({
             invalidatesTags: (_result, error) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: 'LIST' }],
         }),
-        updateBodyPart: builder.mutation<BodyPartDTO, BodyPartDTO>({
+        updateBodyPart: builder.mutation<BodyPartDTOUpdate, BodyPartDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}`,
                 method: 'PUT',
@@ -56,7 +56,7 @@ const apiBodyPart = api.injectEndpoints({
             invalidatesTags: (_result, error, arg) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: arg.id }],
         }),
-        deleteBodyPart: builder.mutation<BodyPartDTO, { id: string }>({
+        deleteBodyPart: builder.mutation<BodyPartDTODelete, BodyPartDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}/${data.id}`,
                 method: 'DELETE',

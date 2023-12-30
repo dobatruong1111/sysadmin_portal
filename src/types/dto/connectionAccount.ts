@@ -31,3 +31,7 @@ export type ConnectionAccountDTOFormUpdate = {
     ipAllowed: string;
     authorities: Array<string>;
 }
+
+export type ConnectionAccountDTODelete = {
+    id: string;
+}

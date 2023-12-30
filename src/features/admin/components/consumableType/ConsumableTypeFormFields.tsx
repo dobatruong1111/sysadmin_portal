@@ -1,10 +1,10 @@
 import { Control } from 'react-hook-form';
-import { ConsumableTypeDTO } from '../../../../types/dto/consumableType';
+import { ConsumableTypeDTOCreate } from '../../../../types/dto/consumableType';
 import { Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 
 export type ConsumableTypeFormFieldsProps = {
-  control: Control<ConsumableTypeDTO>;
+  control: Control<ConsumableTypeDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
 };
@@ -15,20 +15,11 @@ export const ConsumableTypeFormFields = (
   const { control, errorMessage, disableIdField } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}

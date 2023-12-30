@@ -1,10 +1,10 @@
 import { Control } from 'react-hook-form';
-import { ModalityTypeNameDTO } from '../../../../types/dto/modalityTypeName';
+import { ModalityTypeNameDTOCreate } from '../../../../types/dto/modalityTypeName';
 import { Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 
 export type ModalityTypeNameFormFieldsProps = {
-  control: Control<ModalityTypeNameDTO>;
+  control: Control<ModalityTypeNameDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
 };
@@ -15,20 +15,11 @@ export const ModalityTypeNameFormFields = (
   const { control, errorMessage, disableIdField } = props;
   return (
     <Stack spacing={1} alignItems={'center'} width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}

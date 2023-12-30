@@ -1,10 +1,10 @@
 import { Control } from 'react-hook-form';
-import { BodyPartDTO } from '../../../../types/dto/bodyPart';
+import { BodyPartDTOCreate } from '../../../../types/dto/bodyPart';
 import { Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 
 export type BodyPartFormFieldsProps = {
-  control: Control<BodyPartDTO>;
+  control: Control<BodyPartDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
 };
@@ -13,20 +13,11 @@ export const BodyPartFormFields = (props: BodyPartFormFieldsProps) => {
   const { control, errorMessage, disableIdField } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}

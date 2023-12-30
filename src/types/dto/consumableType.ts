@@ -3,6 +3,16 @@ export type ConsumableTypeDTOBase = {
     name: string;
 };
 
-export type ConsumableTypeDTO = {
+export type ConsumableTypeDTO = {} & ConsumableTypeDTOBase;
+
+export type ConsumableTypeDTOCreate = {
     description: string;
 } & ConsumableTypeDTOBase;
+
+export type ConsumableTypeDTOUpdate = {
+    description: string;
+} & ConsumableTypeDTOBase;
+
+export type ConsumableTypeDTODelete = {
+    id: string;
+}

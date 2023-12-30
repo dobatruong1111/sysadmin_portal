@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { DomainDTO, DomainDTOCreate, DomainDTODelete, DomainDTOUpdate } from "../../../types/dto/domain";
+import { DomainDTO, DomainDTOCreate, DomainDTODelete } from "../../../types/dto/domain";
 import { RESOURCES } from "../../../types/resources";
 
 const apiDomain = api.injectEndpoints({
@@ -40,16 +40,6 @@ const apiDomain = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.DOMAIN, id: 'LIST' }]
         }),
-        updateDomain: builder.mutation<DomainDTOUpdate, DomainDTOUpdate>({
-            query: (data) => ({
-                url: `${RESOURCES.DOMAIN}`,
-                method: 'PUT',
-                data,
-                useAsync: true,
-                useHospitalID: false
-            }),
-            invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.DOMAIN, id: arg.id }]
-        }),
         deleteDomain: builder.mutation<DomainDTODelete, { id: string}>({
             query: (data) => ({
                 url: `${RESOURCES.DOMAIN}/${data.id}`,
@@ -67,6 +57,5 @@ export const {
     useGetOneDomainQuery,
     useGetDomainListQuery,
     useCreateDomainMutation,
-    useUpdateDomainMutation,
     useDeleteDomainMutation
 } = apiDomain;

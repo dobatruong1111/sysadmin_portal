@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { ExtensionTypeDTO } from "../../../types/dto/extensionType";
+import { ExtensionTypeDTO, ExtensionTypeDTOCreate, ExtensionTypeDTODelete, ExtensionTypeDTOUpdate } from "../../../types/dto/extensionType";
 import { RESOURCES } from "../../../types/resources";
 
 const apiExtensionType = api.injectEndpoints({
@@ -30,7 +30,7 @@ const apiExtensionType = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createExtensionType: builder.mutation<ExtensionTypeDTO, ExtensionTypeDTO>({
+        createExtensionType: builder.mutation<ExtensionTypeDTOCreate, ExtensionTypeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiExtensionType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: 'LIST' }]
         }),
-        updateExtensionType: builder.mutation<ExtensionTypeDTO, ExtensionTypeDTO>({
+        updateExtensionType: builder.mutation<ExtensionTypeDTOUpdate, ExtensionTypeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiExtensionType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
         }),
-        deleteExtensionType: builder.mutation<ExtensionTypeDTO, { id: string }>({
+        deleteExtensionType: builder.mutation<ExtensionTypeDTODelete, ExtensionTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}/${data.id}`,
                 method: 'DELETE',

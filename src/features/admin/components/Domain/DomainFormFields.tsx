@@ -9,28 +9,18 @@ import { HospitalDTO } from '../../../../types/dto/hospital';
 export type DomainFormFieldsProps = {
   control: Control<DomainDTOCreate>;
   errorMessage: string | undefined;
-  disableIdField: boolean;
   hospitals?: HospitalDTO[];
 };
 
 export const DomainFormFields = (props: DomainFormFieldsProps) => {
-  const { control, errorMessage, disableIdField, hospitals = [] } = props;
+  const { control, errorMessage, hospitals = [] } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyItems: 'center',
-          height: '20px',
-        }}
-      >
-        {errorMessage && (
-          <Typography fontSize="12px" color="red">
-            {errorMessage}
-          </Typography>
-        )}
-      </div>
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
       <MyFormTextField
         name="id"
         control={control}
@@ -41,7 +31,7 @@ export const DomainFormFields = (props: DomainFormFieldsProps) => {
           required: true,
           size: 'small',
           autoComplete: 'off',
-          disabled: disableIdField,
+          disabled: hospitals.length === 0,
         }}
       />
       <MyFormSelectField
@@ -51,6 +41,7 @@ export const DomainFormFields = (props: DomainFormFieldsProps) => {
           label: 'Hospital ID',
           size: 'small',
           fullWidth: true,
+          disabled: hospitals.length === 0,
         }}
         required={true}
       >

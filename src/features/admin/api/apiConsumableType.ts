@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { ConsumableTypeDTO } from "../../../types/dto/consumableType";
+import { ConsumableTypeDTO, ConsumableTypeDTOCreate, ConsumableTypeDTODelete, ConsumableTypeDTOUpdate } from "../../../types/dto/consumableType";
 import { RESOURCES } from "../../../types/resources";
 
 const apiConsumableType = api.injectEndpoints({
@@ -30,7 +30,7 @@ const apiConsumableType = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createConsumableType: builder.mutation<ConsumableTypeDTO, ConsumableTypeDTO>({
+        createConsumableType: builder.mutation<ConsumableTypeDTOCreate, ConsumableTypeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiConsumableType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: 'LIST' }]
         }),
-        updateConsumableType: builder.mutation<ConsumableTypeDTO, ConsumableTypeDTO>({
+        updateConsumableType: builder.mutation<ConsumableTypeDTOUpdate, ConsumableTypeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiConsumableType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
         }),
-        deleteConsumableType: builder.mutation<ConsumableTypeDTO, { id: string }>({
+        deleteConsumableType: builder.mutation<ConsumableTypeDTODelete, ConsumableTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}/${data.id}`,
                 method: 'DELETE',

@@ -3,6 +3,16 @@ export type UserAuthorDTOBase = {
     name: string;
 };
 
-export type UserAuthorDTO = {
+export type UserAuthorDTO = {} & UserAuthorDTOBase;
+
+export type UserAuthorDTOCreate = {
     description: string;
 } & UserAuthorDTOBase;
+
+export type UserAuthorDTOUpdate = {
+    description: string;
+} & UserAuthorDTOBase;
+
+export type UserAuthorDTODelete = {
+    id: string;
+}

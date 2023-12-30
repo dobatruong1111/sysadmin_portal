@@ -57,56 +57,26 @@ export const Hospital = () => {
       },
       {
         type: 'record',
-        name: 'description',
-        header: 'Mô tả',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 200,
-        },
-      },
-      {
-        type: 'record',
-        name: 'phone',
-        header: 'Số điện thoại',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 100,
-        },
-      },
-      {
-        type: 'record',
-        name: 'email',
-        header: 'Địa chỉ email',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 250,
-        },
-      },
-      {
-        type: 'record',
         name: 'address',
         header: 'Địa chỉ',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => <div>{cell.getValue()}</div>,
         columnDefOptions: {
-          size: 250,
+          size: 300,
         },
       },
       {
         type: 'record',
         name: 'enabled',
-        header: 'Ưu tiên',
+        header: 'Hoạt động',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
           <div style={{ textAlign: 'center' }}>
-            {cell.getValue() ? 'Ưu tiên' : 'Không'}
+            {cell.getValue() ? 'Có' : 'Không'}
           </div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 50,
         },
       },
     ],

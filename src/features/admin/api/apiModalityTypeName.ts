@@ -1,7 +1,7 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { ModalityTypeNameDTO } from "../../../types/dto/modalityTypeName";
+import { ModalityTypeNameDTO, ModalityTypeNameDTOCreate, ModalityTypeNameDTODelete, ModalityTypeNameDTOUpdate } from "../../../types/dto/modalityTypeName";
 import { RESOURCES } from "../../../types/resources";
 
 const apiModalityTypeName = api.injectEndpoints({
@@ -30,7 +30,7 @@ const apiModalityTypeName = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createModalityTypeName: builder.mutation<ModalityTypeNameDTO, ModalityTypeNameDTO>({
+        createModalityTypeName: builder.mutation<ModalityTypeNameDTOCreate, ModalityTypeNameDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiModalityTypeName = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: 'LIST' }],
         }),
-        updateModalityTypeName: builder.mutation<ModalityTypeNameDTO, ModalityTypeNameDTO>({
+        updateModalityTypeName: builder.mutation<ModalityTypeNameDTOUpdate, ModalityTypeNameDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiModalityTypeName = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
         }),
-        deleteModalityTypeName: builder.mutation<ModalityTypeNameDTO, { id: string }>({
+        deleteModalityTypeName: builder.mutation<ModalityTypeNameDTODelete, ModalityTypeNameDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}/${data.id}`,
                 method: 'DELETE',

@@ -52,7 +52,7 @@ export const ConfigAttribute = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 200,
+          size: 100,
         },
       },
       {
@@ -65,26 +65,6 @@ export const ConfigAttribute = () => {
         ),
         columnDefOptions: {
           size: 100,
-        },
-      },
-      {
-        type: 'record',
-        name: 'datatypeConfig',
-        header: 'Cấu hình kiểu dữ liệu',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 200,
-        },
-      },
-      {
-        type: 'record',
-        name: 'description',
-        header: 'Mô tả',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 200,
         },
       },
     ],
