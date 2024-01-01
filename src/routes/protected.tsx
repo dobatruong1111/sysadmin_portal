@@ -1,32 +1,18 @@
-import { Outlet, RouteObject } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 import { LoginGuard } from "../features/auth/components/LoginGuard";
-import { Suspense } from "react";
-import { FullPageSpinner } from "../components/Layout/FullPageSpinner";
 import { AdminRoutes, ROUTE_ADMIN } from "../features/admin";
 
 const App = () => {
     return (
         <LoginGuard>
-            <Suspense fallback={<FullPageSpinner />}>
-                <Outlet />
-            </Suspense>
+            <AdminRoutes />
         </LoginGuard>
     )
 }
 
-const adminRoutes: RouteObject[] = [
+export const adminRoutes: RouteObject[] = [
     {
         path: `${ROUTE_ADMIN}/*`,
-        element: <AdminRoutes />
+        element: <App />
     }
-]
-
-const mainRoute: RouteObject = {
-    path: '/',
-    element: <App />
-}
-
-
-export const protectedRoutes: RouteObject[] = [
-    { ...mainRoute, children: adminRoutes },
 ]

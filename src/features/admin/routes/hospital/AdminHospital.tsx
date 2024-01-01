@@ -6,6 +6,9 @@ import { setSelectedRow } from "../../../../stores/table/tableSlice";
 import { TABLE_HOSPITAL } from "../../../../stores/table/tableInitialState";
 import { ConnectedHospitalCreateModal } from "../../components/hospital/HospitalCreateModal";
 import { ConnectedHospitalEditModal } from "../../components/hospital/HospitalEditModal";
+import { AdminShell } from "../../../../providers/admin/AdminShell";
+import { ConfigAttribute } from "../../components/configAttribute/ConfigAttribute";
+import { HospitalContributePanel } from "../../components/hospital/HospitalContributePanel";
 
 export const AdminHospital = () => {
     const dispatch = useDispatch();
@@ -22,7 +25,12 @@ export const AdminHospital = () => {
 
     return (
         <AdminProvider>
-            <Hospital />
+            <AdminShell
+                title={'Danh sách bệnh viện'}
+                TableComponent={<Hospital />}
+                PanelComponent={<HospitalContributePanel />}
+            />
+            
             <ConnectedHospitalCreateModal />
             <ConnectedHospitalEditModal />
         </AdminProvider>

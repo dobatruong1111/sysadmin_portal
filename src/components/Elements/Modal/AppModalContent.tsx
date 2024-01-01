@@ -6,7 +6,11 @@ import { ModalFooterLayout } from "../../Layout/ModalFooterLayout";
 import { MyButton } from "..";
 
 const StyledAppModalContent = styled(ModalContent)`
+  width: 24vw;
   max-height: 100%;
+  border-radius: 3px;
+  border: 0.5px solid rgba(29, 30, 58, 0.60);
+  background: #F0F1F4;
 `;
 
 const StyledMyConfirmButton = styled(MyButton)`
@@ -82,13 +86,17 @@ export const AppModalContent = forwardRef<HTMLElement, AppModalContentProps>((pr
           maxHeight='80vh'
           minHeight='20vh'
           minWidth='20vw'
+          sx={{padding: '10px'}}
           {...boxBodyProps}
         >
           {bodyComponent}
         </Box>
       )}
       renderFooter={() => (
-        <Box p={2}>
+        <Box 
+          p={2}
+          sx={{padding: '0 10px 10px'}}
+        >
           <ModalFooterLayout
             actionButton={
               confirmButton || (

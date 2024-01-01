@@ -4,12 +4,14 @@ import { api, loginApi } from "../lib/api";
 import { authReducer } from "./auth/authSlide";
 import { PERSIST, REHYDRATE, persistReducer, persistStore } from 'redux-persist';
 import { persistConfig } from "./persist";
+import { layoutReducer } from "./layoutSlice";
 
 const rootReducers = combineReducers({
     ["auth"]: authReducer,
     tableReducer: tableReducer,
     [api.reducerPath]: api.reducer,
     [loginApi.reducerPath]: loginApi.reducer,
+    ['layoutConstants']: layoutReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducers);

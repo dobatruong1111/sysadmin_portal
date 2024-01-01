@@ -2,8 +2,16 @@ import { styled, TextField, TextFieldProps } from '@mui/material';
 import { forwardRef } from 'react';
 
 const StyledTextField = styled(TextField)`
-  // width: 350px;
-  // height: 42px;
+  border-radius: 3px;
+  background: #FAFAFA;
+  .css-1h7020y-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 13px;
+    top: -2px;
+  }
+  & input, &label, &textarea {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
   & label.Mui-focused {
     color: #0e8a72;
   }

@@ -12,7 +12,6 @@ import { AdminExtensionType } from './extensionType/AdminExtensionType';
 import { AdminHospital } from './hospital/AdminHospital';
 import { AdminDomain } from './domain/AdminDomain';
 import { AdminConfigAttribute } from './configAttribute/AdminConfigAttribute';
-import { ROUTE_LOGIN } from '../../auth';
 import { AdminStatisticsType } from './statisticsType/AdminStatisticsType';
 import { AdminConnectionAccount } from './connectionAccount/AdminConnectionAccount';
 
@@ -64,17 +63,14 @@ const adminRoutes: RouteObject[] = [
 ];
 
 export const AdminRoutes = () => {
-    const storedUsername = localStorage.getItem('username');
     const adminPages = useRoutes(adminRoutes);
-    return storedUsername ? (
+    return (
         <NavBarLayout>
             <AdminLayout>
                 {adminPages}
             </AdminLayout>
         </NavBarLayout>
-    ) : (
-        <Navigate to={ROUTE_LOGIN} />
-    );
+    ) 
 }
 
 export * from './paths';

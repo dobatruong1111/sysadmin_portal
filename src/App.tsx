@@ -4,18 +4,22 @@ import { Provider } from "react-redux";
 import { store } from "./stores/redux";
 import { NotificationProvider } from "./providers/NotificationProvider";
 import { SnackbarProvider } from "notistack";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./config/theme";
 
 function App() {
   return (
-    <Provider store={store}>
-      <SnackbarProvider maxSnack={5}>
-        <NotificationProvider>
-          <BrowserRouter>
-            <AppRoutes/>
-          </BrowserRouter>
-        </NotificationProvider>
-      </SnackbarProvider>
-    </Provider>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <SnackbarProvider maxSnack={5}>
+          <NotificationProvider>
+            <BrowserRouter>
+              <AppRoutes/>
+            </BrowserRouter>
+          </NotificationProvider>
+        </SnackbarProvider>
+      </Provider>
+    </ThemeProvider>
   );
 }
 
