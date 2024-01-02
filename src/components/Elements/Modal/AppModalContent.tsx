@@ -6,7 +6,6 @@ import { ModalFooterLayout } from "../../Layout/ModalFooterLayout";
 import { MyButton } from "..";
 
 const StyledAppModalContent = styled(ModalContent)`
-  width: 24vw;
   max-height: 100%;
   border-radius: 3px;
   border: 0.5px solid rgba(29, 30, 58, 0.60);

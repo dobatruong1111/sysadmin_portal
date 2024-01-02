@@ -1,28 +1,29 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { TABLE_HOSPITAL } from "../../../../stores/table/tableInitialState";
 import { useSelector } from "react-redux";
 import { CloseableCollapsiblePanel } from "../../../../components/Surfaces/CollapsiblePanel";
-import { ConfigAttribute } from "../configAttribute/ConfigAttribute";
 import { useDisclosure } from "../../../../hooks/useDisclosure";
-import { AdminConfigAttribute } from "../../routes/configAttribute/AdminConfigAttribute";
+import { AdminHospitalConfigPanel } from "./panel/AdminConfigPanel";
 
-export const HospitalContributePanel: FC = () => {
+export const HospitalConfigPanel: FC = () => {
     const selectedRow = useSelector(
         (state: any) =>
             state.tableReducer.data[TABLE_HOSPITAL].selection.selectedRow
     );
-    const { isOpen, open, close } = useDisclosure(true);
+    const hospitalId = selectedRow?.id;
+    const { isOpen: initialExpanded, open, close } = useDisclosure(true);
 
     if (!selectedRow) return <></>;
     return (
         <CloseableCollapsiblePanel
-            initialExpanded={isOpen}
+            key={hospitalId}
+            initialExpanded={initialExpanded}
             onExpand={open}
             onCollapse={close}
             onClose={close}
             title={selectedRow?.name}
         >
-            <AdminConfigAttribute />
+            <AdminHospitalConfigPanel hospitalID={hospitalId} />
         </CloseableCollapsiblePanel>
     )
 }

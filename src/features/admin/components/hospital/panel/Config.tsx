@@ -1,23 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { TABLE_HOSPITAL } from '../../../../stores/table/tableInitialState';
-import { useGetHospitalListQuery } from '../../api/apiHospital';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { useMemo } from 'react';
-import { MyTable, TableField } from '../../../../components/Table/MyTable';
-import { HospitalDTO } from '../../../../types/dto/hospital';
-import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
-import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { FC, useMemo } from 'react';
+import { TABLE_HOSPITAL_CONFIG } from '../../../../../stores/table/tableInitialState';
+import { MyTable, TableField } from '../../../../../components/Table/MyTable';
+import { setSelectedRow } from '../../../../../stores/table/tableSlice';
+import { AdminTableActionButtons } from '../../../../../components/Admin/AdminTableActionButtons';
+import { ConfigDTO } from '../../../../../types/dto/config';
+import { useGetConfigListQuery } from '../../../api/apiConfig';
 
-export const Hospital = () => {
+type ConfigProps = {
+    hospitalID?: string;
+}
+
+export const Config:FC<ConfigProps> = (props) => {
+  const { hospitalID } = props;
   const dispatch = useDispatch();
   const query = useSelector(
-    (state: any) => state.tableReducer.data[TABLE_HOSPITAL].query
+    (state: any) => state.tableReducer.data[TABLE_HOSPITAL_CONFIG].query
   );
-  const { data, isFetching, refetch } = useGetHospitalListQuery(
-    query || skipToken,
+  const { data, isFetching, refetch } = useGetConfigListQuery(
+    query && {hospitalID: hospitalID}
   );
 
-  const tableColumns = useMemo<TableField<HospitalDTO>[]>(
+  const tableColumns = useMemo<TableField<ConfigDTO>[]>(
     () => [
       {
         type: 'custom',
@@ -26,10 +31,9 @@ export const Hospital = () => {
             id: 'stt',
             header: 'STT',
             cell: (props) => (
-              <div style={{ alignItems: 'center', width: '100%', justifyContent: 'center', display: 'flex' }}>{props.row.index + 1}</div>
+              <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            minSize: 50,
-            maxSize: 50,
+            size: 50,
           }),
       },
       {
@@ -41,40 +45,40 @@ export const Hospital = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          maxSize: 50,
+          size: 50,
         },
       },
       {
         type: 'record',
-        name: 'name',
-        header: 'Tên bệnh viện',
+        name: 'attributeID',
+        header: 'Mã loại cấu hình',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 400,
+          size: 100,
         },
       },
       {
         type: 'record',
-        name: 'address',
-        header: 'Địa chỉ',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => <div>{cell.getValue()}</div>,
-        columnDefOptions: {
-          size: 450,
-        },
-      },
-      {
-        type: 'record',
-        name: 'enabled',
-        header: 'Hoạt động',
+        name: 'attributeValue',
+        header: 'Tên loại cấu hình',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
-          <div style={{ textAlign: 'center' }}>
-            {cell.getValue() ? 'Có' : 'Không'}
-          </div>
+          <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
+        ),
+        columnDefOptions: {
+          size: 100,
+        },
+      },
+      {
+        type: 'record',
+        name: 'preferred',
+        header: 'Ưu tiên',
+        renderHeader: (header) => <div>{header}</div>,
+        renderCell: (cell) => (
+          <div style={{ textAlign: 'center' }}>{cell.getValue() ? "Có" : "Không"}</div>
         ),
         columnDefOptions: {
           size: 100,
@@ -86,20 +90,24 @@ export const Hospital = () => {
 
   return (
     <MyTable
-      tableId={TABLE_HOSPITAL}
-      tableName="Danh sách bệnh viện"
+      tableId={TABLE_HOSPITAL_CONFIG}
+      tableName="Thuộc tính cấu hình"
       data={data?.list}
       tableColumnsDescription={tableColumns}
       renderActionsButton={() => (
-        <AdminTableActionButtons tableId={TABLE_HOSPITAL} refetch={refetch} />
+        <AdminTableActionButtons
+          tableId={TABLE_HOSPITAL_CONFIG}
+          refetch={refetch}
+          isPanel={true}
+        />
       )}
       myDatagridProps={{
-        tableId: TABLE_HOSPITAL,
+        tableId: TABLE_HOSPITAL_CONFIG,
         isLoading: isFetching,
         onRowClick: (_e, row, _table) => {
           dispatch(
             setSelectedRow({
-              tableId: TABLE_HOSPITAL,
+              tableId: TABLE_HOSPITAL_CONFIG,
               selectedRow: row.original,
             })
           );
@@ -116,4 +124,3 @@ export const Hospital = () => {
     />
   );
 };
-

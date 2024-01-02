@@ -5,12 +5,18 @@ const noop = () => {};
 
 type AnyFn = (...args: any) => any;
 
+
 type PredefinedAdminFunctions = {
   openCreateModal: AnyFn;
   submitCreateForm: AnyFn;
   openEditModal: AnyFn;
   submitEditForm: AnyFn,
   submitDelete: AnyFn;
+  openCreateModalPanel: AnyFn;
+  submitCreateFormPanel: AnyFn;
+  openEditModalPanel: AnyFn;
+  submitEditFormPanel: AnyFn,
+  submitDeletePanel: AnyFn;
 }
 
 type AdminFunctions = PredefinedAdminFunctions & Record<string, AnyFn>;
@@ -20,7 +26,13 @@ const ADMIN_FUNCTIONS_DEFAULT: AdminFunctions = {
   submitCreateForm: noop,
   openEditModal: noop,
   submitEditForm: noop,
-  submitDelete: noop
+  submitDelete: noop,
+  openCreateModalPanel: noop,
+  submitCreateFormPanel: noop,
+  openEditModalPanel: noop,
+  submitEditFormPanel: noop,
+  submitDeletePanel: noop,
+
 }
 
 type AdminContextValues = {

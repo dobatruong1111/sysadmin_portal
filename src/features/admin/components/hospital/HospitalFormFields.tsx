@@ -3,6 +3,7 @@ import { MyFormTextField } from '../../../../components';
 import { MyFormCheckboxField } from '../../../../components/Elements/Inputs/MyFormCheckboxField';
 import { Control } from 'react-hook-form';
 import { HospitalDTOCreate } from '../../../../types/dto/hospital';
+import ImageUploader from '../../../../components/Buttons/ImageUploader';
 
 export type HospitalFormFieldsProps = {
   control: Control<HospitalDTOCreate>;
@@ -93,6 +94,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
             rows: 2,
           }}
         />
+        <ImageUploader />
         <Stack spacing={1} direction="row" alignItems="center" width="100%">
           <MyFormCheckboxField
             name="enabled"

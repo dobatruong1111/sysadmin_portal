@@ -11,21 +11,9 @@ import { DragHandler } from './DragHandler';
 type CloseablePanelProps = {
   title?: string;
   initialExpanded?: boolean;
-  /**
-   * Callback that runs on expansion
-   */
   onExpand?: () => void;
-  /**
-   * Callback that runs on collapse
-   */
   onCollapse?: () => void;
-  /**
-   * Allow close
-   */
   onClose?: () => void;
-  /**
-   * Not allow toggle when click to panel title
-   */
   isNotToggle?: boolean;
   sx?: SxProps;
   children?: ReactNode;
@@ -38,17 +26,12 @@ export const CloseableCollapsiblePanel: FC<CloseablePanelProps> = (props) => {
     onClose && onClose();
     close();
   }, [close, onClose]);
-
   return isOpen ? (
     <CollapsiblePanel {...rest} initialExpanded={initialExpanded} onClose={handleClose} />
   ) : (
     <></>
   );
 };
-
-/**
- * Render a panel with a close button
- */
 export const CollapsiblePanel: FC<CloseablePanelProps> = (props) => {
   const {
     title,
@@ -63,7 +46,6 @@ export const CollapsiblePanel: FC<CloseablePanelProps> = (props) => {
   // to this component only
   const { isOpen, toggle } = useDisclosure(initialExpanded);
   const height = useSelector(selectCollapsiblePanelHeight);
-  // const [height, setHeight] = useState<number>(initialHeight);
   const dispatch = useDispatch();
   const configTitle = `Cấu hình thuộc tính - ${title}`
 
@@ -148,6 +130,7 @@ const StyledTitleGroup = styled('div', filterTransientProps)<{
   height: 100%;
   border-left: 0;
   border-right: 0;
+  align-items: center;
 `;
 
 const StyledChildrenContainer = styled(Paper, filterTransientProps)<{
@@ -169,7 +152,6 @@ const StyledCloseIcon = styled(StyledActionIcon)`
   position: absolute;
   right: 0;
   &:hover {
-    color: grey; 
     cursor: pointer; 
   }
 `;

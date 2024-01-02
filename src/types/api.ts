@@ -41,6 +41,10 @@ export type GetManyResourceQuery<T extends GenericFilter> = {
     sort?: SortQuery;
 }
 
+export type GetManyResourceWithHospitalID = {
+    hospitalID?: string;
+}
+
 /**
  * Header response from server
  */

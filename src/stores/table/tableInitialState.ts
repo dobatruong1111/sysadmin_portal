@@ -15,6 +15,7 @@ export const TABLE_EXTENSION_TYPE = RESOURCES.EXTENSION_TYPE;
 export const TABLE_HOSPITAL = RESOURCES.HOSPITAL;
 export const TABLE_DOMAIN = RESOURCES.DOMAIN;
 export const TABLE_CONFIG_ATTRIBUTE = RESOURCES.CONFIG_ATTRIBUTE;
+export const TABLE_HOSPITAL_CONFIG = RESOURCES.CONFIG;
 export const TABLE_STATISTICS_TYPE = RESOURCES.STATISTICS_TYPE;
 export const TABLE_CONNECTION_ACCOUNT = RESOURCES.CONNECTION_ACCOUNT;
 
@@ -76,6 +77,12 @@ export const initialState: TableStore = {
             }
         },
         [TABLE_CONNECTION_ACCOUNT]: {
+            query: DEFAULT_QUERY,
+            selection: {
+                selectedRow: null
+            }
+        },
+        [TABLE_HOSPITAL_CONFIG]: {
             query: DEFAULT_QUERY,
             selection: {
                 selectedRow: null

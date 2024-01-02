@@ -8,5 +8,7 @@ export enum RESOURCES {
     DOMAIN = 'domain',
     CONFIG_ATTRIBUTE = 'configAttribute',
     STATISTICS_TYPE = 'analyticsType',
-    CONNECTION_ACCOUNT = 'client'
+    CONNECTION_ACCOUNT = 'client',
+    CONFIG = 'config',
+    TEST = 'hospital/72131/config',
 }

@@ -53,8 +53,8 @@ const StyledAdminTitleContainer = styled('div')`
 `;
 
 const StyledAdminTitle = styled(Typography)`
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 20px;
   text-transform: uppercase;
 `;
@@ -70,11 +70,6 @@ const StyledTableContainer = styled(Box)`
 
 const StyledAdminDivider = styled(Divider)`
   border-color: ${(props) => props.theme.palette.primary.main};
-  width: 10%;
+  width: 20%;
   min-width: 120px;
-`;
-
-const StyledFilterContainer = styled('div')`
-  width: 100%;
-  height: 100%;
 `;
