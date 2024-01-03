@@ -30,10 +30,10 @@ export const HospitalCreateForm = (props: {
       logo: selectedImageLogo ?? '',
       logoFull: selectedImageLogoFull ?? '',
     };
-    console.log(submitForm);
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+
+    if (submitForm.id.length === 0 || submitForm.name.length === 0) {
       setErrorMessage('Cần điền vào trường bắt buộc');
-    else {
+    } else {
       const result = await createHospital(submitForm);
       if ('error' in result) {
         notifySnackbar({
@@ -86,9 +86,12 @@ export const HospitalCreateForm = (props: {
           errorMessage={errorMessage}
           disableIdField={false}
           onImageSelected={setselectedImageLogo}
-          onSelectedLogoFull={setselectedImageLogoFull}
+          onLogoFullSelected={setselectedImageLogoFull}
         />
       )}
     />
   );
 };
+
+export default HospitalCreateForm;
+

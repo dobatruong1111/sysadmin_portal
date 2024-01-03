@@ -11,15 +11,27 @@ export type HospitalFormFieldsProps = {
   errorMessage: string | undefined;
   disableIdField: boolean;
   onImageSelected: (image: string | null) => void;
-  onSelectedLogoFull?: string | undefined;
+  onLogoFullSelected: (image: string | null) => void;
   imageUrl?: string;
   imageUrlLogoFull?: string;
 };
 
 export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
-  const { control, errorMessage, disableIdField, onImageSelected, onSelectedLogoFull, imageUrl, imageUrlLogoFull } = props;
+  const { control, errorMessage, disableIdField, onImageSelected, onLogoFullSelected, imageUrl, imageUrlLogoFull } = props;
   const [selectedImage, setSelectedImage] = useState<string | null>(imageUrl ?? null);
   const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(imageUrlLogoFull ?? null);
+
+  // Handle changes in logo image
+  const handleImageSelected = (image: string | null) => {
+    setSelectedImage(image);
+    onImageSelected(image);
+  };
+
+  // Handle changes in logoFull image
+  const handleLogoFullSelected = (image: string | null) => {
+    setselectedImageLogoFull(image);
+    onLogoFullSelected(image);
+  };
 
   return (
     <Stack spacing={1} alignItems="center" width="100%">
@@ -102,20 +114,16 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
             rows: 2,
           }}
         />
+        {/* Logo ImageUploader */}
         <ImageUploader
-        name='logo'
-          onImageSelected={(image) => {
-            setSelectedImage(image);
-            onImageSelected(image);
-          }}
+          name='logo'
+          onImageSelected={handleImageSelected}
           imageUrl={selectedImage}
         />
+        {/* LogoFull ImageUploader */}
         <ImageUploader
-        name='logoFull'
-          onImageSelected={(image) => {
-            setselectedImageLogoFull(image);
-            onImageSelected(image);
-          }}
+          name='logoFull'
+          onImageSelected={handleLogoFullSelected}
           imageUrl={selectedImageLogoFull}
         />
         <Stack spacing={1} direction="row" alignItems="center" width="100%">

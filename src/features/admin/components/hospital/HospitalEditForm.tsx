@@ -13,15 +13,15 @@ import { TABLE_HOSPITAL } from '../../../../stores/table/tableInitialState';
 type HospitalEditFormProps = {
   onSuccessCallback?: () => void;
   record?: HospitalDTOUpdate;
-  data?: HospitalDTOUpdate
+  data?: HospitalDTOUpdate;
 };
 
 export const HospitalEditForm = (props: HospitalEditFormProps) => {
   const { onSuccessCallback, data } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(data?.logo || null);
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(data?.logoFull || null);
   const [editHospital] = useUpdateHospitalMutation();
   const notifySnackbar = useNotifySnackbar();
   const dispatch = useDispatch();
@@ -29,33 +29,33 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
   const formOptions: UseFormProps<HospitalDTOUpdate> = {
     mode: 'onChange',
     defaultValues: {
-      id: data?.id,
-      name: data?.name,
-      description: data?.description,
-      phone: data?.phone,
-      email: data?.email,
-      address: data?.address,
-      enabled: data?.enabled,
-      logo: data?.logo,
-      logoFull: data?.logoFull,
+      id: data?.id || '',
+      name: data?.name || '',
+      description: data?.description || '',
+      phone: data?.phone || '',
+      email: data?.email || '',
+      address: data?.address || '',
+      enabled: data?.enabled || false,
+      logo: data?.logo || '',
+      logoFull: data?.logoFull || '',
     },
   };
 
   const onSubmit = async (formData: HospitalDTOUpdate) => {
     const submitForm: HospitalDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-      phone: formData.phone ?? '',
-      email: formData.email ?? '',
-      address: formData.address ?? '',
-      enabled: formData.enabled ?? false,
-      logo: selectedImage ?? '',
-      logoFull: selectedImageLogoFull ?? '',
+      id: formData.id || '',
+      name: formData.name || '',
+      description: formData.description || '',
+      phone: formData.phone || '',
+      email: formData.email || '',
+      address: formData.address || '',
+      enabled: formData.enabled || false,
+      logo: selectedImage || '',
+      logoFull: selectedImageLogoFull || '',
     };
-    if (submitForm.name.length === 0)
+    if (submitForm.name.length === 0) {
       setErrorMessage('Trường bắt buộc không được bỏ trống');
-    else {
+    } else {
       const result = await editHospital(submitForm);
       if ('error' in result) {
         notifySnackbar({
@@ -97,10 +97,11 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
         <HospitalFormFields
           control={control}
           errorMessage={errorMessage}
-          disableIdField={true} 
+          disableIdField={true}
           onImageSelected={setSelectedImage}
-          imageUrl={data?.logo} 
-          imageUrlLogoFull={data?.logoFull}      
+          onLogoFullSelected={setselectedImageLogoFull}
+          imageUrl={data?.logo}
+          imageUrlLogoFull={data?.logoFull}
         />
       )}
     />
