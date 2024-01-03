@@ -4,15 +4,23 @@ import { MyFormCheckboxField } from '../../../../components/Elements/Inputs/MyFo
 import { Control } from 'react-hook-form';
 import { HospitalDTOCreate } from '../../../../types/dto/hospital';
 import ImageUploader from '../../../../components/Buttons/ImageUploader';
+import { useState } from 'react';
 
 export type HospitalFormFieldsProps = {
   control: Control<HospitalDTOCreate>;
   errorMessage: string | undefined;
   disableIdField: boolean;
+  onImageSelected: (image: string | null) => void;
+  onSelectedLogoFull?: string | undefined;
+  imageUrl?: string;
+  imageUrlLogoFull?: string;
 };
 
 export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
-  const { control, errorMessage, disableIdField } = props;
+  const { control, errorMessage, disableIdField, onImageSelected, onSelectedLogoFull, imageUrl, imageUrlLogoFull } = props;
+  const [selectedImage, setSelectedImage] = useState<string | null>(imageUrl ?? null);
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(imageUrlLogoFull ?? null);
+
   return (
     <Stack spacing={1} alignItems="center" width="100%">
       {errorMessage && (
@@ -94,7 +102,22 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
             rows: 2,
           }}
         />
-        <ImageUploader />
+        <ImageUploader
+        name='logo'
+          onImageSelected={(image) => {
+            setSelectedImage(image);
+            onImageSelected(image);
+          }}
+          imageUrl={selectedImage}
+        />
+        <ImageUploader
+        name='logoFull'
+          onImageSelected={(image) => {
+            setselectedImageLogoFull(image);
+            onImageSelected(image);
+          }}
+          imageUrl={selectedImageLogoFull}
+        />
         <Stack spacing={1} direction="row" alignItems="center" width="100%">
           <MyFormCheckboxField
             name="enabled"

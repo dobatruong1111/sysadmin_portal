@@ -48,7 +48,12 @@ export const ConfigEditForm = (
     if (formData.attributeValue.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editConfig(formData && hospitalId);
+      const result = await editConfig( {
+        hospitalID: hospitalId,
+        attributeValue: '',
+        attributeID: '',
+        preferred: false
+      });
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

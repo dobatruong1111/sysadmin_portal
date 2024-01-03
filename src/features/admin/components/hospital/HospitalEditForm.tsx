@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HospitalDTO, HospitalDTOUpdate } from '../../../../types/dto/hospital';
+import { HospitalDTOUpdate } from '../../../../types/dto/hospital';
 import { useRegisterAdminFunctions } from '../../../../providers/admin/AdminProvider';
 import { useUpdateHospitalMutation } from '../../api/apiHospital';
 import { useNotifySnackbar } from '../../../../providers/NotificationProvider';
@@ -10,15 +10,18 @@ import { useDispatch } from 'react-redux';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
 import { TABLE_HOSPITAL } from '../../../../stores/table/tableInitialState';
 
-export type HospitalEditFormProps = {
+type HospitalEditFormProps = {
   onSuccessCallback?: () => void;
-  record: HospitalDTO;
+  record?: HospitalDTOUpdate;
+  data?: HospitalDTOUpdate
 };
 
 export const HospitalEditForm = (props: HospitalEditFormProps) => {
-  const { onSuccessCallback, record } = props;
+  const { onSuccessCallback, data } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(null);
   const [editHospital] = useUpdateHospitalMutation();
   const notifySnackbar = useNotifySnackbar();
   const dispatch = useDispatch();
@@ -26,15 +29,15 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
   const formOptions: UseFormProps<HospitalDTOUpdate> = {
     mode: 'onChange',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      description: '',
-      phone: '',
-      email: '',
-      address: record.address,
-      enabled: record.enabled,
-      logo: '',
-      logoFull: '',
+      id: data?.id,
+      name: data?.name,
+      description: data?.description,
+      phone: data?.phone,
+      email: data?.email,
+      address: data?.address,
+      enabled: data?.enabled,
+      logo: data?.logo,
+      logoFull: data?.logoFull,
     },
   };
 
@@ -47,8 +50,8 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
       email: formData.email ?? '',
       address: formData.address ?? '',
       enabled: formData.enabled ?? false,
-      logo: formData.logo ?? '',
-      logoFull: formData.logoFull ?? '',
+      logo: selectedImage ?? '',
+      logoFull: selectedImageLogoFull ?? '',
     };
     if (submitForm.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
@@ -94,7 +97,10 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
         <HospitalFormFields
           control={control}
           errorMessage={errorMessage}
-          disableIdField={true}
+          disableIdField={true} 
+          onImageSelected={setSelectedImage}
+          imageUrl={data?.logo} 
+          imageUrlLogoFull={data?.logoFull}      
         />
       )}
     />
