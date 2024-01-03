@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useRegisterAdminFunctions } from '../../../../../providers/admin/AdminProvider';
 import { useNotifySnackbar } from '../../../../../providers/NotificationProvider';
 import { UseFormProps } from 'react-hook-form';
@@ -7,28 +7,41 @@ import { ConfigFormFields } from './ConfigFormFields';
 import { ConfigDTOCreate } from '../../../../../types/dto/config';
 import { useCreateConfigMutation } from '../../../api/apiConfig';
 import { useSelector } from 'react-redux';
-import { TABLE_HOSPITAL } from '../../../../../stores/table/tableInitialState';
-export const ConfigCreateForm = (props: {
-  onSuccessCallback?: () => void;
-}) => {
+import {
+  TABLE_CONFIG_ATTRIBUTE,
+  TABLE_HOSPITAL,
+} from '../../../../../stores/table/tableInitialState';
+import { useGetConfigAttributeListQuery } from '../../../api/apiConfigAttribute';
+import { skipToken } from '@reduxjs/toolkit/query';
+
+export const ConfigCreateForm = (props: { onSuccessCallback?: () => void }) => {
   const selectedRow = useSelector(
     (state: any) =>
-        state.tableReducer.data[TABLE_HOSPITAL].selection.selectedRow
+      state.tableReducer.data[TABLE_HOSPITAL].selection.selectedRow
   );
-  const hospitalId = selectedRow?.id;
+  const hospitalID = selectedRow?.id;
   const { onSuccessCallback } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
   const [createConfig] = useCreateConfigMutation();
   const notifySnackbar = useNotifySnackbar();
 
+  const query = useSelector(
+    (state: any) => state.tableReducer.data[TABLE_CONFIG_ATTRIBUTE].query
+  );
+  const { data } = useGetConfigAttributeListQuery(query || skipToken);
+
   const onSubmit = async (formData: ConfigDTOCreate) => {
     if (
-      formData.attributeID.length === 0
+      formData.attributeID.length === 0 ||
+      formData.attributeValue.length === 0
     )
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createConfig(formData && hospitalId);
+      const result = await createConfig({
+        data: formData,
+        hospitalID: hospitalID,
+      });
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -49,16 +62,13 @@ export const ConfigCreateForm = (props: {
   };
 
   const formOptions: UseFormProps<ConfigDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
+      attributeValue: '',
+      attributeID: '',
+      preferred: false,
     },
   };
-
-  const datatypes = useMemo<Array<string>>(
-    () => ['ENABLE_TIMETABLE', 'CONNECT_PORTAL', 'CONNECT_HIS',
-     'CONNECT_MWL', 'MULTIPLE_VIEWER_TAB', 'PRIVATE_IP_RANGES'],
-    []
-  );
 
   return (
     <MyFormGroupUnstyled
@@ -76,7 +86,7 @@ export const ConfigCreateForm = (props: {
           control={control}
           errorMessage={errorMessage}
           disableIdField={false}
-          datatypes={datatypes}
+          configAttribute={data?.list}
         />
       )}
     />
