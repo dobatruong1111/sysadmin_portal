@@ -9,6 +9,11 @@ import { useNotifySnackbar } from '../../../../../providers/NotificationProvider
 import { useRegisterAdminFunctions } from '../../../../../providers/admin/AdminProvider';
 import { setSelectedRow } from '../../../../../stores/table/tableSlice';
 import { useUpdateConfigMutation } from '../../../api/apiConfig';
+import { MyFormCheckboxField } from '../../../../../components/Elements/Inputs/MyFormCheckboxField';
+import { Stack } from '@mui/system';
+import { MyFormTextField } from '../../../../../components/Elements/Inputs/MyFormTextField';
+import { MenuItem, Typography } from '@mui/material';
+import { MyFormSelectField } from '../../../../../components/Elements/Inputs/MyFormSelectField';
 
 export type ConfigEditFormProps = {
   onSuccessCallback?: () => void;
@@ -33,9 +38,9 @@ export const ConfigEditForm = (
   const formOptions: UseFormProps<ConfigDTOUpdate> = {
     mode: 'onChange',
     defaultValues: {
-        attributeValue: '',
-        attributeID: '',
-        preferred: true,
+        attributeValue: record.attributeValue,
+        attributeID: record.attributeID,
+        preferred: record.preferred,
     },
   };
 
@@ -70,7 +75,8 @@ export const ConfigEditForm = (
   };
 
   const datatypes = useMemo<Array<string>>(
-    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT'],
+    () => ['ENABLE_TIMETABLE', 'CONNECT_PORTAL', 'CONNECT_HIS',
+     'CONNECT_MWL', 'MULTIPLE_VIEWER_TAB', 'PRIVATE_IP_RANGES'],
     []
   );
 
@@ -86,12 +92,72 @@ export const ConfigEditForm = (
       submitOnEnter={true}
       formOptions={formOptions}
       renderInputs={({ control }) => (
-        <ConfigFormFields
-          control={control}
-          errorMessage={errorMessage}
-          disableIdField={true}
-          datatypes={datatypes}
-        />
+        <Stack spacing={1} alignItems="center" width="100%">
+      {errorMessage && (
+        <Typography fontSize="12px" color="red">
+          {errorMessage}
+        </Typography>
+      )}
+      <Stack spacing={1} alignItems="center" width="100%">
+      <MyFormTextField
+            name="attributeID"
+            control={control}
+            MyTextFieldProps={{
+              label: 'ID',
+              placeholder: 'ID',
+              fullWidth: true,
+              required: true,
+              size: 'small',
+              autoComplete: 'off',
+              disabled: true,
+            }}
+          />
+      <MyFormSelectField
+        name="attributeID"
+        control={control}
+        MySelectProps={{
+          label: 'Tên loại thuộc tính',
+          size: 'small',
+          fullWidth: true,
+        }}
+        required={true}
+      >
+        {datatypes.map((item, index) => (
+          <MenuItem key={index} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </MyFormSelectField>
+      <MyFormTextField
+        name="attributeValue"
+        control={control}
+        MyTextFieldProps={{
+          label: 'Giá trị',
+          placeholder: 'Giá trị',
+          fullWidth: true,
+          required: true,
+          size: 'small',
+          autoComplete: 'off',
+        }}
+      />
+      <Stack spacing={1} direction="row" alignItems="center" width="100%">
+          <MyFormCheckboxField
+            name="preferred"
+            control={control}
+            MyCheckboxProps={{
+              size: 'small',
+              color: 'success',
+              sx: {
+                '&.Mui-checked': {
+                  color: '#0e8a72',
+                },
+              },
+            }}
+          />
+          <Typography>Ưu tiên</Typography>
+        </Stack>
+      </Stack>
+    </Stack>
       )}
     />
   );

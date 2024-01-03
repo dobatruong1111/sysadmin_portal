@@ -19,12 +19,12 @@ export const AdminShell: FC<AdminShellProps> = (props) => {
     props;
   return (
     <StyledAdminWrapper spacing={1} {...ContainerProps}>
-      <Stack>
+      {/* <Stack>
         <StyledAdminTitleContainer>
           <StyledAdminTitle>{title}</StyledAdminTitle>
         </StyledAdminTitleContainer>
         <StyledAdminDivider />
-      </Stack>
+      </Stack> */}
       <StyledTableContainerWithCollapsiblePanel>
         <StyledTableContainer>{TableComponent}</StyledTableContainer>
         {PanelComponent && PanelComponent}
@@ -38,7 +38,7 @@ export const AdminShell: FC<AdminShellProps> = (props) => {
  */
 
 const StyledAdminWrapper = styled(Stack)`
-  padding: ${(props) => props.theme.spacing(1)};
+  //padding: ${(props) => props.theme.spacing(1)};
   padding-bottom: ${(props) => props.theme.spacing(0.5)};
   width: 100%;
   height: 100%;

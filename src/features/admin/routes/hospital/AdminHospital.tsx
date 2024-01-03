@@ -25,7 +25,7 @@ export const AdminHospital = () => {
     return (
         <AdminProvider >
             <AdminShell
-                title={'Danh sách bệnh viện'}
+                // title={'Danh sách bệnh viện'}
                 TableComponent={<Hospital />}
                 PanelComponent={<HospitalConfigPanel />}
             />

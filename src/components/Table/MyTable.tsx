@@ -32,7 +32,7 @@ const StyledTableContainer = styled('div')`
   flex: 1;
   height: 100%;
   overflow: hidden;
-  //padding: 8px;
+  padding: 8px;
   font-family: Kanit;
 `;
 
@@ -163,7 +163,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
         marginTop: 0,
       }}
     >
-      {/* <StyledLabel>{tableName}</StyledLabel> */}
+      <StyledLabel>{tableName}</StyledLabel>
       <StyledTableContainer>
         <TableFooterComponent
           footerLeftComponent={renderActionsButton && renderActionsButton()}

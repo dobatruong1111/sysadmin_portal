@@ -31,7 +31,7 @@ export const ConfigAttributeCreateModal = (props: {
       bodyComponent={
         <ConfigCreateForm onSuccessCallback={closeModal} />
       }
-      width="30vw"
+      width="24vw"
       title="Thêm thuộc tính cấu hình"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateFormPanel()}

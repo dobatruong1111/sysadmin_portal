@@ -1,7 +1,9 @@
 import { Control } from 'react-hook-form';
-import { Stack, Typography } from '@mui/material';
+import { MenuItem, Stack, Typography } from '@mui/material';
 import { MyFormTextField } from '../../../../../components/Elements/Inputs/MyFormTextField';
 import { ConfigDTOCreate } from '../../../../../types/dto/config';
+import { MyFormCheckboxField } from '../../../../../components/Elements/Inputs/MyFormCheckboxField';
+import { MyFormSelectField } from '../../../../../components/Elements/Inputs/MyFormSelectField';
 
 export type ConfigFormFieldsProps = {
   control: Control<ConfigDTOCreate>;
@@ -13,7 +15,7 @@ export type ConfigFormFieldsProps = {
 export const ConfigFormFields = (
   props: ConfigFormFieldsProps
 ) => {
-  const { control, errorMessage, disableIdField, datatypes = [] } = props;
+  const { control, errorMessage, datatypes = [] } = props;
   return (
     <Stack spacing={1} alignItems="center" width="100%">
       {errorMessage && (
@@ -21,31 +23,52 @@ export const ConfigFormFields = (
           {errorMessage}
         </Typography>
       )}
-      <MyFormTextField
+      <Stack spacing={1} alignItems="center" width="100%">
+      <MyFormSelectField
         name="attributeID"
         control={control}
-        MyTextFieldProps={{
-          label: 'ID',
-          placeholder: 'ID',
-          fullWidth: true,
-          required: true,
+        MySelectProps={{
+          label: 'Tên loại thuộc tính',
           size: 'small',
-          autoComplete: 'off',
-          disabled: disableIdField,
+          fullWidth: true,
         }}
-      />
+        required={true}
+      >
+        {datatypes.map((item, index) => (
+          <MenuItem key={index} value={item}>
+            {item}
+          </MenuItem>
+        ))}
+      </MyFormSelectField>
       <MyFormTextField
         name="attributeValue"
         control={control}
         MyTextFieldProps={{
-          label: 'Tên loại thuộc tính',
-          placeholder: 'Tên loại thuộc tính',
+          label: 'Giá trị',
+          placeholder: 'Giá trị',
           fullWidth: true,
           required: true,
           size: 'small',
           autoComplete: 'off',
         }}
       />
+      <Stack spacing={1} direction="row" alignItems="center" width="100%">
+          <MyFormCheckboxField
+            name="preferred"
+            control={control}
+            MyCheckboxProps={{
+              size: 'small',
+              color: 'success',
+              sx: {
+                '&.Mui-checked': {
+                  color: '#0e8a72',
+                },
+              },
+            }}
+          />
+          <Typography>Ưu tiên</Typography>
+        </Stack>
+      </Stack>
     </Stack>
   );
 };

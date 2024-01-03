@@ -107,7 +107,7 @@ export const ConfigEditModal = forwardRef<
             onSuccessCallback={closeModal}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Cập nhật thuộc tính"
       />
     </>

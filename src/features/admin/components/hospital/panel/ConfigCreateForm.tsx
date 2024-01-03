@@ -55,7 +55,8 @@ export const ConfigCreateForm = (props: {
   };
 
   const datatypes = useMemo<Array<string>>(
-    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT'],
+    () => ['ENABLE_TIMETABLE', 'CONNECT_PORTAL', 'CONNECT_HIS',
+     'CONNECT_MWL', 'MULTIPLE_VIEWER_TAB', 'PRIVATE_IP_RANGES'],
     []
   );
 

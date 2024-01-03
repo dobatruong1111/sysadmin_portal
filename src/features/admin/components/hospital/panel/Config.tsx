@@ -66,6 +66,18 @@ export const Config:FC<ConfigProps> = (props) => {
         header: 'Tên loại cấu hình',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
+          <div style={{ textAlign: 'center' }}>{cell.row.original.attribute.name}</div>
+        ),
+        columnDefOptions: {
+          size: 100,
+        },
+      },
+      {
+        type: 'record',
+        name: 'attributeValue',
+        header: 'Giá trị',
+        renderHeader: (header) => <div>{header}</div>,
+        renderCell: (cell) => (
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
@@ -91,7 +103,7 @@ export const Config:FC<ConfigProps> = (props) => {
   return (
     <MyTable
       tableId={TABLE_HOSPITAL_CONFIG}
-      tableName="Thuộc tính cấu hình"
+      tableName=""
       data={data?.list}
       tableColumnsDescription={tableColumns}
       renderActionsButton={() => (
