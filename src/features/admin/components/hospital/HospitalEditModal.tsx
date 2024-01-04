@@ -1,5 +1,5 @@
 import { forwardRef, useCallback } from 'react';
-import { HospitalDTO, HospitalDTOUpdate } from '../../../../types/dto/hospital';
+import { HospitalDTOUpdate } from '../../../../types/dto/hospital';
 import {
   useAdminFunctions,
   useRegisterAdminFunctions,
@@ -101,7 +101,7 @@ export const HospitalEditModal = forwardRef<
         bodyComponent={
           <HospitalEditForm onSuccessCallback={closeModal} record={record} data={hospitalData}/>
         }
-        width="50vw"
+        width="40vw"
         title="Sửa thông tin bệnh viện"
       />
     </>

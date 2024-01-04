@@ -31,7 +31,7 @@ export const HospitalCreateModal = (props: { closeModal: () => void }) => {
       bodyComponent={<HospitalCreateForm onSuccessCallback={closeModal} />}
       title="Thêm bệnh viện"
       confirmLabel="Thêm mới"
-      width="50vw"
+      width="40vw"
       handleConfirm={() => adminFunctions.submitCreateForm()}
     />
   );

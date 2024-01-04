@@ -28,7 +28,8 @@ export const ConfigAttribute = () => {
             cell: (props) => (
               <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            size: 50,
+            minSize: 50,
+            maxSize: 50,
           }),
       },
       {
@@ -40,7 +41,7 @@ export const ConfigAttribute = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 50,
+          size: 350,
         },
       },
       {
@@ -52,7 +53,7 @@ export const ConfigAttribute = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 460,
         },
       },
       {
@@ -64,7 +65,7 @@ export const ConfigAttribute = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 200,
         },
       },
     ],

@@ -28,7 +28,8 @@ export const ConnectionAccount = () => {
             cell: (props) => (
               <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            size: 50,
+            minSize: 50,
+            maxSize: 50,
           }),
       },
       {
@@ -40,7 +41,7 @@ export const ConnectionAccount = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 50,
+          size: 190,
         },
       },
       {
@@ -52,7 +53,7 @@ export const ConnectionAccount = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 150,
         },
       },
       {
@@ -62,7 +63,7 @@ export const ConnectionAccount = () => {
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => <div>{cell.getValue().join(', ')}</div>,
         columnDefOptions: {
-          size: 200,
+          size: 300,
         },
       },
       {
@@ -72,7 +73,7 @@ export const ConnectionAccount = () => {
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => <div>{cell.getValue().join(', ')}</div>,
         columnDefOptions: {
-          size: 100,
+          size: 250,
         },
       },
       {
