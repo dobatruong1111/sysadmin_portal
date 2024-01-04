@@ -10,7 +10,6 @@ import { useDisclosure } from '../../../../hooks/useDisclosure';
 import { useDispatch, useSelector } from 'react-redux';
 import { TABLE_CONSUMABLE_TYPE } from '../../../../stores/table/tableInitialState';
 import { useDeleteConsumableTypeMutation } from '../../api/apiConsumableType';
-// import { skipToken } from "@reduxjs/toolkit/query";
 import {
   useNotifyModal,
   useNotifySnackbar,
@@ -24,7 +23,6 @@ export const ConnectedConsumableTypeEditModal = () => {
     (state: any) =>
       state.tableReducer.data[TABLE_CONSUMABLE_TYPE].selection.selectedRow
   );
-  // const { data: consumableTypeData } = useGetOneConsumableTypeQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
   const dispatch = useDispatch();
   const [deleteConsumableType] = useDeleteConsumableTypeMutation();
@@ -36,7 +34,7 @@ export const ConnectedConsumableTypeEditModal = () => {
   const handleDeleteConsumableType = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa loại vật tư tiêu hao ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa vật tư ${selectedRow.name} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

@@ -30,7 +30,7 @@ const apiConfigAttribute = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createConfigHospital: builder.mutation<ConfigAttributeDTOCreate, ConfigAttributeDTOCreate>({
+        createConfigHospital: builder.mutation<string, ConfigAttributeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiConfigAttribute = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: 'LIST' }]
         }),
-        updateConfigAttribute: builder.mutation<ConfigAttributeDTOUpdate, ConfigAttributeDTOUpdate>({
+        updateConfigAttribute: builder.mutation<string, ConfigAttributeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiConfigAttribute = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONFIG_ATTRIBUTE, id: arg.id }]
         }),
-        deleteConfigAttribute: builder.mutation<ConfigAttributeDTODelete, ConfigAttributeDTODelete>({
+        deleteConfigAttribute: builder.mutation<string, ConfigAttributeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONFIG_ATTRIBUTE}/${data.id}`,
                 method: 'DELETE',

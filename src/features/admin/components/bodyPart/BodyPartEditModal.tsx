@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDisclosure } from '../../../../hooks/useDisclosure';
 import { TABLE_BODY_PART } from '../../../../stores/table/tableInitialState';
 import { useDeleteBodyPartMutation } from '../../api/apiBodyPart';
-// import { skipToken } from "@reduxjs/toolkit/query";
 import {
   useNotifyModal,
   useNotifySnackbar,
@@ -24,7 +23,6 @@ export function ConnectedBodyPartEditModal() {
     (state: any) =>
       state.tableReducer.data[TABLE_BODY_PART].selection.selectedRow
   );
-  // const { data: bodyPartData } = useGetBodyPartQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
   const dispatch = useDispatch();
   const [deleteBodyPart] = useDeleteBodyPartMutation();
@@ -36,7 +34,7 @@ export function ConnectedBodyPartEditModal() {
   const handleDeleteBodyPart = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa bộ phận chụp ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa bộ phận chụp ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

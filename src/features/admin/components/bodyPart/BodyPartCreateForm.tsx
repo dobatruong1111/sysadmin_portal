@@ -15,15 +15,10 @@ export function BodyPartCreateForm(props: { onSuccessCallback?: () => void }) {
   const notifySnackbar = useNotifySnackbar();
 
   const onSubmit = async (formData: BodyPartDTOCreate) => {
-    const submitForm: BodyPartDTOCreate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+    if (formData.id.length === 0 || formData.name.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createBodyPart(submitForm);
+      const result = await createBodyPart(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -44,7 +39,7 @@ export function BodyPartCreateForm(props: { onSuccessCallback?: () => void }) {
   };
 
   const formOptions: UseFormProps<BodyPartDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',

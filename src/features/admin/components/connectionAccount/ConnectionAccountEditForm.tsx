@@ -31,7 +31,7 @@ export const ConnectionAccountEditForm = (
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<ConnectionAccountDTOFormUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: record.id,
       secret: '',
@@ -82,7 +82,10 @@ export const ConnectionAccountEditForm = (
     }
   };
 
-  const types = useMemo<Array<string>>(() => ['sysadmin', 'connector'], []);
+  const types = useMemo<Array<string>>(
+    () => ['sysadmin', 'connector', 'monitor'],
+    []
+  );
   const authorities = useMemo<Array<string>>(
     () => ['admin', 'query', 'create', 'update', 'delete'],
     []
