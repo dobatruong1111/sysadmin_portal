@@ -105,7 +105,7 @@ export const ModalityTypeNameEditModal = forwardRef<
             onSuccessCallback={closeModal}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa Phân Quyền"
       />
     </>

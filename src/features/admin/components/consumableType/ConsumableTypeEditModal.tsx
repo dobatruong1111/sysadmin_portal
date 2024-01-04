@@ -105,7 +105,7 @@ export const ConsumableTypeEditModal = forwardRef<
             onSuccessCallback={closeModal}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa loại vật tư tiêu hao"
       />
     </>

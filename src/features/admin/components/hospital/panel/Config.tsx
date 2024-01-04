@@ -58,7 +58,7 @@ export const Config: FC<ConfigProps> = (props) => {
           <div style={{ textAlign: 'center' }}>{cell.getValue().name}</div>
         ),
         columnDefOptions: {
-          size: 300,
+          size: 400,
         },
       },
       {
@@ -70,7 +70,7 @@ export const Config: FC<ConfigProps> = (props) => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 150,
         },
       },
       {
@@ -84,7 +84,7 @@ export const Config: FC<ConfigProps> = (props) => {
           </div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 150,
         },
       },
     ],

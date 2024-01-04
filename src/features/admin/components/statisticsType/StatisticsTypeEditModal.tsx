@@ -105,7 +105,7 @@ export const StatisticsTypeEditModal = forwardRef<
             record={record}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa loại báo cáo thống kê"
       />
     </>

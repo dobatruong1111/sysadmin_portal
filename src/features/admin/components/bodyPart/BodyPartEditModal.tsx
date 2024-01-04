@@ -97,7 +97,7 @@ export const BodyPartEditModal = forwardRef<HTMLElement, BodyPartProps>(
         bodyComponent={
           <BodyPartEditForm record={record} onSuccessCallback={closeModal} />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa bộ phận chụp"
       />
     );

@@ -32,7 +32,7 @@ export function BodyPartCreateModal(props: { closeModal: () => void }) {
       title="Thêm bộ phận chụp"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}
-      width="30vw"
+      width="24vw"
     />
   );
 }

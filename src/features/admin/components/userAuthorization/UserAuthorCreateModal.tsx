@@ -29,7 +29,7 @@ export const UserAuthorCreateModal = (props: { closeModal: () => void }) => {
     <AppModalContent
       handleClose={closeModal}
       bodyComponent={<UserAuthorCreateForm onSuccessCallback={closeModal} />}
-      width="30vw"
+      width="24vw"
       title="Thêm phân quyền"
       confirmLabel="Thêm Mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

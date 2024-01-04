@@ -105,7 +105,7 @@ export const ConnectionAccountEditModal = forwardRef<
             record={record}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa tài khoản"
       />
     </>

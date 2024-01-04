@@ -41,7 +41,7 @@ export const UserAuthorization = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 400,
+          size: 250,
         },
       },
       {
@@ -53,7 +53,19 @@ export const UserAuthorization = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 600,
+          size: 300,
+        },
+      },
+      {
+        type: 'record',
+        name: 'description',
+        header: 'Mô tả',
+        renderHeader: (header) => <div>{header}</div>,
+        renderCell: (cell) => (
+          <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
+        ),
+        columnDefOptions: {
+          size: 460,
         },
       },
     ],

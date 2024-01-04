@@ -6,6 +6,7 @@ export type ConnectionAccountDTOBase = {
     hospitalID: string;
 }
 
+
 export type ConnectionAccountDTO = ConnectionAccountDTOBase;
 
 export type ConnectionAccountDTOCreate = {

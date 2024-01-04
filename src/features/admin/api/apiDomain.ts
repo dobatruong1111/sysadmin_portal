@@ -30,7 +30,7 @@ const apiDomain = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createDomain: builder.mutation<DomainDTOCreate, DomainDTOCreate>({
+        createDomain: builder.mutation<string, DomainDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.DOMAIN}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiDomain = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.DOMAIN, id: 'LIST' }]
         }),
-        deleteDomain: builder.mutation<DomainDTODelete, { id: string}>({
+        deleteDomain: builder.mutation<string, DomainDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.DOMAIN}/${data.id}`,
                 method: 'DELETE',

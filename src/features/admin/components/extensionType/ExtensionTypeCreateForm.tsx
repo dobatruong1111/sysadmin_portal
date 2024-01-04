@@ -20,7 +20,7 @@ export const ExtensionTypeCreateForm = (props: {
     const submitForm: ExtensionTypeDTOCreate = {
       id: formData.id ?? '',
       name: formData.name ?? '',
-      description: '',
+      description: formData.description ?? '',
     };
     if (submitForm.id.length === 0 || submitForm.name.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');

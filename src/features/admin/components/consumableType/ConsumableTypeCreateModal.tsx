@@ -33,7 +33,7 @@ export const ConsumableTypeCreateModal = (props: {
       bodyComponent={
         <ConsumableTypeCreateForm onSuccessCallback={closeModal} />
       }
-      width="30vw"
+      width="24vw"
       title="Thêm loại vật tư tiêu hao"
       confirmLabel="Thêm Mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

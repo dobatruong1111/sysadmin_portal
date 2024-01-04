@@ -33,7 +33,7 @@ export const ModalityTypeNameEditForm = (
     defaultValues: {
       id: record.id,
       name: record.name,
-      description: '',
+      description: record.description,
     },
   };
 

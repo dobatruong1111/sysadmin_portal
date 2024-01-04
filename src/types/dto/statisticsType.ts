@@ -7,6 +7,10 @@ export type StatisticsTypeDTO = {
     outputSchema: string;
 }
 
+export type StatisticsTypeDTOCreate = StatisticsTypeDTO;
+
+export type StatisticsTypeDTOUpdate = StatisticsTypeDTO;
+
 export type StatisticsTypeDTODelete = {
     id: string;
 }

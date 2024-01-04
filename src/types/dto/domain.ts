@@ -12,3 +12,8 @@ export type DomainDTOCreate = {
 export type DomainDTODelete = {
     id: string
 }
+
+export type DomainDTOGet = {
+    logo: string;
+    logoFull: string;
+} & DomainDTOBase;

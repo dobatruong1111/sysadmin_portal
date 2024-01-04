@@ -1,17 +1,14 @@
 export type ExtensionTypeDTOBase = {
     id: string;
     name: string;
+    description: string;
 }
 
-export type ExtensionTypeDTO = {} & ExtensionTypeDTOBase;
+export type ExtensionTypeDTO = ExtensionTypeDTOBase;
 
-export type ExtensionTypeDTOCreate = {
-    description: string;
-} & ExtensionTypeDTOBase;
+export type ExtensionTypeDTOCreate = ExtensionTypeDTOBase;
 
-export type ExtensionTypeDTOUpdate = {
-    description: string;
-} & ExtensionTypeDTOBase;
+export type ExtensionTypeDTOUpdate = ExtensionTypeDTOBase;
 
 export type ExtensionTypeDTODelete = {
     id: string;
