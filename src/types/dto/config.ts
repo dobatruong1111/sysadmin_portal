@@ -10,19 +10,17 @@ export type ConfigDTO = {
 } 
 
 export type ConfigDTOCreate = {
-    attributeValue: string;
     attributeID: string;
+    attributeValue: string;
     preferred: boolean;
 }
 
 export type ConfigDTOUpdate = {
+    id: number;
     attributeValue: string;
-    attributeID: string;
     preferred: boolean;
 }
 
 export type ConfigDTODelete = {
     id: string;
-    attributeValue: string;
-    preferred: boolean;
 }

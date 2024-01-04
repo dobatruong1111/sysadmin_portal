@@ -9,17 +9,17 @@ import { ConfigDTO } from '../../../../../types/dto/config';
 import { useGetConfigListQuery } from '../../../api/apiConfig';
 
 type ConfigProps = {
-    hospitalID?: string;
-}
+  hospitalID?: string;
+};
 
-export const Config:FC<ConfigProps> = (props) => {
+export const Config: FC<ConfigProps> = (props) => {
   const { hospitalID } = props;
   const dispatch = useDispatch();
   const query = useSelector(
     (state: any) => state.tableReducer.data[TABLE_HOSPITAL_CONFIG].query
   );
   const { data, isFetching, refetch } = useGetConfigListQuery(
-    query && {hospitalID: hospitalID}
+    { ...query, hospitalID: hospitalID } || skipToken
   );
 
   const tableColumns = useMemo<TableField<ConfigDTO>[]>(
@@ -38,18 +38,6 @@ export const Config:FC<ConfigProps> = (props) => {
       },
       {
         type: 'record',
-        name: 'id',
-        header: 'ID',
-        renderHeader: (header) => <div>{header}</div>,
-        renderCell: (cell) => (
-          <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
-        ),
-        columnDefOptions: {
-          size: 50,
-        },
-      },
-      {
-        type: 'record',
         name: 'attributeID',
         header: 'Mã loại cấu hình',
         renderHeader: (header) => <div>{header}</div>,
@@ -62,11 +50,11 @@ export const Config:FC<ConfigProps> = (props) => {
       },
       {
         type: 'record',
-        name: 'attributeValue',
+        name: 'attribute',
         header: 'Tên loại cấu hình',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
-          <div style={{ textAlign: 'center' }}>{cell.row.original.attribute.name}</div>
+          <div style={{ textAlign: 'center' }}>{cell.getValue().name}</div>
         ),
         columnDefOptions: {
           size: 100,
@@ -90,7 +78,9 @@ export const Config:FC<ConfigProps> = (props) => {
         header: 'Ưu tiên',
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => (
-          <div style={{ textAlign: 'center' }}>{cell.getValue() ? "Có" : "Không"}</div>
+          <div style={{ textAlign: 'center' }}>
+            {cell.getValue() ? 'Có' : 'Không'}
+          </div>
         ),
         columnDefOptions: {
           size: 100,

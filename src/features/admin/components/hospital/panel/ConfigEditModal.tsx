@@ -1,16 +1,24 @@
 import { forwardRef, useCallback } from 'react';
 import { useDisclosure } from '../../../../../hooks/useDisclosure';
 import { useDispatch, useSelector } from 'react-redux';
-import { TABLE_HOSPITAL, TABLE_HOSPITAL_CONFIG } from '../../../../../stores/table/tableInitialState';
-import { useNotifyModal, useNotifySnackbar } from '../../../../../providers/NotificationProvider';
-import { useAdminFunctions, useRegisterAdminFunctions } from '../../../../../providers/admin/AdminProvider';
+import {
+  TABLE_HOSPITAL,
+  TABLE_HOSPITAL_CONFIG,
+} from '../../../../../stores/table/tableInitialState';
+import {
+  useNotifyModal,
+  useNotifySnackbar,
+} from '../../../../../providers/NotificationProvider';
+import {
+  useAdminFunctions,
+  useRegisterAdminFunctions,
+} from '../../../../../providers/admin/AdminProvider';
 import { setSelectedRow } from '../../../../../stores/table/tableSlice';
 import { Modal } from '@mui/material';
 import { AppModalContent } from '../../../../../components/Elements/Modal/AppModalContent';
 import { useDeleteConfigMutation } from '../../../api/apiConfig';
 import { ConfigDTO } from '../../../../../types/dto/config';
 import { ConfigEditForm } from './ConfigEditForm';
-
 
 export const ConnectedConfigEditModal = () => {
   const { isOpen, open, close } = useDisclosure(false);
@@ -33,15 +41,13 @@ export const ConnectedConfigEditModal = () => {
   const handleDeleteConfig = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa thuộc tính ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn muốn xóa thuộc tính ${selectedRow.name} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {
             const result = await deleteConfig({
               id: `${selectedRow?.id}`,
-              attributeValue: '',
-              preferred: false,
-              hospitalID: hospitalID
+              hospitalID: hospitalID,
             });
             if ('error' in result) {
               notifySnackbar({
@@ -87,29 +93,25 @@ type ConfigEditModalProps = {
   record: ConfigDTO;
 };
 
-export const ConfigEditModal = forwardRef<
-  HTMLElement,
-  ConfigEditModalProps
->((props, ref) => {
-  const { closeModal, record } = props;
-  const adminFunctions = useAdminFunctions();
+export const ConfigEditModal = forwardRef<HTMLElement, ConfigEditModalProps>(
+  (props, ref) => {
+    const { closeModal, record } = props;
+    const adminFunctions = useAdminFunctions();
 
-  return (
-    <>
-      <AppModalContent
-        ref={ref}
-        confirmLabel="Cập Nhật"
-        handleConfirm={() => adminFunctions.submitEditFormPanel()}
-        handleClose={closeModal}
-        bodyComponent={
-          <ConfigEditForm
-            record={record}
-            onSuccessCallback={closeModal}
-          />
-        }
-        width="24vw"
-        title="Cập nhật thuộc tính"
-      />
-    </>
-  );
-});
+    return (
+      <>
+        <AppModalContent
+          ref={ref}
+          confirmLabel="Cập Nhật"
+          handleConfirm={() => adminFunctions.submitEditFormPanel()}
+          handleClose={closeModal}
+          bodyComponent={
+            <ConfigEditForm record={record} onSuccessCallback={closeModal} />
+          }
+          width="24vw"
+          title="Cập nhật thuộc tính"
+        />
+      </>
+    );
+  }
+);

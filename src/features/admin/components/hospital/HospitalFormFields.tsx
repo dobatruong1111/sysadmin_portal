@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography, styled } from '@mui/material';
 import { MyFormTextField } from '../../../../components';
 import { MyFormCheckboxField } from '../../../../components/Elements/Inputs/MyFormCheckboxField';
 import { Control } from 'react-hook-form';
@@ -21,13 +21,11 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(imageUrl ?? null);
   const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(imageUrlLogoFull ?? null);
 
-  // Handle changes in logo image
   const handleImageSelected = (image: string | null) => {
     setSelectedImage(image);
     onImageSelected(image);
   };
 
-  // Handle changes in logoFull image
   const handleLogoFullSelected = (image: string | null) => {
     setselectedImageLogoFull(image);
     onLogoFullSelected(image);
@@ -41,108 +39,103 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
         </Typography>
       )}
       <Stack spacing={1} alignItems="center" width="100%">
-        <MyFormTextField
-          name="id"
-          control={control}
-          MyTextFieldProps={{
-            label: 'ID',
-            placeholder: 'ID',
-            fullWidth: true,
-            required: true,
-            size: 'small',
-            autoComplete: 'off',
-            disabled: disableIdField,
-          }}
-        />
-        <MyFormTextField
-          name="name"
-          control={control}
-          MyTextFieldProps={{
-            label: 'Tên bệnh viện',
-            placeholder: 'Tên bệnh viện',
-            fullWidth: true,
-            required: true,
-            size: 'small',
-            autoComplete: 'off',
-          }}
-        />
-
-        <MyFormTextField
-          name="phone"
-          control={control}
-          MyTextFieldProps={{
-            type: 'tel',
-            label: 'Số điện thoại',
-            placeholder: 'Số điện thoại',
-            fullWidth: true,
-            size: 'small',
-            autoComplete: 'off',
-          }}
-        />
-        <MyFormTextField
-          name="email"
-          control={control}
-          MyTextFieldProps={{
-            label: 'Địa chỉ email',
-            placeholder: 'Địa chỉ email',
-            fullWidth: true,
-            size: 'small',
-            autoComplete: 'off',
-          }}
-        />
-        <MyFormTextField
-          name="address"
-          control={control}
-          MyTextFieldProps={{
-            label: 'Địa chỉ',
-            placeholder: 'Địa chỉ',
-            fullWidth: true,
-            size: 'small',
-            autoComplete: 'off',
-          }}
-        />
-        <MyFormTextField
-          name="description"
-          control={control}
-          MyTextFieldProps={{
-            label: 'Mô tả',
-            placeholder: 'Mô tả',
-            fullWidth: true,
-            size: 'small',
-            autoComplete: 'off',
-            multiline: true,
-            rows: 2,
-          }}
-        />
-        {/* Logo ImageUploader */}
-        <ImageUploader
-          name='logo'
-          onImageSelected={handleImageSelected}
-          imageUrl={selectedImage}
-        />
-        {/* LogoFull ImageUploader */}
-        <ImageUploader
-          name='logoFull'
-          onImageSelected={handleLogoFullSelected}
-          imageUrl={selectedImageLogoFull}
-        />
-        <Stack spacing={1} direction="row" alignItems="center" width="100%">
-          <MyFormCheckboxField
-            name="enabled"
-            control={control}
-            MyCheckboxProps={{
-              size: 'small',
-              color: 'success',
-              sx: {
-                '&.Mui-checked': {
-                  color: '#0e8a72',
-                },
-              },
-            }}
-          />
-          <Typography>Ưu tiên</Typography>
-        </Stack>
+        <Grid container spacing={2}>
+          <StyledGrid item xs={6}>
+            <MyFormTextField
+              name="id"
+              control={control}
+              MyTextFieldProps={{
+                label: 'ID',
+                placeholder: 'ID',
+                fullWidth: true,
+                required: true,
+                size: 'small',
+                autoComplete: 'off',
+                disabled: disableIdField,
+              }}
+            />
+            <MyFormTextField
+              name="address"
+              control={control}
+              MyTextFieldProps={{
+                label: 'Địa chỉ',
+                placeholder: 'Địa chỉ',
+                fullWidth: true,
+                size: 'small',
+                autoComplete: 'off',
+              }}
+            />
+            <MyFormTextField
+              name="email"
+              control={control}
+              MyTextFieldProps={{
+                label: 'Địa chỉ email',
+                placeholder: 'Địa chỉ email',
+                fullWidth: true,
+                size: 'small',
+                autoComplete: 'off',
+              }}
+            />
+            <strong>Logo rút gọn</strong>
+            <ImageUploader
+              name='logo'
+              onImageSelected={handleImageSelected}
+              imageUrl={selectedImage}
+            />
+          </StyledGrid>
+          <StyledGrid item xs={6}>
+            <MyFormTextField
+              name="name"
+              control={control}
+              MyTextFieldProps={{
+                label: 'Tên bệnh viện',
+                placeholder: 'Tên bệnh viện',
+                fullWidth: true,
+                required: true,
+                size: 'small',
+                autoComplete: 'off',
+              }}
+            />
+            <MyFormTextField
+              name="phone"
+              control={control}
+              MyTextFieldProps={{
+                type: 'tel',
+                label: 'Số điện thoại',
+                placeholder: 'Số điện thoại',
+                fullWidth: true,
+                size: 'small',
+                autoComplete: 'off',
+              }}
+            />
+            <Stack spacing={1} direction="row" alignItems="center" width="100%">
+              <MyFormCheckboxField
+                name="enabled"
+                control={control}
+                MyCheckboxProps={{
+                  size: 'small',
+                  color: 'success',
+                  sx: {
+                    '&.Mui-checked': {
+                      color: '#0e8a72',
+                    },
+                  },
+                }}
+              />
+              <Typography>Ưu tiên</Typography>
+            </Stack>
+            <strong>Logo đầy đủ</strong>
+            <ImageUploader
+              name='logoFull'
+              onImageSelected={handleLogoFullSelected}
+              imageUrl={selectedImageLogoFull}
+            />
+          </StyledGrid>
+        </Grid>
       </Stack>
     </Stack>
   );
 };
+
+const StyledGrid = styled(Grid)`
+`

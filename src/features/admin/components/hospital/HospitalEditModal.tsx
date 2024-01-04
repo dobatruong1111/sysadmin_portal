@@ -101,7 +101,7 @@ export const HospitalEditModal = forwardRef<
         bodyComponent={
           <HospitalEditForm onSuccessCallback={closeModal} record={record} data={hospitalData}/>
         }
-        width="30vw"
+        width="50vw"
         title="Sửa thông tin bệnh viện"
       />
     </>
