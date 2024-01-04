@@ -3,7 +3,7 @@ export type BodyPartDTOBase = {
     name: string;
 };
 
-export type BodyPartDTO = {} & BodyPartDTOBase;
+export type BodyPartDTO = BodyPartDTOBase;
 
 export type BodyPartDTOCreate = {
     description: string;
