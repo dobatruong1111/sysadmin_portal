@@ -32,7 +32,7 @@ const StyledTableContainer = styled('div')`
   flex: 1;
   height: 100%;
   overflow: hidden;
-  padding: 8px;
+  margin: 8px;
   font-family: Kanit;
 `;
 
@@ -160,7 +160,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
         height: '100%',
         width: '100%',
         maxWidth: '100%',
-        marginTop: 0,
+        //marginTop: 0,
       }}
     >
       <StyledLabel>{tableName}</StyledLabel>

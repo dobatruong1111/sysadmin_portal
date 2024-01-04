@@ -27,9 +27,12 @@ type RequestError = {
     }
 }
 
+const basic_auth_username = import.meta.env.VITE_BASIC_AUTH_USERNAME as string;
+const basic_auth_password = import.meta.env.VITE_BASIC_AUTH_PASSWORD as string;
+
 const prepareHeaders = (): RawAxiosRequestHeaders => ({
     Accept: '*/*',
-    Authorization: 'Basic ' + encode('sysadmin:itrp142536'),
+    Authorization: 'Basic ' + encode(`${basic_auth_username}:${basic_auth_password}`),
 })
 
 export type BaseQueryArgs = {
@@ -47,10 +50,10 @@ export const ITechBaseQuery = (
             ...axiosOptions
         } = queryArgs;
         try {
-            // const hospitalID = localStorage.getItem('hID');
-            const hospitalID = '72131';
+            const hospitalID = localStorage.getItem('hID');
+            // const hospitalID = '72131';
             const hospitalURL = `hospital/${hospitalID}`;
-            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', useHospitalID ? hospitalURL : '', url);
+            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', hospitalID && useHospitalID ? hospitalURL : '', url);
             const finalHeaders = {...prepareHeaders(), ...headers};
             const result = await axios({
                 url: finalUrl,
@@ -78,7 +81,6 @@ export const ITechBaseQueryWithReauth = (
             return result;
         } catch (e) {
             const err = e as RequestError;
-            // const { error } = err;
             return err;
         }
     }

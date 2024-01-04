@@ -39,8 +39,8 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
         </Typography>
       )}
       <Stack spacing={1} alignItems="center" width="100%">
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
+        <Grid style={{marginRight: '14px'}} container spacing={2}>
+          <Grid item xs={6} style={{paddingTop: 0}}>
             <MyFormTextField
               name="id"
               control={control}
@@ -76,14 +76,14 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
                 autoComplete: 'off',
               }}
             />
-            <strong>Logo rút gọn</strong>
+            <StyledText>Logo rút gọn</StyledText>
             <ImageUploader
               name='logo'
               onImageSelected={handleImageSelected}
               imageUrl={selectedImage}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} style={{paddingTop: 0}}>
             <MyFormTextField
               name="name"
               control={control}
@@ -108,7 +108,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
                 autoComplete: 'off',
               }}
             />
-            <Stack spacing={1} direction="row" alignItems="center" width="100%">
+            <Stack spacing={1} direction="row" alignItems="center" width="100%" marginBottom={'4px'}>
               <MyFormCheckboxField
                 name="enabled"
                 control={control}
@@ -124,7 +124,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
               />
               <Typography>Ưu tiên</Typography>
             </Stack>
-            <strong>Logo đầy đủ</strong>
+            <StyledText>Logo đầy đủ</StyledText>
             <ImageUploader
               name='logoFull'
               onImageSelected={handleLogoFullSelected}
@@ -137,3 +137,12 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
   );
 };
 
+const StyledText = styled('text')`
+  color: #000;
+  font-family: Kanit;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.18px;
+`

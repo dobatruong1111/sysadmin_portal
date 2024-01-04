@@ -28,7 +28,8 @@ export const StatisticsType = () => {
             cell: (props) => (
               <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            size: 50,
+            minSize: 50,
+            maxSize: 50,
           }),
       },
       {
@@ -40,7 +41,7 @@ export const StatisticsType = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 50,
+          size: 400,
         },
       },
       {

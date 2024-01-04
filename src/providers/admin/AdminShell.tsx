@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Stack, StackProps, styled, Typography } from '@mui/material';
+import { Box, Stack, StackProps, styled } from '@mui/material';
 import { FC, ReactNode } from 'react';
 import { StyledTableContainerWithCollapsiblePanel } from '../../components/Table/MyTable.styles';
 
@@ -15,7 +15,7 @@ type AdminShellProps = {
  * Handles UI Layout of an Admin page
  */
 export const AdminShell: FC<AdminShellProps> = (props) => {
-  const { title, TableComponent, PanelComponent, ContainerProps } =
+  const { TableComponent, PanelComponent, ContainerProps } =
     props;
   return (
     <StyledAdminWrapper spacing={1} {...ContainerProps}>
@@ -46,18 +46,18 @@ const StyledAdminWrapper = styled(Stack)`
   box-sizing: border-box;
 `;
 
-const StyledAdminTitleContainer = styled('div')`
-  /* height: 30px; */
-  align-items: center;
-  display: flex;
-`;
+// const StyledAdminTitleContainer = styled('div')`
+//   /* height: 30px; */
+//   align-items: center;
+//   display: flex;
+// `;
 
-const StyledAdminTitle = styled(Typography)`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-  text-transform: uppercase;
-`;
+// const StyledAdminTitle = styled(Typography)`
+//   font-size: 16px;
+//   font-weight: 400;
+//   line-height: 20px;
+//   text-transform: uppercase;
+// `;
 const StyledTableContainer = styled(Box)`
   display: flex;
   flex: 1;
@@ -68,8 +68,8 @@ const StyledTableContainer = styled(Box)`
   overflow: hidden;
 `;
 
-const StyledAdminDivider = styled(Divider)`
-  border-color: ${(props) => props.theme.palette.primary.main};
-  width: 20%;
-  min-width: 120px;
-`;
+// const StyledAdminDivider = styled(Divider)`
+//   border-color: ${(props) => props.theme.palette.primary.main};
+//   width: 20%;
+//   min-width: 120px;
+// `;

@@ -38,12 +38,14 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ onImageSelected, imageUrl
   return (
     <div>
       <StyledMyButton>
+        <label>
         Chọn Ảnh
         <input type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImageChange} style={{ display: 'none' }} />
+        </label>
       </StyledMyButton>
       {selectedImage && (
         <div style={{display: 'flex', flexDirection: 'column'}}>
-          <img src={image} alt="Selected" style={{ width: '50%', height: '50%' }} />
+          <img src={image} alt="Selected" style={{ width: '100px', height: '100px' }} />
           <StyledMyButton onClick={handleImageRemove}>Xóa Ảnh</StyledMyButton>
         </div>
       )}

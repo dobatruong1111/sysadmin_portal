@@ -28,7 +28,8 @@ export const Domain = () => {
             cell: (props) => (
               <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            size: 50,
+            minSize: 50,
+            maxSize: 50,
           }),
       },
       {
@@ -40,7 +41,7 @@ export const Domain = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 50,
+          size: 558,
         },
       },
       {
@@ -52,7 +53,7 @@ export const Domain = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 100,
+          size: 460,
         },
       },
     ],
