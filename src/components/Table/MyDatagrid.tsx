@@ -7,7 +7,7 @@ const StyledDatagridContainer = styled('div')`
   overflow: auto;
   height: 100%;
   width: 100%;
-  background-color: #f0f1f4;
+  background-color: #FAFAFA;
   & > table {
     min-width: 100%;
     border-collapse: collapse;
@@ -35,7 +35,7 @@ const StyledTHead = styled('thead')`
 
 const StyledTBody = styled('tbody')`
   & > tr {
-    background-color: white;
+    background-color: #FAFAFA;
     cursor: pointer;
     &:hover {
       background-color: #f0f1f4;
