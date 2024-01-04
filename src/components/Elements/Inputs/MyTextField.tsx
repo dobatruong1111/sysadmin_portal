@@ -2,6 +2,7 @@ import { styled, TextField, TextFieldProps } from '@mui/material';
 import { forwardRef } from 'react';
 
 const StyledTextField = styled(TextField)`
+  margin-bottom: 10px;
   border-radius: 3px;
   background: #FAFAFA;
   .css-1h7020y-MuiFormLabel-root-MuiInputLabel-root {

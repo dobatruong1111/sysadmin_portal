@@ -21,6 +21,7 @@
     "@tanstack/react-table": "^8.10.7",
     "axios": "^1.6.2",
     "base-64": "^1.0.0",
+    "dotenv": "^16.3.1",
     "http-status-codes": "^2.3.0",
     "interweave": "^13.1.0",
     "notistack": "^3.0.1",

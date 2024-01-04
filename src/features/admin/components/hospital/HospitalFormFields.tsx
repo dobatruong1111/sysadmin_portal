@@ -40,7 +40,7 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
       )}
       <Stack spacing={1} alignItems="center" width="100%">
         <Grid container spacing={2}>
-          <StyledGrid item xs={6}>
+          <Grid item xs={6}>
             <MyFormTextField
               name="id"
               control={control}
@@ -82,8 +82,8 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
               onImageSelected={handleImageSelected}
               imageUrl={selectedImage}
             />
-          </StyledGrid>
-          <StyledGrid item xs={6}>
+          </Grid>
+          <Grid item xs={6}>
             <MyFormTextField
               name="name"
               control={control}
@@ -130,12 +130,10 @@ export const HospitalFormFields = (props: HospitalFormFieldsProps) => {
               onImageSelected={handleLogoFullSelected}
               imageUrl={selectedImageLogoFull}
             />
-          </StyledGrid>
+          </Grid>
         </Grid>
       </Stack>
     </Stack>
   );
 };
 
-const StyledGrid = styled(Grid)`
-`
