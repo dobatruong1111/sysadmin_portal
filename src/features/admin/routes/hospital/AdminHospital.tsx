@@ -6,6 +6,8 @@ import { setSelectedRow } from "../../../../stores/table/tableSlice";
 import { TABLE_HOSPITAL } from "../../../../stores/table/tableInitialState";
 import { ConnectedHospitalCreateModal } from "../../components/hospital/HospitalCreateModal";
 import { ConnectedHospitalEditModal } from "../../components/hospital/HospitalEditModal";
+import { AdminShell } from "../../../../providers/admin/AdminShell";
+import { HospitalConfigPanel } from "../../components/hospital/HospitalConfigPanel";
 
 export const AdminHospital = () => {
     const dispatch = useDispatch();
@@ -21,8 +23,13 @@ export const AdminHospital = () => {
     }, []);
 
     return (
-        <AdminProvider>
-            <Hospital />
+        <AdminProvider >
+            <AdminShell
+                // title={'Danh sách bệnh viện'}
+                TableComponent={<Hospital />}
+                PanelComponent={<HospitalConfigPanel />}
+            />
+            
             <ConnectedHospitalCreateModal />
             <ConnectedHospitalEditModal />
         </AdminProvider>

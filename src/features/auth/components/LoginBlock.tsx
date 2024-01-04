@@ -13,27 +13,37 @@ import { UseFormProps } from 'react-hook-form';
 import { useState } from 'react';
 import { DEFAULT_USERNAME, DEFAULT_PASSWORD, TECHNICAL_SUPPORT } from '../../../config';
 import { Typography } from '@mui/material';
+import { useLazyLoginQuery } from '../api/login';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../../stores/auth/authSlide';
+import { initializePersistor } from '../../../stores/redux';
 
 type LoginBlockProps = {
   onSuccess: () => void;
 }
 
 export const LoginBlock = ({ onSuccess }: LoginBlockProps) => {
+  const [login] = useLazyLoginQuery();
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState<string>('');
   
   const formOptions: UseFormProps<LoginCredentialsDTO> = {
     mode: 'onChange',
     defaultValues: {
-      username: DEFAULT_USERNAME,
-      password: DEFAULT_PASSWORD
+      username: DEFAULT_USERNAME ? DEFAULT_USERNAME : '',
+      password: DEFAULT_PASSWORD ? DEFAULT_PASSWORD : '',
     }
   }
 
   const onSubmit = async (data: LoginCredentialsDTO) => {
-    if (data.username === DEFAULT_USERNAME && data.password === DEFAULT_PASSWORD) {
-      localStorage.setItem('username', data.username);
+    try {
+      const token = await login(data, false).unwrap();
+      dispatch(
+        setToken(token)
+      );
+      initializePersistor();
       onSuccess();
-    } else {
+    } catch (error) {
       setErrorMessage("Đăng nhập không thành công");
     }
   }

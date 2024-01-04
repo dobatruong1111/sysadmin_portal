@@ -11,10 +11,11 @@ import { TABLE_DOMAIN } from '../../stores/table/tableInitialState';
 type AdminTableActionButtonsProps = {
   tableId: string;
   refetch?: () => void;
+  isPanel?: boolean;
 };
 
 export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
-  const { tableId, refetch } = props;
+  const { tableId, refetch, isPanel } = props;
   const adminFunctions = useAdminFunctions();
   const selectedRow = useSelector(
     (state: any) => state.tableReducer.data[tableId].selection.selectedRow
@@ -31,15 +32,17 @@ export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
           )}
           <MyIconButtonWithTooltip
             title="Thêm"
-            onClick={() => adminFunctions.openCreateModal()}
+            onClick={() => {
+              isPanel? adminFunctions.openCreateModalPanel() : adminFunctions.openCreateModal();
+            }}
           >
             <AddIcon />
           </MyIconButtonWithTooltip>
           {tableId !== TABLE_DOMAIN ? (
             <MyIconButtonWithTooltip
               title="Sửa"
-              disabled={selectedRow === null}
-              onClick={() => adminFunctions.openEditModal()}
+              disabled={!selectedRow}
+              onClick={() => isPanel ? adminFunctions.openEditModalPanel() : adminFunctions.openEditModal()}
             >
               <EditIcon />
             </MyIconButtonWithTooltip>
@@ -48,8 +51,8 @@ export function AdminTableActionButtons(props: AdminTableActionButtonsProps) {
           )}
           <MyIconButtonWithTooltip
             title="Xóa"
-            disabled={selectedRow === null}
-            onClick={() => adminFunctions.submitDelete()}
+            disabled={!selectedRow}
+            onClick={() => isPanel ? adminFunctions.submitDeletePanel() : adminFunctions.submitDelete()}
           >
             <DeleteIcon />
           </MyIconButtonWithTooltip>

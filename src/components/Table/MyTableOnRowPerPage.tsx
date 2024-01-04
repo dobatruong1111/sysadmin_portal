@@ -10,8 +10,7 @@ const StyledTableOnRowPerPage = styled('div')`
 `;
 
 const StyledMySelect = styled(MySelect)`
-  color: black;
-  font-size: 14px;
+  color: #707070;
 `;
 
 const StyledFormControl = styled(FormControl)`
@@ -46,7 +45,7 @@ export const MyTableOnRowPerPage = (props: MyTableOnRowPerPageProps) => {
             }}
           >
             {(rowsPerPageOptions || []).map((item) => (
-              <MenuItem key={item} value={item} defaultValue={1} sx={{fontSize: '14px'}}>
+              <MenuItem key={item} value={item} defaultValue={1} sx={{fontSize: '13px'}}>
                 {item}
               </MenuItem>
             ))}

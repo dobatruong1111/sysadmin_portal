@@ -14,7 +14,7 @@ export const Hospital = () => {
     (state: any) => state.tableReducer.data[TABLE_HOSPITAL].query
   );
   const { data, isFetching, refetch } = useGetHospitalListQuery(
-    query || skipToken
+    query || skipToken,
   );
 
   const tableColumns = useMemo<TableField<HospitalDTO>[]>(
@@ -26,9 +26,10 @@ export const Hospital = () => {
             id: 'stt',
             header: 'STT',
             cell: (props) => (
-              <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
+              <div style={{ alignItems: 'center', width: '100%', justifyContent: 'center', display: 'flex' }}>{props.row.index + 1}</div>
             ),
-            size: 50,
+            minSize: 50,
+            maxSize: 50,
           }),
       },
       {
@@ -40,7 +41,7 @@ export const Hospital = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 50,
+          maxSize: 50,
         },
       },
       {
@@ -52,7 +53,7 @@ export const Hospital = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 300,
+          size: 400,
         },
       },
       {
@@ -62,7 +63,7 @@ export const Hospital = () => {
         renderHeader: (header) => <div>{header}</div>,
         renderCell: (cell) => <div>{cell.getValue()}</div>,
         columnDefOptions: {
-          size: 300,
+          size: 450,
         },
       },
       {
@@ -76,7 +77,7 @@ export const Hospital = () => {
           </div>
         ),
         columnDefOptions: {
-          size: 50,
+          size: 100,
         },
       },
     ],
@@ -115,3 +116,4 @@ export const Hospital = () => {
     />
   );
 };
+

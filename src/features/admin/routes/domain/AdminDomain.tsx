@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { AdminProvider } from '../../../../providers/admin/AdminProvider';
-import { Domain } from '../../components/domain/Domain';
-import { ConnectedDomainCreateModal } from '../../components/domain/DomainCreateModal';
 import { useDispatch } from 'react-redux';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
 import { TABLE_DOMAIN } from '../../../../stores/table/tableInitialState';
+import { AdminShell } from '../../../../providers/admin/AdminShell';
+import { Domain } from '../../components/Domain/Domain';
+import { ConnectedDomainCreateModal } from '../../components/Domain/DomainCreateModal';
 
 export const AdminDomain = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,10 @@ export const AdminDomain = () => {
 
   return (
     <AdminProvider>
-      <Domain />
+      <AdminShell 
+        title='Tên miền'
+        TableComponent={<Domain />}
+      />
       <ConnectedDomainCreateModal />
     </AdminProvider>
   );

@@ -22,7 +22,7 @@ const StyledContentContainer = styled('div')`
 export function AdminLayout({children}: LayoutProps) {
     return (
         <StyledLayout>
-            <SidebarLayout title='Quản trị hệ thống'>
+            <SidebarLayout title='QUẢN TRỊ HỆ THỐNG'>
                 <AdminSidebar/>
             </SidebarLayout>
             <StyledContentContainer>{children}</StyledContentContainer>

@@ -47,7 +47,10 @@ export const ITechBaseQuery = (
             ...axiosOptions
         } = queryArgs;
         try {
-            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', url);
+            // const hospitalID = localStorage.getItem('hID');
+            const hospitalID = '72131';
+            const hospitalURL = `hospital/${hospitalID}`;
+            const finalUrl = urlJoin(args.baseUrl, useAsync ? 'async' : '', useHospitalID ? hospitalURL : '', url);
             const finalHeaders = {...prepareHeaders(), ...headers};
             const result = await axios({
                 url: finalUrl,

@@ -1,12 +1,12 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { HospitalDTO } from "../../../types/dto/hospital";
+import { HospitalDTO, HospitalDTOUpdate } from "../../../types/dto/hospital";
 import { RESOURCES } from "../../../types/resources";
 
 const apiHospital = api.injectEndpoints({
     endpoints: (builder) => ({
-        getOneHospital: builder.query<HospitalDTO, { id: string }>({
+        getOneHospital: builder.query<HospitalDTOUpdate, { id: string }>({
             query: ({ id }) => ({
                 url: `${RESOURCES.HOSPITAL}/${id}`,
                 method: 'GET',

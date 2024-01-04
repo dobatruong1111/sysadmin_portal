@@ -13,6 +13,8 @@ export const HospitalCreateForm = (props: {
   const { onSuccessCallback } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [selectedImageLogo, setselectedImageLogo] = useState<string | null>(null);
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(null);
   const [createHospital] = useCreateHospitalMutation();
   const notifySnackbar = useNotifySnackbar();
 
@@ -25,12 +27,13 @@ export const HospitalCreateForm = (props: {
       email: formData.email ?? '',
       address: formData.address ?? '',
       enabled: formData.enabled ?? false,
-      logo: formData.logo ?? '',
-      logoFull: formData.logoFull ?? '',
+      logo: selectedImageLogo ?? '',
+      logoFull: selectedImageLogoFull ?? '',
     };
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+
+    if (submitForm.id.length === 0 || submitForm.name.length === 0) {
       setErrorMessage('Cần điền vào trường bắt buộc');
-    else {
+    } else {
       const result = await createHospital(submitForm);
       if ('error' in result) {
         notifySnackbar({
@@ -82,8 +85,13 @@ export const HospitalCreateForm = (props: {
           control={control}
           errorMessage={errorMessage}
           disableIdField={false}
+          onImageSelected={setselectedImageLogo}
+          onLogoFullSelected={setselectedImageLogoFull}
         />
       )}
     />
   );
 };
+
+export default HospitalCreateForm;
+

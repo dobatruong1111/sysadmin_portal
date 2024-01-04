@@ -1,5 +1,5 @@
 import { forwardRef, useCallback } from 'react';
-import { HospitalDTO } from '../../../../types/dto/hospital';
+import { HospitalDTO, HospitalDTOUpdate } from '../../../../types/dto/hospital';
 import {
   useAdminFunctions,
   useRegisterAdminFunctions,
@@ -9,7 +9,7 @@ import { HospitalEditForm } from './HospitalEditForm';
 import { useDisclosure } from '../../../../hooks/useDisclosure';
 import { useDispatch, useSelector } from 'react-redux';
 import { TABLE_HOSPITAL } from '../../../../stores/table/tableInitialState';
-import { useDeleteHospitalMutation } from '../../api/apiHospital';
+import { useDeleteHospitalMutation, useGetOneHospitalQuery } from '../../api/apiHospital';
 import {
   useNotifyModal,
   useNotifySnackbar,
@@ -80,7 +80,7 @@ export const ConnectedHospitalEditModal = () => {
 
 type HospitalEditModalProps = {
   closeModal: () => void;
-  record: HospitalDTO;
+  record: HospitalDTOUpdate;
 };
 
 export const HospitalEditModal = forwardRef<
@@ -89,8 +89,9 @@ export const HospitalEditModal = forwardRef<
 >((props, ref) => {
   const { closeModal, record } = props;
   const adminFunctions = useAdminFunctions();
+  const { data: hospitalData } = useGetOneHospitalQuery({id: record.id});
 
-  return (
+  return hospitalData && (
     <>
       <AppModalContent
         ref={ref}
@@ -98,9 +99,9 @@ export const HospitalEditModal = forwardRef<
         handleConfirm={() => adminFunctions.submitEditForm()}
         handleClose={closeModal}
         bodyComponent={
-          <HospitalEditForm onSuccessCallback={closeModal} record={record} />
+          <HospitalEditForm onSuccessCallback={closeModal} record={record} data={hospitalData}/>
         }
-        width="30vw"
+        width="50vw"
         title="Sửa thông tin bệnh viện"
       />
     </>

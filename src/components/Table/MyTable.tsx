@@ -33,17 +33,20 @@ const StyledTableContainer = styled('div')`
   height: 100%;
   overflow: hidden;
   padding: 8px;
+  font-family: Kanit;
 `;
 
 const StyledLabel = styled('div')`
   width: fit-content;
+  font-family: Kanit;
   font-size: 16px;
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  letter-spacing: 0.15px;
   text-transform: uppercase;
-  color: black;
   border-bottom: 1px solid #0E8A72;
   margin-left: 8px;
-  margin-top: 8px;
 `;
 
 const DEFAULT_TABLE_ID = 'noname-table';
@@ -156,7 +159,8 @@ export function MyTable<T>(props: MyTableProps<T>) {
         flexDirection: 'column',
         height: '100%',
         width: '100%',
-        maxWidth: '100%'
+        maxWidth: '100%',
+        marginTop: 0,
       }}
     >
       <StyledLabel>{tableName}</StyledLabel>
@@ -172,7 +176,7 @@ export function MyTable<T>(props: MyTableProps<T>) {
           }
           footerRightComponent={
             <>
-              <Typography fontSize='13px' fontWeight='400'>
+              <Typography style={{color: '#707070', fontFamily: 'Kanit', fontSize: '13px'}}>
                 Số hàng:
               </Typography>
               <MyTableOnRowPerPage
