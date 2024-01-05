@@ -24,24 +24,19 @@ export function BodyPartEditForm(props: BodyPartEditFormProps) {
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<BodyPartDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      description: '',
+      id: record.id ?? '',
+      name: record.name ?? '',
+      description: record.description ?? '',
     },
   };
 
   const onSubmit = async (formData: BodyPartDTOUpdate) => {
-    const submitForm: BodyPartDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.name.length === 0)
+    if (formData.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editBodyPart(submitForm);
+      const result = await editBodyPart(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

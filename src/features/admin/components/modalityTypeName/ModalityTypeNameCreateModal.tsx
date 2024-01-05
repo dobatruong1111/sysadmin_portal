@@ -33,7 +33,7 @@ export const ModalityTypeNameCreateModal = (props: {
       bodyComponent={
         <ModalityTypeNameCreateForm onSuccessCallback={closeModal} />
       }
-      width="30vw"
+      width="24vw"
       title="Thêm loại ca chụp"
       confirmLabel="Thêm Mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

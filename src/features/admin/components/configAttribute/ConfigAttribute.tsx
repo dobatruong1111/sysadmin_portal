@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { ConfigAttributeDTO } from '../../../../types/dto/configAttribute';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const ConfigAttribute = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const ConfigAttribute = () => {
   const { data, isFetching, refetch } = useGetConfigAttributeListQuery(
     query || skipToken
   );
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<ConfigAttributeDTO>[]>(
     () => [
@@ -94,6 +96,15 @@ export const ConfigAttribute = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_CONFIG_ATTRIBUTE,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

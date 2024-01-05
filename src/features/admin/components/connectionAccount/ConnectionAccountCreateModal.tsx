@@ -33,7 +33,7 @@ export const ConnectionAccountCreateModal = (props: {
       bodyComponent={
         <ConnectionAccountCreateForm onSuccessCallback={closeModal} />
       }
-      width="30vw"
+      width="24vw"
       title="Thêm tài khoản"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

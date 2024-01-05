@@ -30,7 +30,7 @@ const apiModalityTypeName = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createModalityTypeName: builder.mutation<ModalityTypeNameDTOCreate, ModalityTypeNameDTOCreate>({
+        createModalityTypeName: builder.mutation<string, ModalityTypeNameDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiModalityTypeName = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: 'LIST' }],
         }),
-        updateModalityTypeName: builder.mutation<ModalityTypeNameDTOUpdate, ModalityTypeNameDTOUpdate>({
+        updateModalityTypeName: builder.mutation<string, ModalityTypeNameDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiModalityTypeName = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.MODALITY_TYPE_NAME, id: arg.id }]
         }),
-        deleteModalityTypeName: builder.mutation<ModalityTypeNameDTODelete, ModalityTypeNameDTODelete>({
+        deleteModalityTypeName: builder.mutation<string, ModalityTypeNameDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.MODALITY_TYPE_NAME}/${data.id}`,
                 method: 'DELETE',

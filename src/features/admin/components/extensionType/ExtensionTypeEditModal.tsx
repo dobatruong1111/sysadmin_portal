@@ -107,7 +107,7 @@ export const ExtensionTypeEditModal = forwardRef<
             record={record}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa chức năng mở rộng"
       />
     </>

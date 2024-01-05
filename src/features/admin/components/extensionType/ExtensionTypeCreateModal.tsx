@@ -29,7 +29,7 @@ export const ExtensionTypeCreateModal = (props: { closeModal: () => void }) => {
     <AppModalContent
       handleClose={closeModal}
       bodyComponent={<ExtensionTypeCreateForm onSuccessCallback={closeModal} />}
-      width="30vw"
+      width="24vw"
       title="Thêm chức năng mở rộng"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

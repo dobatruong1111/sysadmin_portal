@@ -33,7 +33,7 @@ export const StatisticsTypeCreateModal = (props: {
       bodyComponent={
         <StatisticsTypeCreateForm onSuccessCallback={closeModal} />
       }
-      width="30vw"
+      width="24vw"
       title="Thêm loại báo cáo thống kê"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}

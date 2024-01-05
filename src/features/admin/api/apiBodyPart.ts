@@ -34,7 +34,7 @@ const apiBodyPart = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric,
         }),
-        createBodyPart: builder.mutation<BodyPartDTOCreate, BodyPartDTOCreate>({
+        createBodyPart: builder.mutation<string, BodyPartDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}`,
                 method: 'POST',
@@ -45,7 +45,7 @@ const apiBodyPart = api.injectEndpoints({
             invalidatesTags: (_result, error) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: 'LIST' }],
         }),
-        updateBodyPart: builder.mutation<BodyPartDTOUpdate, BodyPartDTOUpdate>({
+        updateBodyPart: builder.mutation<string, BodyPartDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}`,
                 method: 'PUT',
@@ -56,7 +56,7 @@ const apiBodyPart = api.injectEndpoints({
             invalidatesTags: (_result, error, arg) =>
                 error ? [] : [{ type: RESOURCES.BODY_PART, id: arg.id }],
         }),
-        deleteBodyPart: builder.mutation<BodyPartDTODelete, BodyPartDTODelete>({
+        deleteBodyPart: builder.mutation<string, BodyPartDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.BODY_PART}/${data.id}`,
                 method: 'DELETE',

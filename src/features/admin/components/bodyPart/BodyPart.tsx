@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { BodyPartDTO } from '../../../../types/dto/bodyPart';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const BodyPart = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const BodyPart = () => {
   const { data, isFetching, refetch } = useGetBodyPartListQuery(
     query || skipToken
   );
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<BodyPartDTO>[]>(
     () => [
@@ -41,7 +43,7 @@ export const BodyPart = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 400,
+          size: 200,
         },
       },
       {
@@ -53,7 +55,17 @@ export const BodyPart = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 600,
+          size: 200,
+        },
+      },
+      {
+        type: 'record',
+        name: 'description',
+        header: 'Mô tả',
+        renderHeader: (header) => <div>{header}</div>,
+        renderCell: (cell) => <div>{cell.getValue()}</div>,
+        columnDefOptions: {
+          size: 300,
         },
       },
     ],
@@ -79,6 +91,15 @@ export const BodyPart = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_BODY_PART,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

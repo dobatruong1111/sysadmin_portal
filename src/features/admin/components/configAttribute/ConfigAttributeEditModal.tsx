@@ -34,7 +34,7 @@ export const ConnectedConfigAttributeEditModal = () => {
   const handleDeleteConfigAttributte = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa thuộc tính ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa thuộc tính ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {
@@ -105,7 +105,7 @@ export const ConfigAttributeEditModal = forwardRef<
             onSuccessCallback={closeModal}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa thông tin cấu hình"
       />
     </>

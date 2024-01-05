@@ -17,23 +17,14 @@ export const ConfigAttributeCreateForm = (props: {
   const notifySnackbar = useNotifySnackbar();
 
   const onSubmit = async (formData: ConfigAttributeDTOCreate) => {
-    const submitForm: ConfigAttributeDTOCreate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      datatype: formData.datatype ?? '',
-      datatypeConfig: formData.datatypeConfig ?? '',
-      description: formData.description ?? '',
-      minOccurs: formData.minOccurs ?? 0,
-      maxOccurs: formData.maxOccurs ?? 0,
-    };
     if (
-      submitForm.id.length === 0 ||
-      submitForm.name.length === 0 ||
-      submitForm.datatype.length === 0
+      formData.id.length === 0 ||
+      formData.name.length === 0 ||
+      formData.datatype.length === 0
     )
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createConfigAttribute(submitForm);
+      const result = await createConfigAttribute(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -54,7 +45,7 @@ export const ConfigAttributeCreateForm = (props: {
   };
 
   const formOptions: UseFormProps<ConfigAttributeDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',
@@ -67,7 +58,7 @@ export const ConfigAttributeCreateForm = (props: {
   };
 
   const datatypes = useMemo<Array<string>>(
-    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT'],
+    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT', 'LIST', 'REFERENCE'],
     []
   );
 

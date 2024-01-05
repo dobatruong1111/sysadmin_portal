@@ -29,32 +29,23 @@ export const ConfigAttributeEditForm = (
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<ConfigAttributeDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      datatype: record.datatype,
-      datatypeConfig: '',
-      description: '',
-      minOccurs: 0,
-      maxOccurs: 0,
+      id: record.id ?? '',
+      name: record.name ?? '',
+      datatype: record.datatype ?? '',
+      datatypeConfig: record.datatypeConfig ?? '',
+      description: record.description ?? '',
+      minOccurs: record.minOccurs ?? 0,
+      maxOccurs: record.maxOccurs ?? 0,
     },
   };
 
   const onSubmit = async (formData: ConfigAttributeDTOUpdate) => {
-    const submitForm: ConfigAttributeDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      datatype: formData.datatype ?? '',
-      datatypeConfig: formData.datatypeConfig ?? '',
-      description: formData.description ?? '',
-      minOccurs: formData.minOccurs ?? 0,
-      maxOccurs: formData.maxOccurs ?? 0,
-    };
-    if (submitForm.name.length === 0 || submitForm.datatype.length === 0)
+    if (formData.name.length === 0 || formData.datatype.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editConfigAttribute(submitForm);
+      const result = await editConfigAttribute(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -81,7 +72,7 @@ export const ConfigAttributeEditForm = (
   };
 
   const datatypes = useMemo<Array<string>>(
-    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT'],
+    () => ['STRING', 'BOOLEAN', 'INTEGER', 'FLOAT', 'LIST', 'REFERENCE'],
     []
   );
 

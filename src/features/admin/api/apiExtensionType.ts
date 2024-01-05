@@ -30,7 +30,7 @@ const apiExtensionType = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createExtensionType: builder.mutation<ExtensionTypeDTOCreate, ExtensionTypeDTOCreate>({
+        createExtensionType: builder.mutation<string, ExtensionTypeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiExtensionType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: 'LIST' }]
         }),
-        updateExtensionType: builder.mutation<ExtensionTypeDTOUpdate, ExtensionTypeDTOUpdate>({
+        updateExtensionType: builder.mutation<string, ExtensionTypeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiExtensionType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.EXTENSION_TYPE, id: arg.id }]
         }),
-        deleteExtensionType: builder.mutation<ExtensionTypeDTODelete, ExtensionTypeDTODelete>({
+        deleteExtensionType: builder.mutation<string, ExtensionTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.EXTENSION_TYPE}/${data.id}`,
                 method: 'DELETE',

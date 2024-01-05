@@ -30,7 +30,7 @@ const apiConnectionAccount = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createConnectionAccount: builder.mutation<ConnectionAccountDTOCreate, ConnectionAccountDTOCreate>({
+        createConnectionAccount: builder.mutation<string, ConnectionAccountDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.CONNECTION_ACCOUNT}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiConnectionAccount = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONNECTION_ACCOUNT, id: 'LIST' }]
         }),
-        updateConnectionAccount: builder.mutation<ConnectionAccountDTOUpdate, ConnectionAccountDTOUpdate>({
+        updateConnectionAccount: builder.mutation<string, ConnectionAccountDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.CONNECTION_ACCOUNT}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiConnectionAccount = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONNECTION_ACCOUNT, id: arg.id }]
         }),
-        deleteConnectionAccount: builder.mutation<ConnectionAccountDTODelete, ConnectionAccountDTODelete>({
+        deleteConnectionAccount: builder.mutation<string, ConnectionAccountDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONNECTION_ACCOUNT}/${data.id}`,
                 method: 'DELETE',

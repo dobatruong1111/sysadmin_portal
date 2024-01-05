@@ -85,7 +85,7 @@ export const DomainCreateModal = (props: { closeModal: () => void }) => {
       title="Thêm tên miền"
       confirmLabel="Thêm mới"
       handleConfirm={() => adminFunctions.submitCreateForm()}
-      width="30vw"
+      width="24vw"
     />
   );
 };

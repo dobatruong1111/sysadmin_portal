@@ -34,7 +34,7 @@ export const ConnectedConnectionAccountEditModal = () => {
   const handleDeleteDomain = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa tài khoản ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa tài khoản ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {
@@ -105,7 +105,7 @@ export const ConnectionAccountEditModal = forwardRef<
             record={record}
           />
         }
-        width="30vw"
+        width="24vw"
         title="Sửa tài khoản"
       />
     </>

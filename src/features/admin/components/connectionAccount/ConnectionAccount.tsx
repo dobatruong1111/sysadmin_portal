@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { ConnectionAccountDTO } from '../../../../types/dto/connectionAccount';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const ConnectionAccount = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const ConnectionAccount = () => {
   const { data, isFetching, refetch } = useGetConnectionAccountListQuery(
     query || skipToken
   );
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<ConnectionAccountDTO>[]>(
     () => [
@@ -114,6 +116,15 @@ export const ConnectionAccount = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_CONNECTION_ACCOUNT,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

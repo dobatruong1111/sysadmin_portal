@@ -31,7 +31,7 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
     defaultValues: {
       id: record.id,
       name: record.name,
-      description: '',
+      description: record.description,
     },
   };
 

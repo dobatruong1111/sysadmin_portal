@@ -27,24 +27,19 @@ export const ConsumableTypeEditForm = (props: ConsumableTypeEditFormProps) => {
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<ConsumableTypeDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      description: '',
+      id: record.id ?? '',
+      name: record.name ?? '',
+      description: record.description ?? '',
     },
   };
 
   const onSubmit = async (formData: ConsumableTypeDTOUpdate) => {
-    const submitForm: ConsumableTypeDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.name.length === 0)
+    if (formData.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editConsumableType(submitForm);
+      const result = await editConsumableType(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

@@ -7,6 +7,7 @@ import { TABLE_CONSUMABLE_TYPE } from '../../../../stores/table/tableInitialStat
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
 import { skipToken } from '@reduxjs/toolkit/query';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const ConsumableType = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const ConsumableType = () => {
   const { data, isFetching, refetch } = useGetConsumableTypeListQuery(
     query || skipToken
   );
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<ConsumableTypeDTO>[]>(
     () => [
@@ -28,8 +30,7 @@ export const ConsumableType = () => {
             cell: (props) => (
               <div style={{ textAlign: 'center' }}>{props.row.index + 1}</div>
             ),
-            minSize: 50,
-            maxSize: 50,
+            size: 50,
           }),
       },
       {
@@ -41,7 +42,7 @@ export const ConsumableType = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 418,
+          size: 200,
         },
       },
       {
@@ -53,7 +54,17 @@ export const ConsumableType = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 600,
+          size: 200,
+        },
+      },
+      {
+        type: 'record',
+        name: 'description',
+        header: 'Mô tả',
+        renderHeader: (header) => <div>{header}</div>,
+        renderCell: (cell) => <div>{cell.getValue()}</div>,
+        columnDefOptions: {
+          size: 300,
         },
       },
     ],
@@ -82,6 +93,15 @@ export const ConsumableType = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_CONSUMABLE_TYPE,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

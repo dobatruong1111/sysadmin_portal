@@ -30,7 +30,7 @@ const apiConsumableType = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createConsumableType: builder.mutation<ConsumableTypeDTOCreate, ConsumableTypeDTOCreate>({
+        createConsumableType: builder.mutation<string, ConsumableTypeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiConsumableType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: 'LIST' }]
         }),
-        updateConsumableType: builder.mutation<ConsumableTypeDTOUpdate, ConsumableTypeDTOUpdate>({
+        updateConsumableType: builder.mutation<string, ConsumableTypeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiConsumableType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.CONSUMABLE_TYPE, id: arg.id }]
         }),
-        deleteConsumableType: builder.mutation<ConsumableTypeDTODelete, ConsumableTypeDTODelete>({
+        deleteConsumableType: builder.mutation<string, ConsumableTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.CONSUMABLE_TYPE}/${data.id}`,
                 method: 'DELETE',

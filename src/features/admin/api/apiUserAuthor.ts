@@ -30,7 +30,7 @@ const apiUserAuthor = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createUserAuthor: builder.mutation<UserAuthorDTOCreate, UserAuthorDTOCreate>({
+        createUserAuthor: builder.mutation<string, UserAuthorDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiUserAuthor = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: 'LIST'}],
         }),
-        updateUserAuthor: builder.mutation<UserAuthorDTOUpdate, UserAuthorDTOUpdate>({
+        updateUserAuthor: builder.mutation<string, UserAuthorDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiUserAuthor = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.USER_AUTHOR, id: arg.id }]
         }),
-        deleteUserAuthor: builder.mutation<UserAuthorDTODelete, UserAuthorDTODelete>({
+        deleteUserAuthor: builder.mutation<string, UserAuthorDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.USER_AUTHOR}/${data.id}`,
                 method: 'DELETE',

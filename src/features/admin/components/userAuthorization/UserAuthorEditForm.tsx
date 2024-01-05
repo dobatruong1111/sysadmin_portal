@@ -31,7 +31,7 @@ export const UserAuthorEditForm = (props: UserAuthorEditFormProps) => {
     defaultValues: {
       id: record.id,
       name: record.name,
-      description: '',
+      description: record.description,
     },
   };
 

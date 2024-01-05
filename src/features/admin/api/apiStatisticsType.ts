@@ -1,12 +1,12 @@
 import { api } from "../../../lib/api";
 import { getManyResourcesRequestParams, transformListResponseGeneric, transformResponseGeneric } from "../../../lib/dataHelper/apiHelper";
 import { GenericFilter, GetManyResourceQuery, GetManyResourceQueryResult } from "../../../types/api";
-import { StatisticsTypeDTO, StatisticsTypeDTODelete } from "../../../types/dto/statisticsType";
+import { StatisticsTypeDTO, StatisticsTypeDTOCreate, StatisticsTypeDTODelete, StatisticsTypeDTOUpdate } from "../../../types/dto/statisticsType";
 import { RESOURCES } from "../../../types/resources";
 
 const apiStatisticsType = api.injectEndpoints({
     endpoints: (builder) => ({
-        getOneStatisticsType: builder.query<StatisticsTypeDTO, StatisticsTypeDTO>({
+        getOneStatisticsType: builder.query<StatisticsTypeDTO, { id: string }>({
             query: ({ id }) => ({
                 url: `${RESOURCES.STATISTICS_TYPE}/${id}`,
                 method: 'GET',
@@ -30,7 +30,7 @@ const apiStatisticsType = api.injectEndpoints({
             ],
             transformResponse: transformListResponseGeneric
         }),
-        createStatisticsType: builder.mutation<StatisticsTypeDTO, StatisticsTypeDTO>({
+        createStatisticsType: builder.mutation<string, StatisticsTypeDTOCreate>({
             query: (data) => ({
                 url: `${RESOURCES.STATISTICS_TYPE}`,
                 method: 'POST',
@@ -40,7 +40,7 @@ const apiStatisticsType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: 'LIST' }]
         }),
-        updateStatisticsType: builder.mutation<StatisticsTypeDTO, StatisticsTypeDTO>({
+        updateStatisticsType: builder.mutation<string, StatisticsTypeDTOUpdate>({
             query: (data) => ({
                 url: `${RESOURCES.STATISTICS_TYPE}`,
                 method: 'PUT',
@@ -50,7 +50,7 @@ const apiStatisticsType = api.injectEndpoints({
             }),
             invalidatesTags: (_result, error, arg) => error ? [] : [{ type: RESOURCES.STATISTICS_TYPE, id: arg.id }]
         }),
-        deleteStatisticsType: builder.mutation<StatisticsTypeDTODelete, StatisticsTypeDTODelete>({
+        deleteStatisticsType: builder.mutation<string, StatisticsTypeDTODelete>({
             query: (data) => ({
                 url: `${RESOURCES.STATISTICS_TYPE}/${data.id}`,
                 method: 'DELETE',
