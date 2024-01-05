@@ -106,7 +106,7 @@ export const ModalityTypeNameEditModal = forwardRef<
           />
         }
         width="24vw"
-        title="Sửa Phân Quyền"
+        title="Sửa Loại Ca Chụp"
       />
     </>
   );

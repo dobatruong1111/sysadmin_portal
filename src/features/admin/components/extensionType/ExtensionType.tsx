@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { ExtensionTypeDTO } from '../../../../types/dto/extensionType';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const ExtensionType = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export const ExtensionType = () => {
   const { data, isFetching, refetch } = useGetExtensionTypeListQuery(
     query || skipToken
   );
+
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<ExtensionTypeDTO>[]>(
     () => [
@@ -94,6 +97,15 @@ export const ExtensionType = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_EXTENSION_TYPE,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

@@ -7,6 +7,7 @@ import { setSelectedRow } from '../../../../stores/table/tableSlice';
 import { useGetUserAuthorListQuery } from '../../api/apiUserAuthor';
 import { UserAuthorDTO } from '../../../../types/dto/userAuthor';
 import { skipToken } from '@reduxjs/toolkit/query';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const UserAuthorization = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export const UserAuthorization = () => {
   const { data, isFetching, refetch } = useGetUserAuthorListQuery(
     query || skipToken
   );
+  
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<UserAuthorDTO>[]>(
     () => [
@@ -94,6 +97,15 @@ export const UserAuthorization = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_USER_AUTHOR,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

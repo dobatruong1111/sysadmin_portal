@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { HospitalDTO } from '../../../../types/dto/hospital';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const Hospital = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export const Hospital = () => {
   const { data, isFetching, refetch } = useGetHospitalListQuery(
     query || skipToken,
   );
+
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<HospitalDTO>[]>(
     () => [
@@ -103,6 +106,15 @@ export const Hospital = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_HOSPITAL,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{
