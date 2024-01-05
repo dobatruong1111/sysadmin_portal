@@ -6,12 +6,16 @@ import { AdminTableActionButtons } from '../../../../components/Admin/AdminTable
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetModalityTypeNameListQuery } from '../../api/apiModalityTypeName';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const ModalityTypeName = () => {
   const dispatch = useDispatch();
   const query = useSelector(
     (state: any) => state.tableReducer.data[TABLE_MODALITY_TYPE_NAME].query
   );
+
+  const adminFunctions = useAdminFunctions();
+
   const { data, isFetching, refetch } = useGetModalityTypeNameListQuery(query);
 
   const tableColumns = useMemo<TableField<ModalityTypeNameDTO>[]>(
@@ -91,6 +95,15 @@ export const ModalityTypeName = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_MODALITY_TYPE_NAME,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

@@ -7,6 +7,7 @@ import { setSelectedRow } from '../../../../../stores/table/tableSlice';
 import { AdminTableActionButtons } from '../../../../../components/Admin/AdminTableActionButtons';
 import { ConfigDTO } from '../../../../../types/dto/config';
 import { useGetConfigListQuery } from '../../../api/apiConfig';
+import { useAdminFunctions } from '../../../../../providers/admin/AdminProvider';
 
 type ConfigProps = {
   hospitalID?: string;
@@ -21,6 +22,8 @@ export const Config: FC<ConfigProps> = (props) => {
   const { data, isFetching, refetch } = useGetConfigListQuery(
     { ...query, hospitalID: hospitalID } || skipToken
   );
+
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<ConfigDTO>[]>(
     () => [
@@ -114,6 +117,15 @@ export const Config: FC<ConfigProps> = (props) => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_HOSPITAL_CONFIG,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModalPanel();
         },
       }}
       paginationControls={{

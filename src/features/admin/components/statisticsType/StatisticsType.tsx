@@ -7,6 +7,7 @@ import { StatisticsTypeDTO } from '../../../../types/dto/statisticsType';
 import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const StatisticsType = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ export const StatisticsType = () => {
   const { data, isFetching, refetch } = useGetStatisticsTypeListQuery(
     query || skipToken
   );
+
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<StatisticsTypeDTO>[]>(
     () => [
@@ -102,6 +105,15 @@ export const StatisticsType = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_STATISTICS_TYPE,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{
