@@ -13,8 +13,12 @@ export const HospitalCreateForm = (props: {
   const { onSuccessCallback } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [selectedImageLogo, setselectedImageLogo] = useState<string | null>(null);
-  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(null);
+  const [selectedImageLogo, setselectedImageLogo] = useState<string | null>(
+    null
+  );
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<
+    string | null
+  >(null);
   const [createHospital] = useCreateHospitalMutation();
   const notifySnackbar = useNotifySnackbar();
 
@@ -55,7 +59,7 @@ export const HospitalCreateForm = (props: {
   };
 
   const formOptions: UseFormProps<HospitalDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',
@@ -94,4 +98,3 @@ export const HospitalCreateForm = (props: {
 };
 
 export default HospitalCreateForm;
-

@@ -10,7 +10,6 @@ import { useDisclosure } from '../../../../hooks/useDisclosure';
 import { useDispatch, useSelector } from 'react-redux';
 import { TABLE_MODALITY_TYPE_NAME } from '../../../../stores/table/tableInitialState';
 import { useDeleteModalityTypeNameMutation } from '../../api/apiModalityTypeName';
-// import { skipToken } from "@reduxjs/toolkit/query";
 import {
   useNotifyModal,
   useNotifySnackbar,
@@ -24,7 +23,6 @@ export const ConnectedModalityTypeNameEditModal = () => {
     (state: any) =>
       state.tableReducer.data[TABLE_MODALITY_TYPE_NAME].selection.selectedRow
   );
-  // const { data: modalityTypeNameData } = useGetOneModalityTypeNameQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
   const dispatch = useDispatch();
   const [deleteModalityTypeName] = useDeleteModalityTypeNameMutation();
@@ -36,7 +34,7 @@ export const ConnectedModalityTypeNameEditModal = () => {
   const handleDeleteModalityTypeName = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa loại ca chụp ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa ca chụp ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

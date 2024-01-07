@@ -17,15 +17,10 @@ export const ExtensionTypeCreateForm = (props: {
   const notifySnackbar = useNotifySnackbar();
 
   const onSubmit = async (formData: ExtensionTypeDTOCreate) => {
-    const submitForm: ExtensionTypeDTOCreate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+    if (formData.id.length === 0 || formData.name.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createExtensionType(submitForm);
+      const result = await createExtensionType(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -46,7 +41,7 @@ export const ExtensionTypeCreateForm = (props: {
   };
 
   const formOptions: UseFormProps<ExtensionTypeDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',

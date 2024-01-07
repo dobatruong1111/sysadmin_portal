@@ -44,7 +44,7 @@ export const StatisticsType = () => {
           <div style={{ textAlign: 'center' }}>{cell.getValue()}</div>
         ),
         columnDefOptions: {
-          size: 400,
+          size: 50,
         },
       },
       {

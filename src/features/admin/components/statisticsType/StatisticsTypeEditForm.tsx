@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useRegisterAdminFunctions } from '../../../../providers/admin/AdminProvider';
-import { StatisticsTypeDTO } from '../../../../types/dto/statisticsType';
+import {
+  StatisticsTypeDTOCreate,
+  StatisticsTypeDTO,
+} from '../../../../types/dto/statisticsType';
 import { useUpdateStatisticsTypeMutation } from '../../api/apiStatisticsType';
 import { useNotifySnackbar } from '../../../../providers/NotificationProvider';
 import { useDispatch } from 'react-redux';
@@ -24,30 +27,22 @@ export const StatisticsTypeEditForm = (props: StatisticsTypeEditFormProps) => {
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<StatisticsTypeDTO> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      config: record.config,
-      description: record.description,
-      filterParams: record.filterParams,
-      outputSchema: record.outputSchema,
+      id: record.id ?? '',
+      name: record.name ?? '',
+      config: record.config ?? '',
+      description: record.description ?? '',
+      filterParams: record.filterParams ?? [],
+      outputSchema: record.outputSchema ?? '',
     },
   };
 
-  const onSubmit = async (formData: StatisticsTypeDTO) => {
-    const submitForm: StatisticsTypeDTO = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      config: formData.config ?? '',
-      description: formData.description ?? '',
-      filterParams: formData.filterParams ?? [],
-      outputSchema: formData.outputSchema ?? '',
-    };
-    if (submitForm.name.length === 0)
+  const onSubmit = async (formData: StatisticsTypeDTOCreate) => {
+    if (formData.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editStatisticsType(submitForm);
+      const result = await editStatisticsType(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

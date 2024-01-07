@@ -27,24 +27,20 @@ export const UserAuthorEditForm = (props: UserAuthorEditFormProps) => {
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<UserAuthorDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      description: record.description,
+      id: record.id ?? '',
+      name: record.name ?? '',
+      description: record.description ?? '',
     },
   };
 
   const onSubmit = async (formData: UserAuthorDTOUpdate) => {
-    const submitForm: UserAuthorDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.name.length === 0)
+    if (formData.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editUserAuthor(submitForm);
+      const result = await editUserAuthor(formData);
+      console.log(result);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

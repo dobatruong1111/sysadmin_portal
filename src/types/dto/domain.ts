@@ -3,7 +3,10 @@ export type DomainDTOBase = {
     hospitalID: string;
 }
 
-export type DomainDTO = {} & DomainDTOBase;
+export type DomainDTO = {
+    logo: string;
+    logoFull: string;
+} & DomainDTOBase;
 
 export type DomainDTOCreate = {
     publicAddress: boolean;
@@ -12,8 +15,3 @@ export type DomainDTOCreate = {
 export type DomainDTODelete = {
     id: string
 }
-
-export type DomainDTOGet = {
-    logo: string;
-    logoFull: string;
-} & DomainDTOBase;

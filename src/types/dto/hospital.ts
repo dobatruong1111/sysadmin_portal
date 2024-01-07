@@ -5,7 +5,7 @@ export type HospitalDTOBase = {
     enabled: boolean;
 }
 
-export type HospitalDTO = {} & HospitalDTOBase;
+export type HospitalDTO = HospitalDTOBase;
 
 export type HospitalDTOCreate = {
     phone: string;

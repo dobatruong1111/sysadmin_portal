@@ -34,7 +34,7 @@ export const ConnectedStatisticsTypeEditModal = () => {
   const handleDeleteStatisticsType = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa loại báo cáo thống kê ${selectedRow.name} hay không ?`,
+        message: `Bạn có chắc chắn xóa báo cáo thống kê ${selectedRow.name} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

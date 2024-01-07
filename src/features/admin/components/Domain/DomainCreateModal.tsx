@@ -32,7 +32,7 @@ export const ConnectedDomainCreateModal = () => {
   const handleDeleteDomain = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa tên miền ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa tên miền ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

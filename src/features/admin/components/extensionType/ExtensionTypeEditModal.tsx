@@ -16,7 +16,6 @@ import {
 } from '../../../../providers/NotificationProvider';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
 import { Modal } from '@mui/material';
-// import { skipToken } from "@reduxjs/toolkit/query"
 
 export const ConnectedExtensionTypeEditModal = () => {
   const { isOpen, open, close } = useDisclosure(false);
@@ -24,7 +23,6 @@ export const ConnectedExtensionTypeEditModal = () => {
     (state: any) =>
       state.tableReducer.data[TABLE_EXTENSION_TYPE].selection.selectedRow
   );
-  // const { data: extensionTypeData } = useGetOneExtensionTypeQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
   const dispatch = useDispatch();
   const [deleteExtensionType] = useDeleteExtensionTypeMutation();
@@ -36,7 +34,7 @@ export const ConnectedExtensionTypeEditModal = () => {
   const handleDeleteExtensionType = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa chức năng mở rộng ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa chức năng ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {

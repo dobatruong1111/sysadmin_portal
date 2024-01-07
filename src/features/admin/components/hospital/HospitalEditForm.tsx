@@ -20,14 +20,18 @@ export const HospitalEditForm = (props: HospitalEditFormProps) => {
   const { onSuccessCallback, data } = props;
   const register = useRegisterAdminFunctions();
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [selectedImage, setSelectedImage] = useState<string | null>(data?.logo || null);
-  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<string | null>(data?.logoFull || null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(
+    data?.logo || null
+  );
+  const [selectedImageLogoFull, setselectedImageLogoFull] = useState<
+    string | null
+  >(data?.logoFull || null);
   const [editHospital] = useUpdateHospitalMutation();
   const notifySnackbar = useNotifySnackbar();
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<HospitalDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: data?.id || '',
       name: data?.name || '',

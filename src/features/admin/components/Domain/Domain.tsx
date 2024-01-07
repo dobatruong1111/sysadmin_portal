@@ -7,6 +7,7 @@ import { MyTable, TableField } from '../../../../components/Table/MyTable';
 import { DomainDTO } from '../../../../types/dto/domain';
 import { AdminTableActionButtons } from '../../../../components/Admin/AdminTableActionButtons';
 import { setSelectedRow } from '../../../../stores/table/tableSlice';
+import { useAdminFunctions } from '../../../../providers/admin/AdminProvider';
 
 export const Domain = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export const Domain = () => {
   const { data, isFetching, refetch } = useGetDomainListQuery(
     query || skipToken
   );
+  const adminFunctions = useAdminFunctions();
 
   const tableColumns = useMemo<TableField<DomainDTO>[]>(
     () => [
@@ -79,6 +81,15 @@ export const Domain = () => {
               selectedRow: row.original,
             })
           );
+        },
+        onRowDoubleClick: (_e, row, _table) => {
+          dispatch(
+            setSelectedRow({
+              tableId: TABLE_DOMAIN,
+              selectedRow: row.original,
+            })
+          );
+          adminFunctions.openEditModal();
         },
       }}
       paginationControls={{

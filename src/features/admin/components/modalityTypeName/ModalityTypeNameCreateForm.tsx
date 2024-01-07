@@ -17,15 +17,10 @@ export const ModalityTypeNameCreateForm = (props: {
   const notifySnackbar = useNotifySnackbar();
 
   const onSubmit = async (formData: ModalityTypeNameDTOCreate) => {
-    const submitForm: ModalityTypeNameDTOCreate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+    if (formData.id.length === 0 || formData.name.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createModalityTypeName(submitForm);
+      const result = await createModalityTypeName(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -46,7 +41,7 @@ export const ModalityTypeNameCreateForm = (props: {
   };
 
   const formOptions: UseFormProps<ModalityTypeNameDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',

@@ -24,15 +24,10 @@ export const DomainCreateForm = (props: { onSuccessCallback?: () => void }) => {
   const { data } = useGetHospitalListQuery(query || skipToken);
 
   const onSubmit = async (formData: DomainDTOCreate) => {
-    const submitForm: DomainDTOCreate = {
-      id: formData.id ?? '',
-      hospitalID: formData.hospitalID ?? '',
-      publicAddress: formData.publicAddress ?? true,
-    };
-    if (submitForm.id.length === 0 || submitForm.hospitalID.length === 0)
+    if (formData.id.length === 0 || formData.hospitalID.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createDomain(submitForm);
+      const result = await createDomain(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -53,7 +48,7 @@ export const DomainCreateForm = (props: { onSuccessCallback?: () => void }) => {
   };
 
   const formOptions: UseFormProps<DomainDTOCreate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       hospitalID: '',

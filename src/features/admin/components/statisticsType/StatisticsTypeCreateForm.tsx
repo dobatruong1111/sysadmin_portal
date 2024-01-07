@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRegisterAdminFunctions } from '../../../../providers/admin/AdminProvider';
 import { useCreateStatisticsTypeMutation } from '../../api/apiStatisticsType';
 import { useNotifySnackbar } from '../../../../providers/NotificationProvider';
-import { StatisticsTypeDTO } from '../../../../types/dto/statisticsType';
+import { StatisticsTypeDTOCreate } from '../../../../types/dto/statisticsType';
 import { UseFormProps } from 'react-hook-form';
 import { MyFormGroupUnstyled } from '../../../../components';
 import { StatisticsTypeFormFields } from './StatisticsTypeFormFields';
@@ -16,19 +16,11 @@ export const StatisticsTypeCreateForm = (props: {
   const [createStatisticsType] = useCreateStatisticsTypeMutation();
   const notifySnackbar = useNotifySnackbar();
 
-  const onSubmit = async (formData: StatisticsTypeDTO) => {
-    const submitForm: StatisticsTypeDTO = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-      config: formData.config ?? '',
-      filterParams: formData.filterParams ?? [],
-      outputSchema: formData.outputSchema ?? '',
-    };
-    if (submitForm.id.length === 0 || submitForm.name.length === 0)
+  const onSubmit = async (formData: StatisticsTypeDTOCreate) => {
+    if (formData.id.length === 0 || formData.name.length === 0)
       setErrorMessage('Cần điền vào trường bắt buộc');
     else {
-      const result = await createStatisticsType(submitForm);
+      const result = await createStatisticsType(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',
@@ -48,8 +40,8 @@ export const StatisticsTypeCreateForm = (props: {
     }
   };
 
-  const formOptions: UseFormProps<StatisticsTypeDTO> = {
-    mode: 'onChange',
+  const formOptions: UseFormProps<StatisticsTypeDTOCreate> = {
+    mode: 'onBlur',
     defaultValues: {
       id: '',
       name: '',

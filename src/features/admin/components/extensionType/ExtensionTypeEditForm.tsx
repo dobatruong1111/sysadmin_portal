@@ -27,24 +27,19 @@ export const ExtensionTypeEditForm = (props: ExtensionTypeEditFormProps) => {
   const dispatch = useDispatch();
 
   const formOptions: UseFormProps<ExtensionTypeDTOUpdate> = {
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
-      id: record.id,
-      name: record.name,
-      description: record.description,
+      id: record.id ?? '',
+      name: record.name ?? '',
+      description: record.description ?? '',
     },
   };
 
   const onSubmit = async (formData: ExtensionTypeDTOUpdate) => {
-    const submitForm: ExtensionTypeDTOUpdate = {
-      id: formData.id ?? '',
-      name: formData.name ?? '',
-      description: formData.description ?? '',
-    };
-    if (submitForm.name.length === 0)
+    if (formData.name.length === 0)
       setErrorMessage('Trường bắt buộc không được bỏ trống');
     else {
-      const result = await editExtensionType(submitForm);
+      const result = await editExtensionType(formData);
       if ('error' in result) {
         notifySnackbar({
           message: 'Lỗi',

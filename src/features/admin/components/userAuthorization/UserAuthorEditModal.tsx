@@ -16,7 +16,6 @@ import {
 } from '../../../../providers/NotificationProvider';
 import { UserAuthorDTO } from '../../../../types/dto/userAuthor';
 import { useDeleteUserAuthorMutation } from '../../api/apiUserAuthor';
-// import { skipToken } from "@reduxjs/toolkit/query";
 
 export const ConnectedUserAuthorEditModal = () => {
   const { isOpen, open, close } = useDisclosure(false);
@@ -24,7 +23,6 @@ export const ConnectedUserAuthorEditModal = () => {
     (state: any) =>
       state.tableReducer.data[TABLE_USER_AUTHOR].selection.selectedRow
   );
-  // const { data: userAuthorData } = useGetOneUserAuthorQuery(selectedRow != null && isOpen ? { id: selectedRow.id } : skipToken);
 
   const dispatch = useDispatch();
   const [deleteUserAuthor] = useDeleteUserAuthorMutation();
@@ -36,7 +34,7 @@ export const ConnectedUserAuthorEditModal = () => {
   const handleDeleteUserAuthor = useCallback(() => {
     if (selectedRow) {
       notifyModal({
-        message: `Bạn có chắc chắn muốn xóa phân quyền ${selectedRow.id} hay không ?`,
+        message: `Bạn có chắc chắn xóa phân quyền ${selectedRow.id} hay không ?`,
         options: {
           variant: 'warning',
           onConfirm: async () => {
